@@ -1,3 +1,5 @@
+Camila Fariñas, Dariel Álvarez, Danny Castro
+
 ## ENUNCIADO
 Puede leer el enunciado de esta tarea en el archivo [enunciado.md](enunciado.md)
 
