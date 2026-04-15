@@ -2,10 +2,29 @@ import ply.lex as lex
 
 class Lexer:
     tokens = (
+        'IF', 'ELSE', 'ELIF',
+        'WHILE', 'FOR', 
+        'BREAK', 'CONTINUE', 'PASS',
+        'DEF', 'RETURN', 'CLASS',
+        'TRUE', 'FALSE',
+        'AND', 'OR', 'NOT',
         'ID',
     )
 
-    t_ID = r'[A-Za-z_][A-Za-z0-9_]*'
+    reserved = {
+        'if': 'IF',  'else': 'ELSE', 'elif': 'ELIF',
+        'while': 'WHILE', 'for': 'FOR',
+        'break': 'BREAK', 'continue': 'CONTINUE', 'pass': 'PASS',
+        'def': 'DEF', 'return': 'RETURN', 'class': 'CLASS',
+        'True': 'TRUE', 'False': 'FALSE',
+        'and': 'AND', 'or': 'OR', 'not': 'NOT',
+    }
+
+    def t_ID(self, t):
+        r'[A-Za-z_][A-Za-z0-9_]*'
+        t.type = self.reserved.get(t.value, 'ID')
+        return t
+
 
     t_ignore = '\t| '
 
