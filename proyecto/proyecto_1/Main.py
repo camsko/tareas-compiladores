@@ -1,4 +1,10 @@
 from Lexer import Lexer
+from aux_classes.FileManager import *
 
 lex = Lexer()
-print(lex.tokenize("Tokenize this variable named abc123"))
+fileManager = FileManager()
+files = fileManager.loadTestFiles()
+
+for file in files:
+    tokenized_output = lex.tokenize(file.text)
+    print(tokenized_output)
