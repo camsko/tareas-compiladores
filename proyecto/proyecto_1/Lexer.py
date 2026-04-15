@@ -8,7 +8,21 @@ class Lexer:
         'DEF', 'RETURN', 'CLASS',
         'TRUE', 'FALSE',
         'AND', 'OR', 'NOT',
-        'ID',
+        'ID', 
+        
+        #Arithmetic
+        'PLUS', 'MINUS', 'MULT',
+        'DIV', 'INT_DIV', 'MOD',
+        'POW',
+        
+        #Relational
+        'EQUAL', 'NON_EQUAL', 'LOWER_THAN',
+        'GREATER_THAN', 'LOWER_EQUAL', 'GREATER_EQUAL',
+        
+        #Assingment
+        'ASSIGN', 'PLUS_ASSIGN', 'MINUS_ASSIGN',
+        'MULT_ASSIGN', 'DIV_ASSIGN', 'MOD_ASSIGN',
+        'INT_DIV_ASSIGN', 'POW_ASSIGN',
     )
 
     reserved = {
@@ -25,6 +39,29 @@ class Lexer:
         t.type = self.reserved.get(t.value, 'ID')
         return t
 
+    t_POW_ASSIGN     = r'\*\*='
+    t_INT_DIV_ASSIGN = r'//='
+    t_PLUS_ASSIGN    = r'\+='
+    t_MINUS_ASSIGN   = r'-='
+    t_MULT_ASSIGN    = r'\*='
+    t_DIV_ASSIGN     = r'/='
+    t_MOD_ASSIGN     = r'%='
+    t_ASSIGN         = r'='
+
+    t_EQUAL  = r'=='
+    t_NON_EQUAL = r'!='
+    t_LOWER_EQUAL  = r'<='
+    t_GREATER_EQUAL  = r'>='
+    t_LOWER_THAN  = r'<'
+    t_GREATER_THAN  = r'>'
+
+    t_POW     = r'\*\*'
+    t_INT_DIV = r'//'
+    t_PLUS    = r'\+'
+    t_MINUS   = r'-'
+    t_MULT    = r'\*'
+    t_DIV     = r'/'
+    t_MOD     = r'%'
 
     t_ignore = '\t| '
 
