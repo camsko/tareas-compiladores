@@ -50,10 +50,10 @@ class Lexer:
 
     t_EQUAL  = r'=='
     t_NON_EQUAL = r'!='
-    t_LOWER_THAN  = r'<='
-    t_GREATER_THAN  = r'>='
-    t_LOWER_EQUAL  = r'<'
-    t_GREATER_EQUAL  = r'>'
+    t_LOWER_EQUAL  = r'<='
+    t_GREATER_EQUAL  = r'>='
+    t_LOWER_THAN  = r'<'
+    t_GREATER_THAN  = r'>'
 
     t_POW     = r'\*\*'
     t_INT_DIV = r'//'
