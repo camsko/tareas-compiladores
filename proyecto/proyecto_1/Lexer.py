@@ -23,6 +23,11 @@ class Lexer:
         'ASSIGN', 'PLUS_ASSIGN', 'MINUS_ASSIGN',
         'MULT_ASSIGN', 'DIV_ASSIGN', 'MOD_ASSIGN',
         'INT_DIV_ASSIGN', 'POW_ASSIGN',
+        
+        #Delimiters
+        'LPAREN', 'RPAREN', 'LBRACKET',
+        'RBRACKET', 'LBRACE', 'RBRACE',
+        'COLON', 'COMMA', 'DOT',
     )
 
     reserved = {
@@ -62,6 +67,16 @@ class Lexer:
     t_MULT    = r'\*'
     t_DIV     = r'/'
     t_MOD     = r'%'
+    
+    t_LPAREN   = r'\('
+    t_RPAREN   = r'\)'
+    t_LBRACKET = r'\['
+    t_RBRACKET = r'\]'
+    t_LBRACE   = r'\{'
+    t_RBRACE   = r'\}'
+    t_DOT    = r'\.'
+    t_COLON    = r':'
+    t_COMMA    = r','
 
     t_ignore = '\t| '
 
