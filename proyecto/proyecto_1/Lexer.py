@@ -10,6 +10,12 @@ class Lexer:
         'AND', 'OR', 'NOT',
         'ID', 
         
+        #Numeric literals
+        'INT', 'FLOAT', 
+        
+        #String
+        'STRING',
+        
         #Arithmetic
         'PLUS', 'MINUS', 'MULT',
         'DIV', 'INT_DIV', 'MOD',
@@ -42,6 +48,16 @@ class Lexer:
     def t_ID(self, t):
         r'[A-Za-z_][A-Za-z0-9_]*'
         t.type = self.reserved.get(t.value, 'ID')
+        return t
+
+    def t_FLOAT(self, t):
+        r'[0-9]+\.[0-9]+'
+        t.value = float(t.value)
+        return t
+    
+    def t_INT(self, t):
+        r'[0-9]+'
+        t.value = int(t.value)
         return t
 
     t_POW_ASSIGN     = r'\*\*='
