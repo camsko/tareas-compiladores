@@ -1,5 +1,5 @@
 import ply.lex as lex
-
+import re
 class Lexer:
     tokens = (
         'IF', 'ELSE', 'ELIF',
@@ -45,6 +45,22 @@ class Lexer:
         'and': 'AND', 'or': 'OR', 'not': 'NOT',
     }
 
+    def t_STRING(self, t):
+        r'"((?!"|\\).|\\.)*"?|\'((?!\'|\\).|\\.)*\'?'
+        print(t.value)
+        if re.search(r'\\(?![nt\\\"\'])', t.value):
+            print(f"Illegal Token: {t.value}")
+            return None
+        if t.value[0] in ('"', "'"):
+            quote = t.value[0]
+            if not t.value.endswith(quote):
+                print(f"Illegal Token: {t.value}")
+                return None
+            elif t.value.find(quote, 1) != len(t.value) - 1:
+                print(f"Illegal Token: {t.value}")
+                return None
+        return t
+
     def t_ID(self, t):
         r'[A-Za-z_][A-Za-z0-9_]*'
         t.type = self.reserved.get(t.value, 'ID')
@@ -69,30 +85,30 @@ class Lexer:
     t_MOD_ASSIGN     = r'%='
     t_ASSIGN         = r'='
 
-    t_EQUAL  = r'=='
-    t_NON_EQUAL = r'!='
-    t_LOWER_EQUAL  = r'<='
+    t_EQUAL          = r'=='
+    t_NON_EQUAL      = r'!='
+    t_LOWER_EQUAL    = r'<='
     t_GREATER_EQUAL  = r'>='
-    t_LOWER_THAN  = r'<'
-    t_GREATER_THAN  = r'>'
+    t_LOWER_THAN     = r'<'
+    t_GREATER_THAN   = r'>'
 
-    t_POW     = r'\*\*'
-    t_INT_DIV = r'//'
-    t_PLUS    = r'\+'
-    t_MINUS   = r'-'
-    t_MULT    = r'\*'
-    t_DIV     = r'/'
-    t_MOD     = r'%'
+    t_POW            = r'\*\*'
+    t_INT_DIV        = r'//'
+    t_PLUS           = r'\+'
+    t_MINUS          = r'-'
+    t_MULT           = r'\*'
+    t_DIV            = r'/'
+    t_MOD            = r'%'
     
-    t_LPAREN   = r'\('
-    t_RPAREN   = r'\)'
-    t_LBRACKET = r'\['
-    t_RBRACKET = r'\]'
-    t_LBRACE   = r'\{'
-    t_RBRACE   = r'\}'
-    t_DOT    = r'\.'
-    t_COLON    = r':'
-    t_COMMA    = r','
+    t_LPAREN         = r'\('
+    t_RPAREN         = r'\)'
+    t_LBRACKET       = r'\['
+    t_RBRACKET       = r'\]'
+    t_LBRACE         = r'\{'
+    t_RBRACE         = r'\}'
+    t_DOT            = r'\.'
+    t_COLON          = r':'
+    t_COMMA          = r','
 
     t_ignore = '\t| '
 
