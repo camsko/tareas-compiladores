@@ -5,3 +5,11 @@ def factorial(n): #aaaa
 
 print("# No se que \" estoy haciendo") # Yo si
 print(factorial(4)) # Hola mundo
+if(1>2):
+    lista = [
+        "a",
+        1,
+        2
+    ]
+    print("hello: ")
+

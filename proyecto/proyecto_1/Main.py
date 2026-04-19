@@ -3,8 +3,11 @@ from aux_classes.FileManager import *
 
 lex = Lexer()
 fileManager = FileManager()
-files = fileManager.loadTestFiles()
+files = fileManager.loadTestFiles("test3")
 
 for file in files:
     tokenized_output = lex.tokenize(file.lines)
-    print(tokenized_output)
+    clean_tokens = [f"({t.type}, {t.value}, {t.lineno}, {t.lexpos})" for t in tokenized_output]
+    for t in clean_tokens:
+        print(t)
+

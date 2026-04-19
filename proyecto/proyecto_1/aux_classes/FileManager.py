@@ -4,7 +4,7 @@ class FileManager:
   def __init__(self):
     self.testFiles: list[File] = []
 
-  def loadTestFiles(self):
-    for file in (Path(__file__).parent.parent / "tests").rglob("*.py"):
+  def loadTestFiles(self, file_name = "*"):
+    for file in (Path(__file__).parent.parent / "tests").rglob(f"{file_name}.py"):
       self.testFiles.append(File(file))
     return self.testFiles
