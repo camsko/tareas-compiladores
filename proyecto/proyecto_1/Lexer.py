@@ -46,7 +46,7 @@ class Lexer:
     }
 
     def t_STRING(self, t):
-        r'"((?!").)*"?|\'((?!\').)*\'?'
+        r'"((?!"|\\).|\\.)*"?|\'((?!\'|\\).|\\.)*\'?'
         quote = t.value[0]
         valid_escapes = r'\\([nt\\\'"])'
         reduced_value = re.sub(valid_escapes, '', t.value[:-1])

@@ -1,4 +1,4 @@
-string = "Hello \\World\n" + 'Hello World'
+string = "Hello \\World\"" + 'Hello World'
 string = "Hello World1
 string = "Hello World2" + "Hello World2
 string = "Hello World3'
