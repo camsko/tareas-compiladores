@@ -23,6 +23,12 @@ class Lexer:
         'AND', 'OR', 'NOT',
         'ID', 
         
+        #Numeric literals
+        'INT', 'FLOAT', 
+        
+        #String
+        'STRING',
+        
         #Arithmetic
         'PLUS', 'MINUS', 'MULT',
         'DIV', 'INT_DIV', 'MOD',
@@ -55,9 +61,32 @@ class Lexer:
         'and': 'AND', 'or': 'OR', 'not': 'NOT',
     }
 
+    def t_STRING(self, t):
+        r'"((?!"|\\).|\\.)*"?|\'((?!\'|\\).|\\.)*\'?'
+        quote = t.value[0]
+        valid_escapes = r'\\([nt\\\'"])'
+        reduced_value = re.sub(valid_escapes, '', t.value[:-1])
+        if not t.value.endswith(quote) or len(t.value) < 2:
+            print(f"Illegal Token: {t.value}")
+            return None
+        elif '\\' in reduced_value:
+            print(f"Illegal Token: {t.value}")
+            return None
+        return t
+
     def t_ID(self, t):
         r'[A-Za-z_][A-Za-z0-9_]*'
         t.type = self.reserved.get(t.value, 'ID')
+        return t
+
+    def t_FLOAT(self, t):
+        r'[0-9]+\.[0-9]+'
+        t.value = float(t.value)
+        return t
+    
+    def t_INT(self, t):
+        r'[0-9]+'
+        t.value = int(t.value)
         return t
 
     t_POW_ASSIGN     = r'\*\*='
@@ -69,20 +98,20 @@ class Lexer:
     t_MOD_ASSIGN     = r'%='
     t_ASSIGN         = r'='
 
-    t_EQUAL  = r'=='
-    t_NON_EQUAL = r'!='
-    t_LOWER_EQUAL  = r'<='
+    t_EQUAL          = r'=='
+    t_NON_EQUAL      = r'!='
+    t_LOWER_EQUAL    = r'<='
     t_GREATER_EQUAL  = r'>='
-    t_LOWER_THAN  = r'<'
-    t_GREATER_THAN  = r'>'
+    t_LOWER_THAN     = r'<'
+    t_GREATER_THAN   = r'>'
 
-    t_POW     = r'\*\*'
-    t_INT_DIV = r'//'
-    t_PLUS    = r'\+'
-    t_MINUS   = r'-'
-    t_MULT    = r'\*'
-    t_DIV     = r'/'
-    t_MOD     = r'%'
+    t_POW            = r'\*\*'
+    t_INT_DIV        = r'//'
+    t_PLUS           = r'\+'
+    t_MINUS          = r'-'
+    t_MULT           = r'\*'
+    t_DIV            = r'/'
+    t_MOD            = r'%'
     
     t_LPAREN   = r'\('
     t_RPAREN   = r'\)'
