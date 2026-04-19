@@ -46,19 +46,16 @@ class Lexer:
     }
 
     def t_STRING(self, t):
-        r'"((?!"|\\).|\\.)*"?|\'((?!\'|\\).|\\.)*\'?'
-        print(t.value)
-        if re.search(r'\\(?![nt\\\"\'])', t.value):
+        r'"((?!").)*"?|\'((?!\').)*\'?'
+        quote = t.value[0]
+        valid_escapes = r'\\([nt\\\'"])'
+        reduced_value = re.sub(valid_escapes, '', t.value[:-1])
+        if not t.value.endswith(quote) or len(t.value) < 2:
             print(f"Illegal Token: {t.value}")
             return None
-        if t.value[0] in ('"', "'"):
-            quote = t.value[0]
-            if not t.value.endswith(quote):
-                print(f"Illegal Token: {t.value}")
-                return None
-            elif t.value.find(quote, 1) != len(t.value) - 1:
-                print(f"Illegal Token: {t.value}")
-                return None
+        elif '\\' in reduced_value:
+            print(f"Illegal Token: {t.value}")
+            return None
         return t
 
     def t_ID(self, t):
