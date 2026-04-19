@@ -1,6 +1,10 @@
 import ply.lex as lex
+import re
 
 class Lexer:
+
+    current_indent = 0
+
     tokens = (
         'IF', 'ELSE', 'ELIF',
         'WHILE', 'FOR', 
@@ -82,15 +86,38 @@ class Lexer:
 
     def t_newline(self, t):
         r'\n+'
-        t.lexer.lineno += len(t.value)
 
     def t_error(self, t):
-        print(f"Illegal character '{t.value[0]}'")
+        print(f"Illegal character '{t.value[0]}' in line {t.lexer.lineno}")
         t.lexer.skip(1)
 
     def __init__(self):
         self.lexer = lex.lex(module=self)
 
-    def tokenize(self, data):
-        self.lexer.input(data)
-        return list(self.lexer)
+    def tokenize(self, data: list[str]):
+        tokens = []
+        self.lexer.lineno = 0
+        for line in data:
+            new_line = self.preprocess_line(line)
+            self.lexer.lineno += 1
+            self.lexer.input(new_line)
+            tokens += list(self.lexer)
+        return tokens
+
+    def preprocess_line(self, line: str):
+        single_comma_open = False
+        double_comma_open = False
+        line_without_comment = line
+        for i in range(len(line)):
+            c = line[i]
+            if c == '"' and (i == 0 or line[i - 1] != "\\"):
+                double_comma_open = not double_comma_open
+            if c == "'" and (i == 0 or line[i - 1] != "\\"):
+                single_comma_open = not single_comma_open
+            if c == "#" and not single_comma_open and not double_comma_open:
+                line_without_comment = line[:i] + "\n"
+                break
+
+        print(repr(line))
+        print(repr(line_without_comment))
+        return line_without_comment

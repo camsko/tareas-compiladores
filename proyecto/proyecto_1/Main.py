@@ -6,5 +6,5 @@ fileManager = FileManager()
 files = fileManager.loadTestFiles()
 
 for file in files:
-    tokenized_output = lex.tokenize(file.text)
+    tokenized_output = lex.tokenize(file.lines)
     print(tokenized_output)
