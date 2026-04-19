@@ -6,6 +6,7 @@ class File:
     p = Path(path)
     self.name = p.stem
     self.text = p.read_text(encoding="utf-8")
+    self.lines = self.text.splitlines(keepends=True)
     self.extension = p.suffix
     self.path = path
   
