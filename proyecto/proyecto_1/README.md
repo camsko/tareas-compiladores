@@ -22,4 +22,4 @@ This program has several files.
 
 In order to use this program, load your desired test(s) into the /tests/ folder. If you want to tokenize a specific file, you specify the name of the file in line 7 of Main.py[Main.py] (the function call to loadTestFiles()). Do not add "./tests/" to the beginning of the file name. If you want to tokenize all files in the /tests/ folder, leave the parameters blank.
 
-The output will be printed to the terminal.
+To run the program, execute the command ```pip install -r requirements`` to install the ply package. Then, execute the command python3 Main.py. The output will be printed to the terminal.
