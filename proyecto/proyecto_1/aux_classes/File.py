@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# This class functions as a container for the data of any file.
 class File:
   
   def __init__(self, path: str):
