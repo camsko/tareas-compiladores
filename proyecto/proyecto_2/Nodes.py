@@ -29,4 +29,8 @@ class IntNode(Node):
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass
+class PlusAssignNode(BinaryNode): pass
+class MinusAssignNode(BinaryNode): pass
+class MultAssignNode(BinaryNode): pass
+class DivAssignNode(BinaryNode): pass
 class AssignNode(BinaryNode): pass

@@ -36,10 +36,25 @@ class Parser:
         'assignment : ID INT_DIV_ASSIGN expression'
         p[0] = IntDivAssignNode(IdentifierNode(p[1]), p[3])
         
+    def p_plus_assign_expression(self, p):
+        'assignment : ID PLUS_ASSIGN expression'
+        p[0] = PlusAssignNode(IdentifierNode(p[1]), p[3])
+    
+    def p_minus_assign_expression(self, p):
+        'assignment : ID MINUS_ASSIGN expression'
+        p[0] = MinusAssignNode(IdentifierNode(p[1]), p[3])
+    
+    def p_mult_assign_expression(self, p):
+        'assignment : ID MULT_ASSIGN expression'
+        p[0] = MultAssignNode(IdentifierNode(p[1]), p[3])
+    
+    def p_div_assign_expression(self, p):
+        'assignment : ID DIV_ASSIGN expression'
+        p[0] = DivAssignNode(IdentifierNode(p[1]), p[3])
+    
     def p_assignment(self, p):
         'assignment : ID ASSIGN expression'
         p[0] = AssignNode(IdentifierNode(p[1]), p[3])
-
 
     def p_expression_int(self, p):
         'expression : INT'
