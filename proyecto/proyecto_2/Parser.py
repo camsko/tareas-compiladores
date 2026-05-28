@@ -51,6 +51,10 @@ class Parser:
     def p_div_assign_expression(self, p):
         'assignment : ID DIV_ASSIGN expression'
         p[0] = DivAssignNode(IdentifierNode(p[1]), p[3])
+        
+    def p_mod_assign_expression(self, p):
+        'assignment : ID MOD_ASSIGN expression'
+        p[0] = ModAssignNode(IdentifierNode(p[1]), p[3])
     
     def p_assignment(self, p):
         'assignment : ID ASSIGN expression'

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ARROW ASSIGN BREAK CLASS COLON COMMA CONTINUE DEF DENT DIV DIV_ASSIGN DOT ELIF ELSE EQUAL ERROR FALSE FLOAT FOR FROM GREATER_EQUAL GREATER_THAN ID IF IMPORT INDENT INT INT_DIV INT_DIV_ASSIGN LBRACE LBRACKET LOWER_EQUAL LOWER_THAN LPAREN MINUS MINUS_ASSIGN MOD MOD_ASSIGN MULT MULT_ASSIGN NON_EQUAL NOT OR PASS PLUS PLUS_ASSIGN POW POW_ASSIGN RBRACE RBRACKET RETURN RPAREN STRING TRUE WHILEprogram : program statementprogram : statementstatement : assignmentassignment : ID POW_ASSIGN expressionassignment : ID INT_DIV_ASSIGN expressionassignment : ID PLUS_ASSIGN expressionassignment : ID MINUS_ASSIGN expressionassignment : ID MULT_ASSIGN expressionassignment : ID DIV_ASSIGN expressionassignment : ID ASSIGN expressionexpression : INTexpression : ID'
+_lr_signature = 'AND ARROW ASSIGN BREAK CLASS COLON COMMA CONTINUE DEF DENT DIV DIV_ASSIGN DOT ELIF ELSE EQUAL ERROR FALSE FLOAT FOR FROM GREATER_EQUAL GREATER_THAN ID IF IMPORT INDENT INT INT_DIV INT_DIV_ASSIGN LBRACE LBRACKET LOWER_EQUAL LOWER_THAN LPAREN MINUS MINUS_ASSIGN MOD MOD_ASSIGN MULT MULT_ASSIGN NON_EQUAL NOT OR PASS PLUS PLUS_ASSIGN POW POW_ASSIGN RBRACE RBRACKET RETURN RPAREN STRING TRUE WHILEprogram : program statementprogram : statementstatement : assignmentassignment : ID POW_ASSIGN expressionassignment : ID INT_DIV_ASSIGN expressionassignment : ID PLUS_ASSIGN expressionassignment : ID MINUS_ASSIGN expressionassignment : ID MULT_ASSIGN expressionassignment : ID DIV_ASSIGN expressionassignment : ID MOD_ASSIGN expressionassignment : ID ASSIGN expressionexpression : INTexpression : ID'
     
-_lr_action_items = {'ID':([0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,],[4,4,-2,-3,-1,13,13,13,13,13,13,13,-12,-4,-11,-5,-6,-7,-8,-9,-10,]),'$end':([1,2,3,5,13,14,15,16,17,18,19,20,21,],[0,-2,-3,-1,-12,-4,-11,-5,-6,-7,-8,-9,-10,]),'POW_ASSIGN':([4,],[6,]),'INT_DIV_ASSIGN':([4,],[7,]),'PLUS_ASSIGN':([4,],[8,]),'MINUS_ASSIGN':([4,],[9,]),'MULT_ASSIGN':([4,],[10,]),'DIV_ASSIGN':([4,],[11,]),'ASSIGN':([4,],[12,]),'INT':([6,7,8,9,10,11,12,],[15,15,15,15,15,15,15,]),}
+_lr_action_items = {'ID':([0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,],[4,4,-2,-3,-1,14,14,14,14,14,14,14,14,-13,-4,-12,-5,-6,-7,-8,-9,-10,-11,]),'$end':([1,2,3,5,14,15,16,17,18,19,20,21,22,23,],[0,-2,-3,-1,-13,-4,-12,-5,-6,-7,-8,-9,-10,-11,]),'POW_ASSIGN':([4,],[6,]),'INT_DIV_ASSIGN':([4,],[7,]),'PLUS_ASSIGN':([4,],[8,]),'MINUS_ASSIGN':([4,],[9,]),'MULT_ASSIGN':([4,],[10,]),'DIV_ASSIGN':([4,],[11,]),'MOD_ASSIGN':([4,],[12,]),'ASSIGN':([4,],[13,]),'INT':([6,7,8,9,10,11,12,13,],[16,16,16,16,16,16,16,16,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'statement':([0,1,],[2,5,]),'assignment':([0,1,],[3,3,]),'expression':([6,7,8,9,10,11,12,],[14,16,17,18,19,20,21,]),}
+_lr_goto_items = {'program':([0,],[1,]),'statement':([0,1,],[2,5,]),'assignment':([0,1,],[3,3,]),'expression':([6,7,8,9,10,11,12,13,],[15,17,18,19,20,21,22,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -36,7 +36,8 @@ _lr_productions = [
   ('assignment -> ID MINUS_ASSIGN expression','assignment',3,'p_minus_assign_expression','Parser.py',44),
   ('assignment -> ID MULT_ASSIGN expression','assignment',3,'p_mult_assign_expression','Parser.py',48),
   ('assignment -> ID DIV_ASSIGN expression','assignment',3,'p_div_assign_expression','Parser.py',52),
-  ('assignment -> ID ASSIGN expression','assignment',3,'p_assignment','Parser.py',56),
-  ('expression -> INT','expression',1,'p_expression_int','Parser.py',60),
-  ('expression -> ID','expression',1,'p_expression_identifier','Parser.py',64),
+  ('assignment -> ID MOD_ASSIGN expression','assignment',3,'p_mod_assign_expression','Parser.py',56),
+  ('assignment -> ID ASSIGN expression','assignment',3,'p_assignment','Parser.py',60),
+  ('expression -> INT','expression',1,'p_expression_int','Parser.py',64),
+  ('expression -> ID','expression',1,'p_expression_identifier','Parser.py',68),
 ]

@@ -33,4 +33,5 @@ class PlusAssignNode(BinaryNode): pass
 class MinusAssignNode(BinaryNode): pass
 class MultAssignNode(BinaryNode): pass
 class DivAssignNode(BinaryNode): pass
+class ModAssignNode(BinaryNode): pass
 class AssignNode(BinaryNode): pass
