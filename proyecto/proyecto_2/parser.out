@@ -1,0 +1,274 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ARROW
+    BREAK
+    CLASS
+    COLON
+    COMMA
+    CONTINUE
+    DEF
+    DENT
+    DIV
+    DIV_ASSIGN
+    DOT
+    ELIF
+    ELSE
+    EQUAL
+    ERROR
+    FALSE
+    FLOAT
+    FOR
+    FROM
+    GREATER_EQUAL
+    GREATER_THAN
+    IF
+    IMPORT
+    INDENT
+    INT_DIV
+    LBRACE
+    LBRACKET
+    LOWER_EQUAL
+    LOWER_THAN
+    LPAREN
+    MINUS
+    MINUS_ASSIGN
+    MOD
+    MOD_ASSIGN
+    MULT
+    MULT_ASSIGN
+    NON_EQUAL
+    NOT
+    OR
+    PASS
+    PLUS
+    PLUS_ASSIGN
+    POW
+    RBRACE
+    RBRACKET
+    RETURN
+    RPAREN
+    STRING
+    TRUE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> program statement
+Rule 2     program -> statement
+Rule 3     statement -> assignment
+Rule 4     assignment -> ID POW_ASSIGN expression
+Rule 5     assignment -> ID INT_DIV_ASSIGN expression
+Rule 6     assignment -> ID ASSIGN expression
+Rule 7     expression -> INT
+Rule 8     expression -> ID
+
+Terminals, with rules where they appear
+
+AND                  : 
+ARROW                : 
+ASSIGN               : 6
+BREAK                : 
+CLASS                : 
+COLON                : 
+COMMA                : 
+CONTINUE             : 
+DEF                  : 
+DENT                 : 
+DIV                  : 
+DIV_ASSIGN           : 
+DOT                  : 
+ELIF                 : 
+ELSE                 : 
+EQUAL                : 
+ERROR                : 
+FALSE                : 
+FLOAT                : 
+FOR                  : 
+FROM                 : 
+GREATER_EQUAL        : 
+GREATER_THAN         : 
+ID                   : 4 5 6 8
+IF                   : 
+IMPORT               : 
+INDENT               : 
+INT                  : 7
+INT_DIV              : 
+INT_DIV_ASSIGN       : 5
+LBRACE               : 
+LBRACKET             : 
+LOWER_EQUAL          : 
+LOWER_THAN           : 
+LPAREN               : 
+MINUS                : 
+MINUS_ASSIGN         : 
+MOD                  : 
+MOD_ASSIGN           : 
+MULT                 : 
+MULT_ASSIGN          : 
+NON_EQUAL            : 
+NOT                  : 
+OR                   : 
+PASS                 : 
+PLUS                 : 
+PLUS_ASSIGN          : 
+POW                  : 
+POW_ASSIGN           : 4
+RBRACE               : 
+RBRACKET             : 
+RETURN               : 
+RPAREN               : 
+STRING               : 
+TRUE                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 3
+expression           : 4 5 6
+program              : 1 0
+statement            : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . program statement
+    (2) program -> . statement
+    (3) statement -> . assignment
+    (4) assignment -> . ID POW_ASSIGN expression
+    (5) assignment -> . ID INT_DIV_ASSIGN expression
+    (6) assignment -> . ID ASSIGN expression
+
+    ID              shift and go to state 4
+
+    program                        shift and go to state 1
+    statement                      shift and go to state 2
+    assignment                     shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+    (1) program -> program . statement
+    (3) statement -> . assignment
+    (4) assignment -> . ID POW_ASSIGN expression
+    (5) assignment -> . ID INT_DIV_ASSIGN expression
+    (6) assignment -> . ID ASSIGN expression
+
+    ID              shift and go to state 4
+
+    statement                      shift and go to state 5
+    assignment                     shift and go to state 3
+
+state 2
+
+    (2) program -> statement .
+
+    ID              reduce using rule 2 (program -> statement .)
+    $end            reduce using rule 2 (program -> statement .)
+
+
+state 3
+
+    (3) statement -> assignment .
+
+    ID              reduce using rule 3 (statement -> assignment .)
+    $end            reduce using rule 3 (statement -> assignment .)
+
+
+state 4
+
+    (4) assignment -> ID . POW_ASSIGN expression
+    (5) assignment -> ID . INT_DIV_ASSIGN expression
+    (6) assignment -> ID . ASSIGN expression
+
+    POW_ASSIGN      shift and go to state 6
+    INT_DIV_ASSIGN  shift and go to state 7
+    ASSIGN          shift and go to state 8
+
+
+state 5
+
+    (1) program -> program statement .
+
+    ID              reduce using rule 1 (program -> program statement .)
+    $end            reduce using rule 1 (program -> program statement .)
+
+
+state 6
+
+    (4) assignment -> ID POW_ASSIGN . expression
+    (7) expression -> . INT
+    (8) expression -> . ID
+
+    INT             shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 10
+
+state 7
+
+    (5) assignment -> ID INT_DIV_ASSIGN . expression
+    (7) expression -> . INT
+    (8) expression -> . ID
+
+    INT             shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 12
+
+state 8
+
+    (6) assignment -> ID ASSIGN . expression
+    (7) expression -> . INT
+    (8) expression -> . ID
+
+    INT             shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 13
+
+state 9
+
+    (8) expression -> ID .
+
+    ID              reduce using rule 8 (expression -> ID .)
+    $end            reduce using rule 8 (expression -> ID .)
+
+
+state 10
+
+    (4) assignment -> ID POW_ASSIGN expression .
+
+    ID              reduce using rule 4 (assignment -> ID POW_ASSIGN expression .)
+    $end            reduce using rule 4 (assignment -> ID POW_ASSIGN expression .)
+
+
+state 11
+
+    (7) expression -> INT .
+
+    ID              reduce using rule 7 (expression -> INT .)
+    $end            reduce using rule 7 (expression -> INT .)
+
+
+state 12
+
+    (5) assignment -> ID INT_DIV_ASSIGN expression .
+
+    ID              reduce using rule 5 (assignment -> ID INT_DIV_ASSIGN expression .)
+    $end            reduce using rule 5 (assignment -> ID INT_DIV_ASSIGN expression .)
+
+
+state 13
+
+    (6) assignment -> ID ASSIGN expression .
+
+    ID              reduce using rule 6 (assignment -> ID ASSIGN expression .)
+    $end            reduce using rule 6 (assignment -> ID ASSIGN expression .)
+

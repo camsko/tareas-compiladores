@@ -8,7 +8,6 @@ class Indent(Enum):
         NO_INDENT = 3
 
 class Lexer:
-
     previous_indent_state = Indent.NO_INDENT
     previous_indent_level = 0
     found_spaces = False
@@ -232,6 +231,8 @@ class Lexer:
     # Builds the PLY lexer instance for this class.
     def __init__(self):
         self.lexer = lex.lex(module=self)
+        self.generated_tokens = []
+        self.current_token_index = 0
 
     # Resets counters and indentation state before tokenizing input.
     def reset_tokenization_state(self):
@@ -295,16 +296,24 @@ class Lexer:
         return self.add_extra_dents(self.previous_indent_level)
 
     # Tokenizes all input lines and returns the final token list.
-    def tokenize(self, data: list[str]) -> list[lex.LexToken]:
-        tokens = []
+    def tokenize(self, data: list[str]):
+        self.generated_tokens = []
+        self.current_token_index = 0
         self.reset_tokenization_state()
 
         for line in data:
-            tokens += self.process_token_line(line)
+            self.generated_tokens += self.process_token_line(line)
 
         # Adds dents when a file ends in an indentation
-        tokens += self.add_eof_dents() 
-        return tokens
+        self.generated_tokens += self.add_eof_dents() 
+        
+    def token(self):
+        if self.current_token_index >= len(self.generated_tokens):
+            return None
+
+        token = self.generated_tokens[self.current_token_index]
+        self.current_token_index += 1
+        return token
 
     # Removes comments and determines indentation state (may, must, or not indent) for a line.
     def preprocess_line(self, line: str):
