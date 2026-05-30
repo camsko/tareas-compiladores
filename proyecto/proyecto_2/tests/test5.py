@@ -10,8 +10,7 @@ var *= 5
 var /= 5 
 var %= 5 
 
-def ejemplo(x, y):
+def ejemplo(x, y=5, z=5.5):
     var = x
-    var = y
 
 5 = 5

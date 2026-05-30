@@ -21,9 +21,23 @@ class FunctionRules:
         p[0] = []
     
     def p_parameter_list_single(self, p):
-        'parameter_list : ID'
-        p[0] = [IdentifierNode(p[1])]
+        'parameter_list : parameter'
+        p[0] = [p[1]]
 
     def p_parameter_list_multiple(self, p):
-        'parameter_list : parameter_list COMMA ID'
-        p[0] = p[1] + [IdentifierNode(p[3])]
+        'parameter_list : parameter_list COMMA parameter'
+        p[0] = p[1] + [p[3]]
+        
+    def p_parameter(self, p):
+        'parameter : ID'
+        p[0] = ParameterNode(
+            IdentifierNode(p[1]),
+            None
+        )
+
+    def p_parameter_default(self, p):
+        'parameter : ID ASSIGN expression'
+        p[0] = ParameterNode(
+            IdentifierNode(p[1]),
+            p[3]
+        )

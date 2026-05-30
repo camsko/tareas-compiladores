@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ARROW ASSIGN BREAK CLASS COLON COMMA CONTINUE DEF DENT DIV DIV_ASSIGN DOT ELIF ELSE EQUAL ERROR FALSE FLOAT FOR FROM GREATER_EQUAL GREATER_THAN ID IF IMPORT INDENT INT INT_DIV INT_DIV_ASSIGN LBRACE LBRACKET LOWER_EQUAL LOWER_THAN LPAREN MINUS MINUS_ASSIGN MOD MOD_ASSIGN MULT MULT_ASSIGN NON_EQUAL NOT OR PASS PLUS PLUS_ASSIGN POW POW_ASSIGN RBRACE RBRACKET RETURN RPAREN STRING TRUE WHILEprogram : program global_statementglobal_statement : assignmentassignment : ID POW_ASSIGN expressionexpression : STRINGfunction_definition : DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENTprogram : global_statementglobal_statement : function_definitionassignment : ID INT_DIV_ASSIGN expressionexpression : FLOATfunction_statement : assignmentfunction_body : function_body function_statementassignment : ID PLUS_ASSIGN expressionexpression : INTstatement : assignmentfunction_body : function_statementassignment : ID MINUS_ASSIGN expressionexpression : IDstatement : function_definitionparameter_list : assignment : ID MULT_ASSIGN expressionparameter_list : IDassignment : ID DIV_ASSIGN expressionparameter_list : parameter_list COMMA IDassignment : ID MOD_ASSIGN expressionassignment : ID ASSIGN expression'
+_lr_signature = 'AND ARROW ASSIGN BREAK CLASS COLON COMMA CONTINUE DEF DENT DIV DIV_ASSIGN DOT ELIF ELSE EQUAL ERROR FALSE FLOAT FOR FROM GREATER_EQUAL GREATER_THAN ID IF IMPORT INDENT INT INT_DIV INT_DIV_ASSIGN LBRACE LBRACKET LOWER_EQUAL LOWER_THAN LPAREN MINUS MINUS_ASSIGN MOD MOD_ASSIGN MULT MULT_ASSIGN NON_EQUAL NOT OR PASS PLUS PLUS_ASSIGN POW POW_ASSIGN RBRACE RBRACKET RETURN RPAREN STRING TRUE WHILEprogram : program global_statementglobal_statement : assignmentassignment : ID POW_ASSIGN expressionexpression : STRINGfunction_definition : DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENTprogram : global_statementglobal_statement : function_definitionassignment : ID INT_DIV_ASSIGN expressionexpression : FLOATfunction_statement : assignmentfunction_body : function_body function_statementassignment : ID PLUS_ASSIGN expressionexpression : INTfunction_body : function_statementassignment : ID MINUS_ASSIGN expressionexpression : IDparameter_list : assignment : ID MULT_ASSIGN expressionparameter_list : parameterassignment : ID DIV_ASSIGN expressionparameter_list : parameter_list COMMA parameterassignment : ID MOD_ASSIGN expressionparameter : IDassignment : ID ASSIGN expressionparameter : ID ASSIGN expression'
     
-_lr_action_items = {'ID':([0,1,2,3,4,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,33,36,37,38,39,40,41,],[5,5,-6,-2,-7,16,-1,17,17,17,17,17,17,17,17,-17,-3,-4,-9,-13,-8,-12,-16,-20,-22,-24,-25,30,35,5,5,-15,-10,-5,-11,]),'DEF':([0,1,2,3,4,7,17,18,19,20,21,22,23,24,25,26,27,28,40,],[6,6,-6,-2,-7,-1,-17,-3,-4,-9,-13,-8,-12,-16,-20,-22,-24,-25,-5,]),'$end':([1,2,3,4,7,17,18,19,20,21,22,23,24,25,26,27,28,40,],[0,-6,-2,-7,-1,-17,-3,-4,-9,-13,-8,-12,-16,-20,-22,-24,-25,-5,]),'POW_ASSIGN':([5,],[8,]),'INT_DIV_ASSIGN':([5,],[9,]),'PLUS_ASSIGN':([5,],[10,]),'MINUS_ASSIGN':([5,],[11,]),'MULT_ASSIGN':([5,],[12,]),'DIV_ASSIGN':([5,],[13,]),'MOD_ASSIGN':([5,],[14,]),'ASSIGN':([5,],[15,]),'STRING':([8,9,10,11,12,13,14,15,],[19,19,19,19,19,19,19,19,]),'FLOAT':([8,9,10,11,12,13,14,15,],[20,20,20,20,20,20,20,20,]),'INT':([8,9,10,11,12,13,14,15,],[21,21,21,21,21,21,21,21,]),'LPAREN':([16,],[29,]),'DENT':([17,18,19,20,21,22,23,24,25,26,27,28,37,38,39,41,],[-17,-3,-4,-9,-13,-8,-12,-16,-20,-22,-24,-25,40,-15,-10,-11,]),'RPAREN':([29,30,31,35,],[-19,-21,32,-23,]),'COMMA':([29,30,31,35,],[-19,-21,33,-23,]),'COLON':([32,],[34,]),'INDENT':([34,],[36,]),}
+_lr_action_items = {'ID':([0,1,2,3,4,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,33,35,39,40,41,42,43,44,],[5,5,-6,-2,-7,16,-1,17,17,17,17,17,17,17,17,-16,-3,-4,-9,-13,-8,-12,-15,-18,-20,-22,-24,30,17,30,5,5,-14,-10,-5,-11,]),'DEF':([0,1,2,3,4,7,17,18,19,20,21,22,23,24,25,26,27,28,43,],[6,6,-6,-2,-7,-1,-16,-3,-4,-9,-13,-8,-12,-15,-18,-20,-22,-24,-5,]),'$end':([1,2,3,4,7,17,18,19,20,21,22,23,24,25,26,27,28,43,],[0,-6,-2,-7,-1,-16,-3,-4,-9,-13,-8,-12,-15,-18,-20,-22,-24,-5,]),'POW_ASSIGN':([5,],[8,]),'INT_DIV_ASSIGN':([5,],[9,]),'PLUS_ASSIGN':([5,],[10,]),'MINUS_ASSIGN':([5,],[11,]),'MULT_ASSIGN':([5,],[12,]),'DIV_ASSIGN':([5,],[13,]),'MOD_ASSIGN':([5,],[14,]),'ASSIGN':([5,30,],[15,33,]),'STRING':([8,9,10,11,12,13,14,15,33,],[19,19,19,19,19,19,19,19,19,]),'FLOAT':([8,9,10,11,12,13,14,15,33,],[20,20,20,20,20,20,20,20,20,]),'INT':([8,9,10,11,12,13,14,15,33,],[21,21,21,21,21,21,21,21,21,]),'LPAREN':([16,],[29,]),'DENT':([17,18,19,20,21,22,23,24,25,26,27,28,40,41,42,44,],[-16,-3,-4,-9,-13,-8,-12,-15,-18,-20,-22,-24,43,-14,-10,-11,]),'RPAREN':([17,19,20,21,29,30,31,32,36,38,],[-16,-4,-9,-13,-17,-23,34,-19,-25,-21,]),'COMMA':([17,19,20,21,29,30,31,32,36,38,],[-16,-4,-9,-13,-17,-23,35,-19,-25,-21,]),'COLON':([34,],[37,]),'INDENT':([37,],[39,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'global_statement':([0,1,],[2,7,]),'assignment':([0,1,36,37,],[3,3,39,39,]),'function_definition':([0,1,],[4,4,]),'expression':([8,9,10,11,12,13,14,15,],[18,22,23,24,25,26,27,28,]),'parameter_list':([29,],[31,]),'function_body':([36,],[37,]),'function_statement':([36,37,],[38,41,]),}
+_lr_goto_items = {'program':([0,],[1,]),'global_statement':([0,1,],[2,7,]),'assignment':([0,1,39,40,],[3,3,42,42,]),'function_definition':([0,1,],[4,4,]),'expression':([8,9,10,11,12,13,14,15,33,],[18,22,23,24,25,26,27,28,36,]),'parameter_list':([29,],[31,]),'parameter':([29,35,],[32,38,]),'function_body':([39,],[40,]),'function_statement':([39,40,],[41,44,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -40,16 +40,16 @@ _lr_productions = [
   ('function_body -> function_body function_statement','function_body',2,'p_function_body_multiple','FunctionRules.py',12),
   ('assignment -> ID PLUS_ASSIGN expression','assignment',3,'p_plus_assign_expression','AssignmentRules.py',13),
   ('expression -> INT','expression',1,'p_int_expression','ExpressionRules.py',13),
-  ('statement -> assignment','statement',1,'p_statement_assignment','StatementRules.py',15),
   ('function_body -> function_statement','function_body',1,'p_function_body_single','FunctionRules.py',16),
   ('assignment -> ID MINUS_ASSIGN expression','assignment',3,'p_minus_assign_expression','AssignmentRules.py',17),
   ('expression -> ID','expression',1,'p_identifier_expression','ExpressionRules.py',17),
-  ('statement -> function_definition','statement',1,'p_statement_function','StatementRules.py',19),
   ('parameter_list -> <empty>','parameter_list',0,'p_parameter_list_empty','FunctionRules.py',20),
   ('assignment -> ID MULT_ASSIGN expression','assignment',3,'p_mult_assign_expression','AssignmentRules.py',21),
-  ('parameter_list -> ID','parameter_list',1,'p_parameter_list_single','FunctionRules.py',24),
+  ('parameter_list -> parameter','parameter_list',1,'p_parameter_list_single','FunctionRules.py',24),
   ('assignment -> ID DIV_ASSIGN expression','assignment',3,'p_div_assign_expression','AssignmentRules.py',25),
-  ('parameter_list -> parameter_list COMMA ID','parameter_list',3,'p_parameter_list_multiple','FunctionRules.py',28),
+  ('parameter_list -> parameter_list COMMA parameter','parameter_list',3,'p_parameter_list_multiple','FunctionRules.py',28),
   ('assignment -> ID MOD_ASSIGN expression','assignment',3,'p_mod_assign_expression','AssignmentRules.py',29),
+  ('parameter -> ID','parameter',1,'p_parameter','FunctionRules.py',32),
   ('assignment -> ID ASSIGN expression','assignment',3,'p_assignment','AssignmentRules.py',33),
+  ('parameter -> ID ASSIGN expression','parameter',3,'p_parameter_default','FunctionRules.py',39),
 ]
