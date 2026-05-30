@@ -20,6 +20,21 @@ class IdentifierNode(Node):
     def __repr__(self):
         return f"IdentifierNode({self.name})"
     
+    
+class StringNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"StringNode({self.value})"  
+    
+class FloatNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"FloatNode({self.value})"  
+
 class IntNode(Node):
     def __init__(self, value):
         self.value = value

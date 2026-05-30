@@ -18,7 +18,6 @@ Unused terminals:
     EQUAL
     ERROR
     FALSE
-    FLOAT
     FOR
     FROM
     GREATER_EQUAL
@@ -45,7 +44,6 @@ Unused terminals:
     RBRACKET
     RETURN
     RPAREN
-    STRING
     TRUE
     WHILE
 
@@ -63,8 +61,10 @@ Rule 8     assignment -> ID MULT_ASSIGN expression
 Rule 9     assignment -> ID DIV_ASSIGN expression
 Rule 10    assignment -> ID MOD_ASSIGN expression
 Rule 11    assignment -> ID ASSIGN expression
-Rule 12    expression -> INT
-Rule 13    expression -> ID
+Rule 12    expression -> STRING
+Rule 13    expression -> FLOAT
+Rule 14    expression -> INT
+Rule 15    expression -> ID
 
 Terminals, with rules where they appear
 
@@ -86,16 +86,16 @@ ELSE                 :
 EQUAL                : 
 ERROR                : 
 FALSE                : 
-FLOAT                : 
+FLOAT                : 13
 FOR                  : 
 FROM                 : 
 GREATER_EQUAL        : 
 GREATER_THAN         : 
-ID                   : 4 5 6 7 8 9 10 11 13
+ID                   : 4 5 6 7 8 9 10 11 15
 IF                   : 
 IMPORT               : 
 INDENT               : 
-INT                  : 12
+INT                  : 14
 INT_DIV              : 
 INT_DIV_ASSIGN       : 5
 LBRACE               : 
@@ -121,7 +121,7 @@ RBRACE               :
 RBRACKET             : 
 RETURN               : 
 RPAREN               : 
-STRING               : 
+STRING               : 12
 TRUE                 : 
 WHILE                : 
 error                : 
@@ -223,10 +223,14 @@ state 5
 state 6
 
     (4) assignment -> ID POW_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 15
@@ -234,86 +238,114 @@ state 6
 state 7
 
     (5) assignment -> ID INT_DIV_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
-    ID              shift and go to state 14
-
-    expression                     shift and go to state 17
-
-state 8
-
-    (6) assignment -> ID PLUS_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
-
-    INT             shift and go to state 16
-    ID              shift and go to state 14
-
-    expression                     shift and go to state 18
-
-state 9
-
-    (7) assignment -> ID MINUS_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
-
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 19
 
-state 10
+state 8
 
-    (8) assignment -> ID MULT_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (6) assignment -> ID PLUS_ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 20
 
-state 11
+state 9
 
-    (9) assignment -> ID DIV_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (7) assignment -> ID MINUS_ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 21
 
-state 12
+state 10
 
-    (10) assignment -> ID MOD_ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (8) assignment -> ID MULT_ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 22
 
-state 13
+state 11
 
-    (11) assignment -> ID ASSIGN . expression
-    (12) expression -> . INT
-    (13) expression -> . ID
+    (9) assignment -> ID DIV_ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
 
-    INT             shift and go to state 16
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
     ID              shift and go to state 14
 
     expression                     shift and go to state 23
 
+state 12
+
+    (10) assignment -> ID MOD_ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
+
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 24
+
+state 13
+
+    (11) assignment -> ID ASSIGN . expression
+    (12) expression -> . STRING
+    (13) expression -> . FLOAT
+    (14) expression -> . INT
+    (15) expression -> . ID
+
+    STRING          shift and go to state 16
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 25
+
 state 14
 
-    (13) expression -> ID .
+    (15) expression -> ID .
 
-    ID              reduce using rule 13 (expression -> ID .)
-    $end            reduce using rule 13 (expression -> ID .)
+    ID              reduce using rule 15 (expression -> ID .)
+    $end            reduce using rule 15 (expression -> ID .)
 
 
 state 15
@@ -326,13 +358,29 @@ state 15
 
 state 16
 
-    (12) expression -> INT .
+    (12) expression -> STRING .
 
-    ID              reduce using rule 12 (expression -> INT .)
-    $end            reduce using rule 12 (expression -> INT .)
+    ID              reduce using rule 12 (expression -> STRING .)
+    $end            reduce using rule 12 (expression -> STRING .)
 
 
 state 17
+
+    (13) expression -> FLOAT .
+
+    ID              reduce using rule 13 (expression -> FLOAT .)
+    $end            reduce using rule 13 (expression -> FLOAT .)
+
+
+state 18
+
+    (14) expression -> INT .
+
+    ID              reduce using rule 14 (expression -> INT .)
+    $end            reduce using rule 14 (expression -> INT .)
+
+
+state 19
 
     (5) assignment -> ID INT_DIV_ASSIGN expression .
 
@@ -340,7 +388,7 @@ state 17
     $end            reduce using rule 5 (assignment -> ID INT_DIV_ASSIGN expression .)
 
 
-state 18
+state 20
 
     (6) assignment -> ID PLUS_ASSIGN expression .
 
@@ -348,7 +396,7 @@ state 18
     $end            reduce using rule 6 (assignment -> ID PLUS_ASSIGN expression .)
 
 
-state 19
+state 21
 
     (7) assignment -> ID MINUS_ASSIGN expression .
 
@@ -356,7 +404,7 @@ state 19
     $end            reduce using rule 7 (assignment -> ID MINUS_ASSIGN expression .)
 
 
-state 20
+state 22
 
     (8) assignment -> ID MULT_ASSIGN expression .
 
@@ -364,7 +412,7 @@ state 20
     $end            reduce using rule 8 (assignment -> ID MULT_ASSIGN expression .)
 
 
-state 21
+state 23
 
     (9) assignment -> ID DIV_ASSIGN expression .
 
@@ -372,7 +420,7 @@ state 21
     $end            reduce using rule 9 (assignment -> ID DIV_ASSIGN expression .)
 
 
-state 22
+state 24
 
     (10) assignment -> ID MOD_ASSIGN expression .
 
@@ -380,7 +428,7 @@ state 22
     $end            reduce using rule 10 (assignment -> ID MOD_ASSIGN expression .)
 
 
-state 23
+state 25
 
     (11) assignment -> ID ASSIGN expression .
 
