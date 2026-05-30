@@ -27,6 +27,10 @@ class Parser:
     def p_statement_assignment(self, p):
         'statement : assignment'
         p[0] = p[1]
+        
+    def p_statement_function(self, p):
+        'statement : function_definition'
+        p[0] = p[1]
 
     def p_pow_assign_expression(self, p):
         'assignment : ID POW_ASSIGN expression'
@@ -60,21 +64,41 @@ class Parser:
         'assignment : ID ASSIGN expression'
         p[0] = AssignNode(IdentifierNode(p[1]), p[3])
 
-    def p_expression_string(self, p):
+    def p_string_expression(self, p):
         'expression : STRING'
         p[0] = StringNode(p[1])
 
-    def p_expression_float(self, p):
+    def p_float_expression(self, p):
         'expression : FLOAT'
         p[0] = FloatNode(p[1])
 
-    def p_expression_int(self, p):
+    def p_int_expression(self, p):
         'expression : INT'
         p[0] = IntNode(p[1])
     
-    def p_expression_identifier(self, p):
+    def p_identifier_expression(self, p):
         'expression : ID'
         p[0] = IdentifierNode(p[1])
+    
+    def p_function_definition(self, p):
+        'function_definition : DEF ID LPAREN parameter_list RPAREN COLON INDENT program DENT'
+        p[0] = FunctionNode(
+            IdentifierNode(p[2]),
+            p[4],
+            p[8]
+        )
+
+    def p_parameter_list_empty(self, p):
+        'parameter_list : '
+        p[0] = []
+    
+    def p_parameter_list_single(self, p):
+        'parameter_list : ID'
+        p[0] = [IdentifierNode(p[1])]
+
+    def p_parameter_list_multiple(self, p):
+        'parameter_list : parameter_list COMMA ID'
+        p[0] = p[1] + [IdentifierNode(p[3])]
         
     def p_error(self, p):
         if p:

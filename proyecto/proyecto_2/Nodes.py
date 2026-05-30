@@ -41,6 +41,16 @@ class IntNode(Node):
 
     def __repr__(self):
         return f"IntNode({self.value})"
+
+class FunctionNode(Node):
+    def __init__(self, name, parameters, body):
+        self.name = name
+        self.parameters = parameters
+        self.body = body
+
+    def __repr__(self):
+        return f"FunctionNode({self.name}, {self.parameters}, {self.body})"
+
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass

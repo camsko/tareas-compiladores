@@ -9,4 +9,9 @@ var -= 5
 var *= 5 
 var /= 5 
 var %= 5 
+
+def ejemplo(x, y):
+    var = x
+    var = y
+
 5 = 5
