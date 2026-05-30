@@ -20,7 +20,6 @@ class IdentifierNode(Node):
     def __repr__(self):
         return f"IdentifierNode({self.name})"
     
-    
 class StringNode(Node):
     def __init__(self, value):
         self.value = value
@@ -41,6 +40,28 @@ class IntNode(Node):
 
     def __repr__(self):
         return f"IntNode({self.value})"
+
+class FunctionNode(Node):
+    def __init__(self, name, parameters, body):
+        self.name = name
+        self.parameters = parameters
+        self.body = body
+
+    def __repr__(self):
+        return f"FunctionNode(name={self.name}, parameters={self.parameters}, body={self.body})"
+    
+class ParameterNode(Node):
+    def __init__(self, name, default_value=None):
+        self.name = name
+        self.default_value = default_value
+
+    def __repr__(self):
+        return (
+            f"ParameterNode("
+            f"{self.name}, "
+            f"{self.default_value})"
+        )
+
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass

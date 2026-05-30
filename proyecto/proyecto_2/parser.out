@@ -6,11 +6,7 @@ Unused terminals:
     ARROW
     BREAK
     CLASS
-    COLON
-    COMMA
     CONTINUE
-    DEF
-    DENT
     DIV
     DOT
     ELIF
@@ -24,13 +20,11 @@ Unused terminals:
     GREATER_THAN
     IF
     IMPORT
-    INDENT
     INT_DIV
     LBRACE
     LBRACKET
     LOWER_EQUAL
     LOWER_THAN
-    LPAREN
     MINUS
     MOD
     MULT
@@ -43,395 +37,647 @@ Unused terminals:
     RBRACE
     RBRACKET
     RETURN
-    RPAREN
     TRUE
     WHILE
 
 Grammar
 
 Rule 0     S' -> program
-Rule 1     program -> program statement
-Rule 2     program -> statement
-Rule 3     statement -> assignment
-Rule 4     assignment -> ID POW_ASSIGN expression
-Rule 5     assignment -> ID INT_DIV_ASSIGN expression
-Rule 6     assignment -> ID PLUS_ASSIGN expression
-Rule 7     assignment -> ID MINUS_ASSIGN expression
-Rule 8     assignment -> ID MULT_ASSIGN expression
-Rule 9     assignment -> ID DIV_ASSIGN expression
-Rule 10    assignment -> ID MOD_ASSIGN expression
-Rule 11    assignment -> ID ASSIGN expression
-Rule 12    expression -> STRING
-Rule 13    expression -> FLOAT
-Rule 14    expression -> INT
-Rule 15    expression -> ID
+Rule 1     program -> program global_statement
+Rule 2     global_statement -> assignment
+Rule 3     assignment -> ID POW_ASSIGN expression
+Rule 4     expression -> STRING
+Rule 5     function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+Rule 6     program -> global_statement
+Rule 7     global_statement -> function_definition
+Rule 8     assignment -> ID INT_DIV_ASSIGN expression
+Rule 9     expression -> FLOAT
+Rule 10    function_statement -> assignment
+Rule 11    function_body -> function_body function_statement
+Rule 12    assignment -> ID PLUS_ASSIGN expression
+Rule 13    expression -> INT
+Rule 14    function_body -> function_statement
+Rule 15    assignment -> ID MINUS_ASSIGN expression
+Rule 16    expression -> ID
+Rule 17    parameter_list -> <empty>
+Rule 18    assignment -> ID MULT_ASSIGN expression
+Rule 19    parameter_list -> parameter
+Rule 20    assignment -> ID DIV_ASSIGN expression
+Rule 21    parameter_list -> parameter_list COMMA parameter
+Rule 22    assignment -> ID MOD_ASSIGN expression
+Rule 23    parameter -> ID
+Rule 24    assignment -> ID ASSIGN expression
+Rule 25    parameter -> ID ASSIGN expression
 
 Terminals, with rules where they appear
 
 AND                  : 
 ARROW                : 
-ASSIGN               : 11
+ASSIGN               : 24 25
 BREAK                : 
 CLASS                : 
-COLON                : 
-COMMA                : 
+COLON                : 5
+COMMA                : 21
 CONTINUE             : 
-DEF                  : 
-DENT                 : 
+DEF                  : 5
+DENT                 : 5
 DIV                  : 
-DIV_ASSIGN           : 9
+DIV_ASSIGN           : 20
 DOT                  : 
 ELIF                 : 
 ELSE                 : 
 EQUAL                : 
 ERROR                : 
 FALSE                : 
-FLOAT                : 13
+FLOAT                : 9
 FOR                  : 
 FROM                 : 
 GREATER_EQUAL        : 
 GREATER_THAN         : 
-ID                   : 4 5 6 7 8 9 10 11 15
+ID                   : 3 5 8 12 15 16 18 20 22 23 24 25
 IF                   : 
 IMPORT               : 
-INDENT               : 
-INT                  : 14
+INDENT               : 5
+INT                  : 13
 INT_DIV              : 
-INT_DIV_ASSIGN       : 5
+INT_DIV_ASSIGN       : 8
 LBRACE               : 
 LBRACKET             : 
 LOWER_EQUAL          : 
 LOWER_THAN           : 
-LPAREN               : 
+LPAREN               : 5
 MINUS                : 
-MINUS_ASSIGN         : 7
+MINUS_ASSIGN         : 15
 MOD                  : 
-MOD_ASSIGN           : 10
+MOD_ASSIGN           : 22
 MULT                 : 
-MULT_ASSIGN          : 8
+MULT_ASSIGN          : 18
 NON_EQUAL            : 
 NOT                  : 
 OR                   : 
 PASS                 : 
 PLUS                 : 
-PLUS_ASSIGN          : 6
+PLUS_ASSIGN          : 12
 POW                  : 
-POW_ASSIGN           : 4
+POW_ASSIGN           : 3
 RBRACE               : 
 RBRACKET             : 
 RETURN               : 
-RPAREN               : 
-STRING               : 12
+RPAREN               : 5
+STRING               : 4
 TRUE                 : 
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-assignment           : 3
-expression           : 4 5 6 7 8 9 10 11
+assignment           : 2 10
+expression           : 3 8 12 15 18 20 22 24 25
+function_body        : 5 11
+function_definition  : 7
+function_statement   : 11 14
+global_statement     : 1 6
+parameter            : 19 21
+parameter_list       : 5 21
 program              : 1 0
-statement            : 1 2
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . program
-    (1) program -> . program statement
-    (2) program -> . statement
-    (3) statement -> . assignment
-    (4) assignment -> . ID POW_ASSIGN expression
-    (5) assignment -> . ID INT_DIV_ASSIGN expression
-    (6) assignment -> . ID PLUS_ASSIGN expression
-    (7) assignment -> . ID MINUS_ASSIGN expression
-    (8) assignment -> . ID MULT_ASSIGN expression
-    (9) assignment -> . ID DIV_ASSIGN expression
-    (10) assignment -> . ID MOD_ASSIGN expression
-    (11) assignment -> . ID ASSIGN expression
+    (1) program -> . program global_statement
+    (6) program -> . global_statement
+    (2) global_statement -> . assignment
+    (7) global_statement -> . function_definition
+    (3) assignment -> . ID POW_ASSIGN expression
+    (8) assignment -> . ID INT_DIV_ASSIGN expression
+    (12) assignment -> . ID PLUS_ASSIGN expression
+    (15) assignment -> . ID MINUS_ASSIGN expression
+    (18) assignment -> . ID MULT_ASSIGN expression
+    (20) assignment -> . ID DIV_ASSIGN expression
+    (22) assignment -> . ID MOD_ASSIGN expression
+    (24) assignment -> . ID ASSIGN expression
+    (5) function_definition -> . DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
 
-    ID              shift and go to state 4
+    ID              shift and go to state 5
+    DEF             shift and go to state 6
 
     program                        shift and go to state 1
-    statement                      shift and go to state 2
+    global_statement               shift and go to state 2
     assignment                     shift and go to state 3
+    function_definition            shift and go to state 4
 
 state 1
 
     (0) S' -> program .
-    (1) program -> program . statement
-    (3) statement -> . assignment
-    (4) assignment -> . ID POW_ASSIGN expression
-    (5) assignment -> . ID INT_DIV_ASSIGN expression
-    (6) assignment -> . ID PLUS_ASSIGN expression
-    (7) assignment -> . ID MINUS_ASSIGN expression
-    (8) assignment -> . ID MULT_ASSIGN expression
-    (9) assignment -> . ID DIV_ASSIGN expression
-    (10) assignment -> . ID MOD_ASSIGN expression
-    (11) assignment -> . ID ASSIGN expression
+    (1) program -> program . global_statement
+    (2) global_statement -> . assignment
+    (7) global_statement -> . function_definition
+    (3) assignment -> . ID POW_ASSIGN expression
+    (8) assignment -> . ID INT_DIV_ASSIGN expression
+    (12) assignment -> . ID PLUS_ASSIGN expression
+    (15) assignment -> . ID MINUS_ASSIGN expression
+    (18) assignment -> . ID MULT_ASSIGN expression
+    (20) assignment -> . ID DIV_ASSIGN expression
+    (22) assignment -> . ID MOD_ASSIGN expression
+    (24) assignment -> . ID ASSIGN expression
+    (5) function_definition -> . DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
 
-    ID              shift and go to state 4
+    ID              shift and go to state 5
+    DEF             shift and go to state 6
 
-    statement                      shift and go to state 5
+    global_statement               shift and go to state 7
     assignment                     shift and go to state 3
+    function_definition            shift and go to state 4
 
 state 2
 
-    (2) program -> statement .
+    (6) program -> global_statement .
 
-    ID              reduce using rule 2 (program -> statement .)
-    $end            reduce using rule 2 (program -> statement .)
+    ID              reduce using rule 6 (program -> global_statement .)
+    DEF             reduce using rule 6 (program -> global_statement .)
+    $end            reduce using rule 6 (program -> global_statement .)
 
 
 state 3
 
-    (3) statement -> assignment .
+    (2) global_statement -> assignment .
 
-    ID              reduce using rule 3 (statement -> assignment .)
-    $end            reduce using rule 3 (statement -> assignment .)
+    ID              reduce using rule 2 (global_statement -> assignment .)
+    DEF             reduce using rule 2 (global_statement -> assignment .)
+    $end            reduce using rule 2 (global_statement -> assignment .)
 
 
 state 4
 
-    (4) assignment -> ID . POW_ASSIGN expression
-    (5) assignment -> ID . INT_DIV_ASSIGN expression
-    (6) assignment -> ID . PLUS_ASSIGN expression
-    (7) assignment -> ID . MINUS_ASSIGN expression
-    (8) assignment -> ID . MULT_ASSIGN expression
-    (9) assignment -> ID . DIV_ASSIGN expression
-    (10) assignment -> ID . MOD_ASSIGN expression
-    (11) assignment -> ID . ASSIGN expression
+    (7) global_statement -> function_definition .
 
-    POW_ASSIGN      shift and go to state 6
-    INT_DIV_ASSIGN  shift and go to state 7
-    PLUS_ASSIGN     shift and go to state 8
-    MINUS_ASSIGN    shift and go to state 9
-    MULT_ASSIGN     shift and go to state 10
-    DIV_ASSIGN      shift and go to state 11
-    MOD_ASSIGN      shift and go to state 12
-    ASSIGN          shift and go to state 13
+    ID              reduce using rule 7 (global_statement -> function_definition .)
+    DEF             reduce using rule 7 (global_statement -> function_definition .)
+    $end            reduce using rule 7 (global_statement -> function_definition .)
 
 
 state 5
 
-    (1) program -> program statement .
+    (3) assignment -> ID . POW_ASSIGN expression
+    (8) assignment -> ID . INT_DIV_ASSIGN expression
+    (12) assignment -> ID . PLUS_ASSIGN expression
+    (15) assignment -> ID . MINUS_ASSIGN expression
+    (18) assignment -> ID . MULT_ASSIGN expression
+    (20) assignment -> ID . DIV_ASSIGN expression
+    (22) assignment -> ID . MOD_ASSIGN expression
+    (24) assignment -> ID . ASSIGN expression
 
-    ID              reduce using rule 1 (program -> program statement .)
-    $end            reduce using rule 1 (program -> program statement .)
+    POW_ASSIGN      shift and go to state 8
+    INT_DIV_ASSIGN  shift and go to state 9
+    PLUS_ASSIGN     shift and go to state 10
+    MINUS_ASSIGN    shift and go to state 11
+    MULT_ASSIGN     shift and go to state 12
+    DIV_ASSIGN      shift and go to state 13
+    MOD_ASSIGN      shift and go to state 14
+    ASSIGN          shift and go to state 15
 
 
 state 6
 
-    (4) assignment -> ID POW_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (5) function_definition -> DEF . ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    ID              shift and go to state 16
 
-    expression                     shift and go to state 15
 
 state 7
 
-    (5) assignment -> ID INT_DIV_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (1) program -> program global_statement .
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    ID              reduce using rule 1 (program -> program global_statement .)
+    DEF             reduce using rule 1 (program -> program global_statement .)
+    $end            reduce using rule 1 (program -> program global_statement .)
 
-    expression                     shift and go to state 19
 
 state 8
 
-    (6) assignment -> ID PLUS_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (3) assignment -> ID POW_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
-    expression                     shift and go to state 20
+    expression                     shift and go to state 18
 
 state 9
 
-    (7) assignment -> ID MINUS_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (8) assignment -> ID INT_DIV_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
-
-    expression                     shift and go to state 21
-
-state 10
-
-    (8) assignment -> ID MULT_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
-
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
     expression                     shift and go to state 22
 
-state 11
+state 10
 
-    (9) assignment -> ID DIV_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (12) assignment -> ID PLUS_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
     expression                     shift and go to state 23
 
-state 12
+state 11
 
-    (10) assignment -> ID MOD_ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (15) assignment -> ID MINUS_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
     expression                     shift and go to state 24
 
-state 13
+state 12
 
-    (11) assignment -> ID ASSIGN . expression
-    (12) expression -> . STRING
-    (13) expression -> . FLOAT
-    (14) expression -> . INT
-    (15) expression -> . ID
+    (18) assignment -> ID MULT_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 17
-    INT             shift and go to state 18
-    ID              shift and go to state 14
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
     expression                     shift and go to state 25
 
+state 13
+
+    (20) assignment -> ID DIV_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
+
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 26
+
 state 14
 
-    (15) expression -> ID .
+    (22) assignment -> ID MOD_ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    ID              reduce using rule 15 (expression -> ID .)
-    $end            reduce using rule 15 (expression -> ID .)
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
+    expression                     shift and go to state 27
 
 state 15
 
-    (4) assignment -> ID POW_ASSIGN expression .
+    (24) assignment -> ID ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
 
-    ID              reduce using rule 4 (assignment -> ID POW_ASSIGN expression .)
-    $end            reduce using rule 4 (assignment -> ID POW_ASSIGN expression .)
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
 
+    expression                     shift and go to state 28
 
 state 16
 
-    (12) expression -> STRING .
+    (5) function_definition -> DEF ID . LPAREN parameter_list RPAREN COLON INDENT function_body DENT
 
-    ID              reduce using rule 12 (expression -> STRING .)
-    $end            reduce using rule 12 (expression -> STRING .)
+    LPAREN          shift and go to state 29
 
 
 state 17
 
-    (13) expression -> FLOAT .
+    (16) expression -> ID .
 
-    ID              reduce using rule 13 (expression -> FLOAT .)
-    $end            reduce using rule 13 (expression -> FLOAT .)
+    ID              reduce using rule 16 (expression -> ID .)
+    DEF             reduce using rule 16 (expression -> ID .)
+    $end            reduce using rule 16 (expression -> ID .)
+    DENT            reduce using rule 16 (expression -> ID .)
+    RPAREN          reduce using rule 16 (expression -> ID .)
+    COMMA           reduce using rule 16 (expression -> ID .)
 
 
 state 18
 
-    (14) expression -> INT .
+    (3) assignment -> ID POW_ASSIGN expression .
 
-    ID              reduce using rule 14 (expression -> INT .)
-    $end            reduce using rule 14 (expression -> INT .)
+    ID              reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
+    DEF             reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
+    $end            reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
+    DENT            reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
 
 
 state 19
 
-    (5) assignment -> ID INT_DIV_ASSIGN expression .
+    (4) expression -> STRING .
 
-    ID              reduce using rule 5 (assignment -> ID INT_DIV_ASSIGN expression .)
-    $end            reduce using rule 5 (assignment -> ID INT_DIV_ASSIGN expression .)
+    ID              reduce using rule 4 (expression -> STRING .)
+    DEF             reduce using rule 4 (expression -> STRING .)
+    $end            reduce using rule 4 (expression -> STRING .)
+    DENT            reduce using rule 4 (expression -> STRING .)
+    RPAREN          reduce using rule 4 (expression -> STRING .)
+    COMMA           reduce using rule 4 (expression -> STRING .)
 
 
 state 20
 
-    (6) assignment -> ID PLUS_ASSIGN expression .
+    (9) expression -> FLOAT .
 
-    ID              reduce using rule 6 (assignment -> ID PLUS_ASSIGN expression .)
-    $end            reduce using rule 6 (assignment -> ID PLUS_ASSIGN expression .)
+    ID              reduce using rule 9 (expression -> FLOAT .)
+    DEF             reduce using rule 9 (expression -> FLOAT .)
+    $end            reduce using rule 9 (expression -> FLOAT .)
+    DENT            reduce using rule 9 (expression -> FLOAT .)
+    RPAREN          reduce using rule 9 (expression -> FLOAT .)
+    COMMA           reduce using rule 9 (expression -> FLOAT .)
 
 
 state 21
 
-    (7) assignment -> ID MINUS_ASSIGN expression .
+    (13) expression -> INT .
 
-    ID              reduce using rule 7 (assignment -> ID MINUS_ASSIGN expression .)
-    $end            reduce using rule 7 (assignment -> ID MINUS_ASSIGN expression .)
+    ID              reduce using rule 13 (expression -> INT .)
+    DEF             reduce using rule 13 (expression -> INT .)
+    $end            reduce using rule 13 (expression -> INT .)
+    DENT            reduce using rule 13 (expression -> INT .)
+    RPAREN          reduce using rule 13 (expression -> INT .)
+    COMMA           reduce using rule 13 (expression -> INT .)
 
 
 state 22
 
-    (8) assignment -> ID MULT_ASSIGN expression .
+    (8) assignment -> ID INT_DIV_ASSIGN expression .
 
-    ID              reduce using rule 8 (assignment -> ID MULT_ASSIGN expression .)
-    $end            reduce using rule 8 (assignment -> ID MULT_ASSIGN expression .)
+    ID              reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
+    DEF             reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
+    $end            reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
+    DENT            reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
 
 
 state 23
 
-    (9) assignment -> ID DIV_ASSIGN expression .
+    (12) assignment -> ID PLUS_ASSIGN expression .
 
-    ID              reduce using rule 9 (assignment -> ID DIV_ASSIGN expression .)
-    $end            reduce using rule 9 (assignment -> ID DIV_ASSIGN expression .)
+    ID              reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
+    DEF             reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
+    $end            reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
+    DENT            reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
 
 
 state 24
 
-    (10) assignment -> ID MOD_ASSIGN expression .
+    (15) assignment -> ID MINUS_ASSIGN expression .
 
-    ID              reduce using rule 10 (assignment -> ID MOD_ASSIGN expression .)
-    $end            reduce using rule 10 (assignment -> ID MOD_ASSIGN expression .)
+    ID              reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
+    DEF             reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
+    $end            reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
+    DENT            reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
 
 
 state 25
 
-    (11) assignment -> ID ASSIGN expression .
+    (18) assignment -> ID MULT_ASSIGN expression .
 
-    ID              reduce using rule 11 (assignment -> ID ASSIGN expression .)
-    $end            reduce using rule 11 (assignment -> ID ASSIGN expression .)
+    ID              reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
+    DEF             reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
+    $end            reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
+    DENT            reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
+
+
+state 26
+
+    (20) assignment -> ID DIV_ASSIGN expression .
+
+    ID              reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
+    DEF             reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
+    $end            reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
+    DENT            reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
+
+
+state 27
+
+    (22) assignment -> ID MOD_ASSIGN expression .
+
+    ID              reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
+    DEF             reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
+    $end            reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
+    DENT            reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
+
+
+state 28
+
+    (24) assignment -> ID ASSIGN expression .
+
+    ID              reduce using rule 24 (assignment -> ID ASSIGN expression .)
+    DEF             reduce using rule 24 (assignment -> ID ASSIGN expression .)
+    $end            reduce using rule 24 (assignment -> ID ASSIGN expression .)
+    DENT            reduce using rule 24 (assignment -> ID ASSIGN expression .)
+
+
+state 29
+
+    (5) function_definition -> DEF ID LPAREN . parameter_list RPAREN COLON INDENT function_body DENT
+    (17) parameter_list -> .
+    (19) parameter_list -> . parameter
+    (21) parameter_list -> . parameter_list COMMA parameter
+    (23) parameter -> . ID
+    (25) parameter -> . ID ASSIGN expression
+
+    RPAREN          reduce using rule 17 (parameter_list -> .)
+    COMMA           reduce using rule 17 (parameter_list -> .)
+    ID              shift and go to state 30
+
+    parameter_list                 shift and go to state 31
+    parameter                      shift and go to state 32
+
+state 30
+
+    (23) parameter -> ID .
+    (25) parameter -> ID . ASSIGN expression
+
+    RPAREN          reduce using rule 23 (parameter -> ID .)
+    COMMA           reduce using rule 23 (parameter -> ID .)
+    ASSIGN          shift and go to state 33
+
+
+state 31
+
+    (5) function_definition -> DEF ID LPAREN parameter_list . RPAREN COLON INDENT function_body DENT
+    (21) parameter_list -> parameter_list . COMMA parameter
+
+    RPAREN          shift and go to state 34
+    COMMA           shift and go to state 35
+
+
+state 32
+
+    (19) parameter_list -> parameter .
+
+    RPAREN          reduce using rule 19 (parameter_list -> parameter .)
+    COMMA           reduce using rule 19 (parameter_list -> parameter .)
+
+
+state 33
+
+    (25) parameter -> ID ASSIGN . expression
+    (4) expression -> . STRING
+    (9) expression -> . FLOAT
+    (13) expression -> . INT
+    (16) expression -> . ID
+
+    STRING          shift and go to state 19
+    FLOAT           shift and go to state 20
+    INT             shift and go to state 21
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 36
+
+state 34
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN . COLON INDENT function_body DENT
+
+    COLON           shift and go to state 37
+
+
+state 35
+
+    (21) parameter_list -> parameter_list COMMA . parameter
+    (23) parameter -> . ID
+    (25) parameter -> . ID ASSIGN expression
+
+    ID              shift and go to state 30
+
+    parameter                      shift and go to state 38
+
+state 36
+
+    (25) parameter -> ID ASSIGN expression .
+
+    RPAREN          reduce using rule 25 (parameter -> ID ASSIGN expression .)
+    COMMA           reduce using rule 25 (parameter -> ID ASSIGN expression .)
+
+
+state 37
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON . INDENT function_body DENT
+
+    INDENT          shift and go to state 39
+
+
+state 38
+
+    (21) parameter_list -> parameter_list COMMA parameter .
+
+    RPAREN          reduce using rule 21 (parameter_list -> parameter_list COMMA parameter .)
+    COMMA           reduce using rule 21 (parameter_list -> parameter_list COMMA parameter .)
+
+
+state 39
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT . function_body DENT
+    (11) function_body -> . function_body function_statement
+    (14) function_body -> . function_statement
+    (10) function_statement -> . assignment
+    (3) assignment -> . ID POW_ASSIGN expression
+    (8) assignment -> . ID INT_DIV_ASSIGN expression
+    (12) assignment -> . ID PLUS_ASSIGN expression
+    (15) assignment -> . ID MINUS_ASSIGN expression
+    (18) assignment -> . ID MULT_ASSIGN expression
+    (20) assignment -> . ID DIV_ASSIGN expression
+    (22) assignment -> . ID MOD_ASSIGN expression
+    (24) assignment -> . ID ASSIGN expression
+
+    ID              shift and go to state 5
+
+    function_body                  shift and go to state 40
+    function_statement             shift and go to state 41
+    assignment                     shift and go to state 42
+
+state 40
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body . DENT
+    (11) function_body -> function_body . function_statement
+    (10) function_statement -> . assignment
+    (3) assignment -> . ID POW_ASSIGN expression
+    (8) assignment -> . ID INT_DIV_ASSIGN expression
+    (12) assignment -> . ID PLUS_ASSIGN expression
+    (15) assignment -> . ID MINUS_ASSIGN expression
+    (18) assignment -> . ID MULT_ASSIGN expression
+    (20) assignment -> . ID DIV_ASSIGN expression
+    (22) assignment -> . ID MOD_ASSIGN expression
+    (24) assignment -> . ID ASSIGN expression
+
+    DENT            shift and go to state 43
+    ID              shift and go to state 5
+
+    function_statement             shift and go to state 44
+    assignment                     shift and go to state 42
+
+state 41
+
+    (14) function_body -> function_statement .
+
+    DENT            reduce using rule 14 (function_body -> function_statement .)
+    ID              reduce using rule 14 (function_body -> function_statement .)
+
+
+state 42
+
+    (10) function_statement -> assignment .
+
+    DENT            reduce using rule 10 (function_statement -> assignment .)
+    ID              reduce using rule 10 (function_statement -> assignment .)
+
+
+state 43
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .
+
+    ID              reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    DEF             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    $end            reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+
+
+state 44
+
+    (11) function_body -> function_body function_statement .
+
+    DENT            reduce using rule 11 (function_body -> function_body function_statement .)
+    ID              reduce using rule 11 (function_body -> function_body function_statement .)
 
