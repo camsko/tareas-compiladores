@@ -60,6 +60,14 @@ class Parser:
         'assignment : ID ASSIGN expression'
         p[0] = AssignNode(IdentifierNode(p[1]), p[3])
 
+    def p_expression_string(self, p):
+        'expression : STRING'
+        p[0] = StringNode(p[1])
+
+    def p_expression_float(self, p):
+        'expression : FLOAT'
+        p[0] = FloatNode(p[1])
+
     def p_expression_int(self, p):
         'expression : INT'
         p[0] = IntNode(p[1])
