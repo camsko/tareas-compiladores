@@ -41,3 +41,7 @@ class FunctionRules:
             IdentifierNode(p[1]),
             p[3]
         )
+        
+    def p_function_call(self, p):
+        'function_call : ID LPAREN parameter_list RPAREN'
+        p[0] = FunctionCallNode(p[1], p[3])

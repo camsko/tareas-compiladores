@@ -61,6 +61,19 @@ class ParameterNode(Node):
             f"{self.name}, "
             f"{self.default_value})"
         )
+        
+class FunctionCallNode(Node):
+    def __init__(self, name, parameters):
+        self.name = name
+        self.parameters = parameters
+
+    def __repr__(self):
+        return (
+            f"FunctionCallNode("
+            f"{self.name}, "
+            f"{self.parameters})"
+        )
+
 
 class IfNode(Node):
     def __init__(self, conditions, body, elif_list=None, else_=None):
@@ -94,6 +107,22 @@ class WhileNode(Node):
 
     def __repr__(self):
         return f"WhileNode(conditions={self.conditions}, body={self.body})"
+    
+class ForNode(Node):
+    def __init__(self, i_var, gen_func, body):
+        self.i_var = i_var
+        self.gen_func = gen_func
+        self.body = body
+
+    def __repr__(self):
+        return f"ForNode(iterable variable={self.i_var}, generator function={self.gen_func}, body={self.body})"
+    
+class RangeNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"RangeNode({self.value})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass
@@ -111,3 +140,4 @@ class LowerEqualNode(BinaryNode): pass
 class GreaterEqualNode(BinaryNode): pass
 class AndNode(BinaryNode): pass
 class OrNode(BinaryNode): pass
+class RangeBinaryNode(BinaryNode): pass

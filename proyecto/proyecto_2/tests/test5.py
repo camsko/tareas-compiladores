@@ -27,4 +27,13 @@ while (var >= 0) and (var2 == 0 or var <= var2):
     var = 1
     var = 2
 
+for i in range(10):
+    var = i
+    
+for i in range(0, var):
+    var = i
+    
+for i in range(0, 10):
+    var = i
+
 5 = 5

@@ -82,3 +82,27 @@ class FlowControlRules:
     def p_while_definition(self, p):
         'while_statement : WHILE comparison COLON INDENT restricted_statement DENT'
         p[0] = WhileNode(p[2], p[5])
+        
+    def p_for_definition(self, p):
+        'for_statement : FOR ID IN iterable_expression COLON INDENT restricted_statement DENT'
+        p[0] = ForNode(p[2], p[4], p[7])
+        
+    def p_iterable_range_expression(self, p):
+        'iterable_expression : RANGE LPAREN range_expression RPAREN'
+        p[0] = p[3]
+    
+    def p_range_identifier_expression(self, p):
+        'range_expression : ID'
+        p[0] = RangeNode(IdentifierNode(p[1]))
+        
+    def p_range_num_expression(self, p):
+        'range_expression : INT'
+        p[0] = RangeNode(IntNode(p[1]))
+    
+    def p_range_num_identifier_expression(self, p):
+        'range_expression : INT COMMA ID'
+        p[0] = RangeBinaryNode(IntNode(p[1]), IdentifierNode(p[3]))
+    
+    def p_range_num_num_expression(self, p):
+        'range_expression : INT COMMA INT'
+        p[0] = RangeBinaryNode(IntNode(p[1]), IntNode(p[3]))

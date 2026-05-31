@@ -23,7 +23,7 @@ class Lexer:
         'DEF', 'RETURN', 'CLASS',
         'TRUE', 'FALSE',
         'AND', 'OR', 'NOT',
-        'ID', 
+        'ID', 'IN', 'RANGE',
         
         #Numeric literals
         'INT', 'FLOAT', 
@@ -71,7 +71,7 @@ class Lexer:
         'def': 'DEF', 'return': 'RETURN', 'class': 'CLASS',
         'True': 'TRUE', 'False': 'FALSE',
         'and': 'AND', 'or': 'OR', 'not': 'NOT',
-        'import': 'IMPORT', 'from': 'FROM'
+        'import': 'IMPORT', 'from': 'FROM', 'in': 'IN', 'range': 'RANGE'
     }
 
     # Matches strings starting with " or ', allowing escaped characters (\.) 
