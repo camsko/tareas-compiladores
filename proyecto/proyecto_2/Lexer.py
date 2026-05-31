@@ -23,7 +23,7 @@ class Lexer:
         'DEF', 'RETURN', 'CLASS',
         'TRUE', 'FALSE',
         'AND', 'OR', 'NOT',
-        'ID', 
+        'ID', 'IN', 'RANGE',
         
         #Numeric literals
         'INT', 'FLOAT', 
@@ -71,7 +71,7 @@ class Lexer:
         'def': 'DEF', 'return': 'RETURN', 'class': 'CLASS',
         'True': 'TRUE', 'False': 'FALSE',
         'and': 'AND', 'or': 'OR', 'not': 'NOT',
-        'import': 'IMPORT', 'from': 'FROM'
+        'import': 'IMPORT', 'from': 'FROM', 'in': 'IN', 'range': 'RANGE'
     }
 
     # Matches strings starting with " or ', allowing escaped characters (\.) 
@@ -365,9 +365,10 @@ class Lexer:
     # Determines whether the next line must, may, or must not be indented.
     def get_indent_state_for_line(self, line: str) -> Indent:
         current_state = Indent.NO_INDENT
-
+        stripped = line.rstrip()
+        
         if line and line[-1] == "\n":
-            if len(line) > 1 and line[-2] == ":":
+            if stripped.endswith(":"):
                 current_state = Indent.MUST_INDENT
             elif self.parenthesis_depth > 0 or self.bracket_depth > 0 or self.brace_depth > 0:
                 current_state = Indent.MAY_INDENT

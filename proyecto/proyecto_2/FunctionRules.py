@@ -9,11 +9,11 @@ class FunctionRules:
                 p[8]
             )
     def p_function_body_multiple(self, p):
-        'function_body : function_body function_statement'
+        'function_body : function_body restricted_statement'
         p[0] = p[1] + [p[2]]
 
     def p_function_body_single(self, p):
-        'function_body : function_statement'
+        'function_body : restricted_statement'
         p[0] = [p[1]]
         
     def p_parameter_list_empty(self, p):
@@ -41,3 +41,7 @@ class FunctionRules:
             IdentifierNode(p[1]),
             p[3]
         )
+        
+    def p_function_call(self, p):
+        'function_call : ID LPAREN parameter_list RPAREN'
+        p[0] = FunctionCallNode(p[1], p[3])

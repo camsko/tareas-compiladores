@@ -61,7 +61,68 @@ class ParameterNode(Node):
             f"{self.name}, "
             f"{self.default_value})"
         )
+        
+class FunctionCallNode(Node):
+    def __init__(self, name, parameters):
+        self.name = name
+        self.parameters = parameters
 
+    def __repr__(self):
+        return (
+            f"FunctionCallNode("
+            f"{self.name}, "
+            f"{self.parameters})"
+        )
+
+
+class IfNode(Node):
+    def __init__(self, conditions, body, elif_list=None, else_=None):
+        self.conditions = conditions
+        self.body = body
+        self.elif_list = elif_list
+        self.else_ = else_
+
+    def __repr__(self):
+        return f"IfNode(conditions={self.conditions}, body={self.body}, elif_list={self.elif_list}, else={self.else_})"
+    
+class ElifNode(Node):
+    def __init__(self, conditions, body):
+        self.conditions = conditions
+        self.body = body
+
+    def __repr__(self):
+        return f"ElifNode(conditions={self.conditions}, body={self.body})"
+    
+class ElseNode(Node):
+    def __init__(self, body):
+        self.body = body
+
+    def __repr__(self):
+        return f"ElseNode(bodys={self.body})"
+    
+class WhileNode(Node):
+    def __init__(self, conditions, body):
+        self.conditions = conditions
+        self.body = body
+
+    def __repr__(self):
+        return f"WhileNode(conditions={self.conditions}, body={self.body})"
+    
+class ForNode(Node):
+    def __init__(self, i_var, gen_func, body):
+        self.i_var = i_var
+        self.gen_func = gen_func
+        self.body = body
+
+    def __repr__(self):
+        return f"ForNode(iterable variable={self.i_var}, generator function={self.gen_func}, body={self.body})"
+    
+class RangeNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"RangeNode({self.value})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass
@@ -71,3 +132,12 @@ class MultAssignNode(BinaryNode): pass
 class DivAssignNode(BinaryNode): pass
 class ModAssignNode(BinaryNode): pass
 class AssignNode(BinaryNode): pass
+class EqualNode(BinaryNode): pass
+class NonEqualNode(BinaryNode): pass
+class LowerThanNode(BinaryNode): pass
+class GreaterThanNode(BinaryNode): pass
+class LowerEqualNode(BinaryNode): pass
+class GreaterEqualNode(BinaryNode): pass
+class AndNode(BinaryNode): pass
+class OrNode(BinaryNode): pass
+class RangeBinaryNode(BinaryNode): pass
