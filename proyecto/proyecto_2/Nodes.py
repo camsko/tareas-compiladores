@@ -86,6 +86,14 @@ class ElseNode(Node):
 
     def __repr__(self):
         return f"ElseNode(bodys={self.body})"
+    
+class WhileNode(Node):
+    def __init__(self, conditions, body):
+        self.conditions = conditions
+        self.body = body
+
+    def __repr__(self):
+        return f"WhileNode(conditions={self.conditions}, body={self.body})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass
@@ -97,5 +105,9 @@ class ModAssignNode(BinaryNode): pass
 class AssignNode(BinaryNode): pass
 class EqualNode(BinaryNode): pass
 class NonEqualNode(BinaryNode): pass
+class LowerThanNode(BinaryNode): pass
+class GreaterThanNode(BinaryNode): pass
+class LowerEqualNode(BinaryNode): pass
+class GreaterEqualNode(BinaryNode): pass
 class AndNode(BinaryNode): pass
 class OrNode(BinaryNode): pass

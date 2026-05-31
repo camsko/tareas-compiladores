@@ -3,8 +3,9 @@ from Nodes import *
 class FlowControlRules:
     
 ##################### Conditionals #####################
+
     def p_conditional_definition(self, p):
-            'conditional : IF comparation COLON INDENT restricted_statement DENT elif_list else_' 
+            'conditional : IF comparison COLON INDENT restricted_statement DENT elif_list else_' 
             p[0] = IfNode(
                 p[2],
                 p[5],
@@ -15,15 +16,15 @@ class FlowControlRules:
 ### Conditions
  
     def p_comparation_single(self, p):
-        'comparation : expression compare_operator expression'
+        'comparison : expression compare_operator expression'
         p[0] = p[2](p[1], p[3])
         
     def p_comparation_multiple(self, p):
-        'comparation : comparation logic_operator comparation'
+        'comparison : comparison logic_operator comparison'
         p[0] = p[2](p[1], p[3])
         
     def p_comparation_group(self, p):
-        'comparation : LPAREN comparation RPAREN'
+        'comparison : LPAREN comparison RPAREN'
         p[0] = p[2]
       
     def p_and_operator(self, p):
@@ -41,11 +42,27 @@ class FlowControlRules:
     def p_non_equal_expression(self, p):
         'compare_operator : NON_EQUAL'
         p[0] = NonEqualNode
+    
+    def p_lower_than_expression(self, p):
+        'compare_operator : LOWER_THAN'
+        p[0] = LowerThanNode
+    
+    def p_greater_than_expression(self, p):
+        'compare_operator : GREATER_THAN'
+        p[0] = GreaterThanNode
+    
+    def p_lower_equal_expression(self, p):
+        'compare_operator : LOWER_EQUAL'
+        p[0] = LowerEqualNode
+    
+    def p_greater_equal_expression(self, p):
+        'compare_operator : GREATER_EQUAL'
+        p[0] = GreaterEqualNode
         
 ### body
  
     def p_elif_list(self, p):
-        'elif_list : elif_list ELIF comparation COLON INDENT restricted_statement DENT'
+        'elif_list : elif_list ELIF comparison COLON INDENT restricted_statement DENT'
         p[0] = p[1] + [ElifNode(p[3], p[6])]
     
     def p_elif_empty(self, p):
@@ -60,3 +77,8 @@ class FlowControlRules:
         'else_ : '
         p[0] = []
     
+##################### Loops #####################
+
+    def p_while_definition(self, p):
+        'while_statement : WHILE comparison COLON INDENT restricted_statement DENT'
+        p[0] = WhileNode(p[2], p[5])

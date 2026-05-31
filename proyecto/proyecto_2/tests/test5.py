@@ -22,5 +22,9 @@ elif var == 0:
 else:
     var = 0
 
+while (var >= 0) and (var2 == 0 or var <= var2): 
+    var = 0
+    var = 1
+    var = 2
 
 5 = 5
