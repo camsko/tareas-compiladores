@@ -2,23 +2,18 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    AND
     ARROW
     BREAK
     CLASS
     CONTINUE
     DIV
     DOT
-    ELIF
-    ELSE
-    EQUAL
     ERROR
     FALSE
     FOR
     FROM
     GREATER_EQUAL
     GREATER_THAN
-    IF
     IMPORT
     INT_DIV
     LBRACE
@@ -28,9 +23,7 @@ Unused terminals:
     MINUS
     MOD
     MULT
-    NON_EQUAL
     NOT
-    OR
     PASS
     PLUS
     POW
@@ -48,82 +41,98 @@ Rule 2     global_statement -> assignment
 Rule 3     assignment -> ID POW_ASSIGN expression
 Rule 4     expression -> STRING
 Rule 5     function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
-Rule 6     program -> global_statement
-Rule 7     global_statement -> function_definition
-Rule 8     assignment -> ID INT_DIV_ASSIGN expression
-Rule 9     expression -> FLOAT
-Rule 10    function_statement -> assignment
-Rule 11    function_body -> function_body function_statement
-Rule 12    assignment -> ID PLUS_ASSIGN expression
-Rule 13    expression -> INT
-Rule 14    function_body -> function_statement
-Rule 15    assignment -> ID MINUS_ASSIGN expression
-Rule 16    expression -> ID
-Rule 17    parameter_list -> <empty>
-Rule 18    assignment -> ID MULT_ASSIGN expression
-Rule 19    parameter_list -> parameter
-Rule 20    assignment -> ID DIV_ASSIGN expression
-Rule 21    parameter_list -> parameter_list COMMA parameter
-Rule 22    assignment -> ID MOD_ASSIGN expression
-Rule 23    parameter -> ID
-Rule 24    assignment -> ID ASSIGN expression
-Rule 25    parameter -> ID ASSIGN expression
+Rule 6     conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_
+Rule 7     program -> global_statement
+Rule 8     global_statement -> function_definition
+Rule 9     assignment -> ID INT_DIV_ASSIGN expression
+Rule 10    expression -> FLOAT
+Rule 11    global_statement -> conditional
+Rule 12    function_body -> function_body restricted_statement
+Rule 13    assignment -> ID PLUS_ASSIGN expression
+Rule 14    expression -> INT
+Rule 15    restricted_statement -> assignment
+Rule 16    function_body -> restricted_statement
+Rule 17    assignment -> ID MINUS_ASSIGN expression
+Rule 18    expression -> ID
+Rule 19    comparation -> expression compare_operator expression
+Rule 20    restricted_statement -> conditional
+Rule 21    parameter_list -> <empty>
+Rule 22    assignment -> ID MULT_ASSIGN expression
+Rule 23    comparation -> comparation logic_operator comparation
+Rule 24    restricted_statement -> restricted_statement assignment
+Rule 25    parameter_list -> parameter
+Rule 26    assignment -> ID DIV_ASSIGN expression
+Rule 27    comparation -> LPAREN comparation RPAREN
+Rule 28    restricted_statement -> restricted_statement conditional
+Rule 29    parameter_list -> parameter_list COMMA parameter
+Rule 30    assignment -> ID MOD_ASSIGN expression
+Rule 31    logic_operator -> AND
+Rule 32    parameter -> ID
+Rule 33    assignment -> ID ASSIGN expression
+Rule 34    logic_operator -> OR
+Rule 35    compare_operator -> EQUAL
+Rule 36    parameter -> ID ASSIGN expression
+Rule 37    compare_operator -> NON_EQUAL
+Rule 38    elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT
+Rule 39    elif_list -> <empty>
+Rule 40    else_ -> ELSE COLON INDENT restricted_statement DENT
+Rule 41    else_ -> <empty>
 
 Terminals, with rules where they appear
 
-AND                  : 
+AND                  : 31
 ARROW                : 
-ASSIGN               : 24 25
+ASSIGN               : 33 36
 BREAK                : 
 CLASS                : 
-COLON                : 5
-COMMA                : 21
+COLON                : 5 6 38 40
+COMMA                : 29
 CONTINUE             : 
 DEF                  : 5
-DENT                 : 5
+DENT                 : 5 6 38 40
 DIV                  : 
-DIV_ASSIGN           : 20
+DIV_ASSIGN           : 26
 DOT                  : 
-ELIF                 : 
-ELSE                 : 
-EQUAL                : 
+ELIF                 : 38
+ELSE                 : 40
+EQUAL                : 35
 ERROR                : 
 FALSE                : 
-FLOAT                : 9
+FLOAT                : 10
 FOR                  : 
 FROM                 : 
 GREATER_EQUAL        : 
 GREATER_THAN         : 
-ID                   : 3 5 8 12 15 16 18 20 22 23 24 25
-IF                   : 
+ID                   : 3 5 9 13 17 18 22 26 30 32 33 36
+IF                   : 6
 IMPORT               : 
-INDENT               : 5
-INT                  : 13
+INDENT               : 5 6 38 40
+INT                  : 14
 INT_DIV              : 
-INT_DIV_ASSIGN       : 8
+INT_DIV_ASSIGN       : 9
 LBRACE               : 
 LBRACKET             : 
 LOWER_EQUAL          : 
 LOWER_THAN           : 
-LPAREN               : 5
+LPAREN               : 5 27
 MINUS                : 
-MINUS_ASSIGN         : 15
+MINUS_ASSIGN         : 17
 MOD                  : 
-MOD_ASSIGN           : 22
+MOD_ASSIGN           : 30
 MULT                 : 
-MULT_ASSIGN          : 18
-NON_EQUAL            : 
+MULT_ASSIGN          : 22
+NON_EQUAL            : 37
 NOT                  : 
-OR                   : 
+OR                   : 34
 PASS                 : 
 PLUS                 : 
-PLUS_ASSIGN          : 12
+PLUS_ASSIGN          : 13
 POW                  : 
 POW_ASSIGN           : 3
 RBRACE               : 
 RBRACKET             : 
 RETURN               : 
-RPAREN               : 5
+RPAREN               : 5 27
 STRING               : 4
 TRUE                 : 
 WHILE                : 
@@ -131,15 +140,21 @@ error                :
 
 Nonterminals, with rules where they appear
 
-assignment           : 2 10
-expression           : 3 8 12 15 18 20 22 24 25
-function_body        : 5 11
-function_definition  : 7
-function_statement   : 11 14
-global_statement     : 1 6
-parameter            : 19 21
-parameter_list       : 5 21
+assignment           : 2 15 24
+comparation          : 6 23 23 27 38
+compare_operator     : 19
+conditional          : 11 20 28
+elif_list            : 6 38
+else_                : 6
+expression           : 3 9 13 17 19 19 22 26 30 33 36
+function_body        : 5 12
+function_definition  : 8
+global_statement     : 1 7
+logic_operator       : 23
+parameter            : 25 29
+parameter_list       : 5 29
 program              : 1 0
+restricted_statement : 6 12 16 24 28 38 40
 
 Parsing method: LALR
 
@@ -147,57 +162,66 @@ state 0
 
     (0) S' -> . program
     (1) program -> . program global_statement
-    (6) program -> . global_statement
+    (7) program -> . global_statement
     (2) global_statement -> . assignment
-    (7) global_statement -> . function_definition
+    (8) global_statement -> . function_definition
+    (11) global_statement -> . conditional
     (3) assignment -> . ID POW_ASSIGN expression
-    (8) assignment -> . ID INT_DIV_ASSIGN expression
-    (12) assignment -> . ID PLUS_ASSIGN expression
-    (15) assignment -> . ID MINUS_ASSIGN expression
-    (18) assignment -> . ID MULT_ASSIGN expression
-    (20) assignment -> . ID DIV_ASSIGN expression
-    (22) assignment -> . ID MOD_ASSIGN expression
-    (24) assignment -> . ID ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
     (5) function_definition -> . DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
 
-    ID              shift and go to state 5
-    DEF             shift and go to state 6
+    ID              shift and go to state 6
+    DEF             shift and go to state 7
+    IF              shift and go to state 8
 
     program                        shift and go to state 1
     global_statement               shift and go to state 2
     assignment                     shift and go to state 3
     function_definition            shift and go to state 4
+    conditional                    shift and go to state 5
 
 state 1
 
     (0) S' -> program .
     (1) program -> program . global_statement
     (2) global_statement -> . assignment
-    (7) global_statement -> . function_definition
+    (8) global_statement -> . function_definition
+    (11) global_statement -> . conditional
     (3) assignment -> . ID POW_ASSIGN expression
-    (8) assignment -> . ID INT_DIV_ASSIGN expression
-    (12) assignment -> . ID PLUS_ASSIGN expression
-    (15) assignment -> . ID MINUS_ASSIGN expression
-    (18) assignment -> . ID MULT_ASSIGN expression
-    (20) assignment -> . ID DIV_ASSIGN expression
-    (22) assignment -> . ID MOD_ASSIGN expression
-    (24) assignment -> . ID ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
     (5) function_definition -> . DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
 
-    ID              shift and go to state 5
-    DEF             shift and go to state 6
+    ID              shift and go to state 6
+    DEF             shift and go to state 7
+    IF              shift and go to state 8
 
-    global_statement               shift and go to state 7
+    global_statement               shift and go to state 9
     assignment                     shift and go to state 3
     function_definition            shift and go to state 4
+    conditional                    shift and go to state 5
 
 state 2
 
-    (6) program -> global_statement .
+    (7) program -> global_statement .
 
-    ID              reduce using rule 6 (program -> global_statement .)
-    DEF             reduce using rule 6 (program -> global_statement .)
-    $end            reduce using rule 6 (program -> global_statement .)
+    ID              reduce using rule 7 (program -> global_statement .)
+    DEF             reduce using rule 7 (program -> global_statement .)
+    IF              reduce using rule 7 (program -> global_statement .)
+    $end            reduce using rule 7 (program -> global_statement .)
 
 
 state 3
@@ -206,478 +230,1071 @@ state 3
 
     ID              reduce using rule 2 (global_statement -> assignment .)
     DEF             reduce using rule 2 (global_statement -> assignment .)
+    IF              reduce using rule 2 (global_statement -> assignment .)
     $end            reduce using rule 2 (global_statement -> assignment .)
 
 
 state 4
 
-    (7) global_statement -> function_definition .
+    (8) global_statement -> function_definition .
 
-    ID              reduce using rule 7 (global_statement -> function_definition .)
-    DEF             reduce using rule 7 (global_statement -> function_definition .)
-    $end            reduce using rule 7 (global_statement -> function_definition .)
+    ID              reduce using rule 8 (global_statement -> function_definition .)
+    DEF             reduce using rule 8 (global_statement -> function_definition .)
+    IF              reduce using rule 8 (global_statement -> function_definition .)
+    $end            reduce using rule 8 (global_statement -> function_definition .)
 
 
 state 5
 
-    (3) assignment -> ID . POW_ASSIGN expression
-    (8) assignment -> ID . INT_DIV_ASSIGN expression
-    (12) assignment -> ID . PLUS_ASSIGN expression
-    (15) assignment -> ID . MINUS_ASSIGN expression
-    (18) assignment -> ID . MULT_ASSIGN expression
-    (20) assignment -> ID . DIV_ASSIGN expression
-    (22) assignment -> ID . MOD_ASSIGN expression
-    (24) assignment -> ID . ASSIGN expression
+    (11) global_statement -> conditional .
 
-    POW_ASSIGN      shift and go to state 8
-    INT_DIV_ASSIGN  shift and go to state 9
-    PLUS_ASSIGN     shift and go to state 10
-    MINUS_ASSIGN    shift and go to state 11
-    MULT_ASSIGN     shift and go to state 12
-    DIV_ASSIGN      shift and go to state 13
-    MOD_ASSIGN      shift and go to state 14
-    ASSIGN          shift and go to state 15
+    ID              reduce using rule 11 (global_statement -> conditional .)
+    DEF             reduce using rule 11 (global_statement -> conditional .)
+    IF              reduce using rule 11 (global_statement -> conditional .)
+    $end            reduce using rule 11 (global_statement -> conditional .)
 
 
 state 6
 
-    (5) function_definition -> DEF . ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+    (3) assignment -> ID . POW_ASSIGN expression
+    (9) assignment -> ID . INT_DIV_ASSIGN expression
+    (13) assignment -> ID . PLUS_ASSIGN expression
+    (17) assignment -> ID . MINUS_ASSIGN expression
+    (22) assignment -> ID . MULT_ASSIGN expression
+    (26) assignment -> ID . DIV_ASSIGN expression
+    (30) assignment -> ID . MOD_ASSIGN expression
+    (33) assignment -> ID . ASSIGN expression
 
-    ID              shift and go to state 16
+    POW_ASSIGN      shift and go to state 10
+    INT_DIV_ASSIGN  shift and go to state 11
+    PLUS_ASSIGN     shift and go to state 12
+    MINUS_ASSIGN    shift and go to state 13
+    MULT_ASSIGN     shift and go to state 14
+    DIV_ASSIGN      shift and go to state 15
+    MOD_ASSIGN      shift and go to state 16
+    ASSIGN          shift and go to state 17
 
 
 state 7
+
+    (5) function_definition -> DEF . ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+
+    ID              shift and go to state 18
+
+
+state 8
+
+    (6) conditional -> IF . comparation COLON INDENT restricted_statement DENT elif_list else_
+    (19) comparation -> . expression compare_operator expression
+    (23) comparation -> . comparation logic_operator comparation
+    (27) comparation -> . LPAREN comparation RPAREN
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    LPAREN          shift and go to state 21
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    comparation                    shift and go to state 19
+    expression                     shift and go to state 20
+
+state 9
 
     (1) program -> program global_statement .
 
     ID              reduce using rule 1 (program -> program global_statement .)
     DEF             reduce using rule 1 (program -> program global_statement .)
+    IF              reduce using rule 1 (program -> program global_statement .)
     $end            reduce using rule 1 (program -> program global_statement .)
 
 
-state 8
+state 10
 
     (3) assignment -> ID POW_ASSIGN . expression
     (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
-
-    expression                     shift and go to state 18
-
-state 9
-
-    (8) assignment -> ID INT_DIV_ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
-
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
-
-    expression                     shift and go to state 22
-
-state 10
-
-    (12) assignment -> ID PLUS_ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
-
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
-
-    expression                     shift and go to state 23
-
-state 11
-
-    (15) assignment -> ID MINUS_ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
-
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
-
-    expression                     shift and go to state 24
-
-state 12
-
-    (18) assignment -> ID MULT_ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
-
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
-
-    expression                     shift and go to state 25
-
-state 13
-
-    (20) assignment -> ID DIV_ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
-
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
     expression                     shift and go to state 26
 
-state 14
+state 11
 
-    (22) assignment -> ID MOD_ASSIGN . expression
+    (9) assignment -> ID INT_DIV_ASSIGN . expression
     (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
     expression                     shift and go to state 27
 
-state 15
+state 12
 
-    (24) assignment -> ID ASSIGN . expression
+    (13) assignment -> ID PLUS_ASSIGN . expression
     (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
     expression                     shift and go to state 28
 
+state 13
+
+    (17) assignment -> ID MINUS_ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    expression                     shift and go to state 29
+
+state 14
+
+    (22) assignment -> ID MULT_ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    expression                     shift and go to state 30
+
+state 15
+
+    (26) assignment -> ID DIV_ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    expression                     shift and go to state 31
+
 state 16
 
-    (5) function_definition -> DEF ID . LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+    (30) assignment -> ID MOD_ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    LPAREN          shift and go to state 29
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
+    expression                     shift and go to state 32
 
 state 17
 
-    (16) expression -> ID .
+    (33) assignment -> ID ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    ID              reduce using rule 16 (expression -> ID .)
-    DEF             reduce using rule 16 (expression -> ID .)
-    $end            reduce using rule 16 (expression -> ID .)
-    DENT            reduce using rule 16 (expression -> ID .)
-    RPAREN          reduce using rule 16 (expression -> ID .)
-    COMMA           reduce using rule 16 (expression -> ID .)
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
+    expression                     shift and go to state 33
 
 state 18
+
+    (5) function_definition -> DEF ID . LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+
+    LPAREN          shift and go to state 34
+
+
+state 19
+
+    (6) conditional -> IF comparation . COLON INDENT restricted_statement DENT elif_list else_
+    (23) comparation -> comparation . logic_operator comparation
+    (31) logic_operator -> . AND
+    (34) logic_operator -> . OR
+
+    COLON           shift and go to state 35
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+    logic_operator                 shift and go to state 36
+
+state 20
+
+    (19) comparation -> expression . compare_operator expression
+    (35) compare_operator -> . EQUAL
+    (37) compare_operator -> . NON_EQUAL
+
+    EQUAL           shift and go to state 40
+    NON_EQUAL       shift and go to state 41
+
+    compare_operator               shift and go to state 39
+
+state 21
+
+    (27) comparation -> LPAREN . comparation RPAREN
+    (19) comparation -> . expression compare_operator expression
+    (23) comparation -> . comparation logic_operator comparation
+    (27) comparation -> . LPAREN comparation RPAREN
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    LPAREN          shift and go to state 21
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    comparation                    shift and go to state 42
+    expression                     shift and go to state 20
+
+state 22
+
+    (4) expression -> STRING .
+
+    EQUAL           reduce using rule 4 (expression -> STRING .)
+    NON_EQUAL       reduce using rule 4 (expression -> STRING .)
+    ID              reduce using rule 4 (expression -> STRING .)
+    DEF             reduce using rule 4 (expression -> STRING .)
+    IF              reduce using rule 4 (expression -> STRING .)
+    $end            reduce using rule 4 (expression -> STRING .)
+    DENT            reduce using rule 4 (expression -> STRING .)
+    COLON           reduce using rule 4 (expression -> STRING .)
+    AND             reduce using rule 4 (expression -> STRING .)
+    OR              reduce using rule 4 (expression -> STRING .)
+    RPAREN          reduce using rule 4 (expression -> STRING .)
+    COMMA           reduce using rule 4 (expression -> STRING .)
+
+
+state 23
+
+    (10) expression -> FLOAT .
+
+    EQUAL           reduce using rule 10 (expression -> FLOAT .)
+    NON_EQUAL       reduce using rule 10 (expression -> FLOAT .)
+    ID              reduce using rule 10 (expression -> FLOAT .)
+    DEF             reduce using rule 10 (expression -> FLOAT .)
+    IF              reduce using rule 10 (expression -> FLOAT .)
+    $end            reduce using rule 10 (expression -> FLOAT .)
+    DENT            reduce using rule 10 (expression -> FLOAT .)
+    COLON           reduce using rule 10 (expression -> FLOAT .)
+    AND             reduce using rule 10 (expression -> FLOAT .)
+    OR              reduce using rule 10 (expression -> FLOAT .)
+    RPAREN          reduce using rule 10 (expression -> FLOAT .)
+    COMMA           reduce using rule 10 (expression -> FLOAT .)
+
+
+state 24
+
+    (14) expression -> INT .
+
+    EQUAL           reduce using rule 14 (expression -> INT .)
+    NON_EQUAL       reduce using rule 14 (expression -> INT .)
+    ID              reduce using rule 14 (expression -> INT .)
+    DEF             reduce using rule 14 (expression -> INT .)
+    IF              reduce using rule 14 (expression -> INT .)
+    $end            reduce using rule 14 (expression -> INT .)
+    DENT            reduce using rule 14 (expression -> INT .)
+    COLON           reduce using rule 14 (expression -> INT .)
+    AND             reduce using rule 14 (expression -> INT .)
+    OR              reduce using rule 14 (expression -> INT .)
+    RPAREN          reduce using rule 14 (expression -> INT .)
+    COMMA           reduce using rule 14 (expression -> INT .)
+
+
+state 25
+
+    (18) expression -> ID .
+
+    EQUAL           reduce using rule 18 (expression -> ID .)
+    NON_EQUAL       reduce using rule 18 (expression -> ID .)
+    ID              reduce using rule 18 (expression -> ID .)
+    DEF             reduce using rule 18 (expression -> ID .)
+    IF              reduce using rule 18 (expression -> ID .)
+    $end            reduce using rule 18 (expression -> ID .)
+    DENT            reduce using rule 18 (expression -> ID .)
+    COLON           reduce using rule 18 (expression -> ID .)
+    AND             reduce using rule 18 (expression -> ID .)
+    OR              reduce using rule 18 (expression -> ID .)
+    RPAREN          reduce using rule 18 (expression -> ID .)
+    COMMA           reduce using rule 18 (expression -> ID .)
+
+
+state 26
 
     (3) assignment -> ID POW_ASSIGN expression .
 
     ID              reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
     DEF             reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
+    IF              reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
     $end            reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
     DENT            reduce using rule 3 (assignment -> ID POW_ASSIGN expression .)
 
 
-state 19
-
-    (4) expression -> STRING .
-
-    ID              reduce using rule 4 (expression -> STRING .)
-    DEF             reduce using rule 4 (expression -> STRING .)
-    $end            reduce using rule 4 (expression -> STRING .)
-    DENT            reduce using rule 4 (expression -> STRING .)
-    RPAREN          reduce using rule 4 (expression -> STRING .)
-    COMMA           reduce using rule 4 (expression -> STRING .)
-
-
-state 20
-
-    (9) expression -> FLOAT .
-
-    ID              reduce using rule 9 (expression -> FLOAT .)
-    DEF             reduce using rule 9 (expression -> FLOAT .)
-    $end            reduce using rule 9 (expression -> FLOAT .)
-    DENT            reduce using rule 9 (expression -> FLOAT .)
-    RPAREN          reduce using rule 9 (expression -> FLOAT .)
-    COMMA           reduce using rule 9 (expression -> FLOAT .)
-
-
-state 21
-
-    (13) expression -> INT .
-
-    ID              reduce using rule 13 (expression -> INT .)
-    DEF             reduce using rule 13 (expression -> INT .)
-    $end            reduce using rule 13 (expression -> INT .)
-    DENT            reduce using rule 13 (expression -> INT .)
-    RPAREN          reduce using rule 13 (expression -> INT .)
-    COMMA           reduce using rule 13 (expression -> INT .)
-
-
-state 22
-
-    (8) assignment -> ID INT_DIV_ASSIGN expression .
-
-    ID              reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
-    DEF             reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
-    $end            reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
-    DENT            reduce using rule 8 (assignment -> ID INT_DIV_ASSIGN expression .)
-
-
-state 23
-
-    (12) assignment -> ID PLUS_ASSIGN expression .
-
-    ID              reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
-    DEF             reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
-    $end            reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
-    DENT            reduce using rule 12 (assignment -> ID PLUS_ASSIGN expression .)
-
-
-state 24
-
-    (15) assignment -> ID MINUS_ASSIGN expression .
-
-    ID              reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
-    DEF             reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
-    $end            reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
-    DENT            reduce using rule 15 (assignment -> ID MINUS_ASSIGN expression .)
-
-
-state 25
-
-    (18) assignment -> ID MULT_ASSIGN expression .
-
-    ID              reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
-    DEF             reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
-    $end            reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
-    DENT            reduce using rule 18 (assignment -> ID MULT_ASSIGN expression .)
-
-
-state 26
-
-    (20) assignment -> ID DIV_ASSIGN expression .
-
-    ID              reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
-    DEF             reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
-    $end            reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
-    DENT            reduce using rule 20 (assignment -> ID DIV_ASSIGN expression .)
-
-
 state 27
 
-    (22) assignment -> ID MOD_ASSIGN expression .
+    (9) assignment -> ID INT_DIV_ASSIGN expression .
 
-    ID              reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
-    DEF             reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
-    $end            reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
-    DENT            reduce using rule 22 (assignment -> ID MOD_ASSIGN expression .)
+    ID              reduce using rule 9 (assignment -> ID INT_DIV_ASSIGN expression .)
+    DEF             reduce using rule 9 (assignment -> ID INT_DIV_ASSIGN expression .)
+    IF              reduce using rule 9 (assignment -> ID INT_DIV_ASSIGN expression .)
+    $end            reduce using rule 9 (assignment -> ID INT_DIV_ASSIGN expression .)
+    DENT            reduce using rule 9 (assignment -> ID INT_DIV_ASSIGN expression .)
 
 
 state 28
 
-    (24) assignment -> ID ASSIGN expression .
+    (13) assignment -> ID PLUS_ASSIGN expression .
 
-    ID              reduce using rule 24 (assignment -> ID ASSIGN expression .)
-    DEF             reduce using rule 24 (assignment -> ID ASSIGN expression .)
-    $end            reduce using rule 24 (assignment -> ID ASSIGN expression .)
-    DENT            reduce using rule 24 (assignment -> ID ASSIGN expression .)
+    ID              reduce using rule 13 (assignment -> ID PLUS_ASSIGN expression .)
+    DEF             reduce using rule 13 (assignment -> ID PLUS_ASSIGN expression .)
+    IF              reduce using rule 13 (assignment -> ID PLUS_ASSIGN expression .)
+    $end            reduce using rule 13 (assignment -> ID PLUS_ASSIGN expression .)
+    DENT            reduce using rule 13 (assignment -> ID PLUS_ASSIGN expression .)
 
 
 state 29
 
-    (5) function_definition -> DEF ID LPAREN . parameter_list RPAREN COLON INDENT function_body DENT
-    (17) parameter_list -> .
-    (19) parameter_list -> . parameter
-    (21) parameter_list -> . parameter_list COMMA parameter
-    (23) parameter -> . ID
-    (25) parameter -> . ID ASSIGN expression
+    (17) assignment -> ID MINUS_ASSIGN expression .
 
-    RPAREN          reduce using rule 17 (parameter_list -> .)
-    COMMA           reduce using rule 17 (parameter_list -> .)
-    ID              shift and go to state 30
+    ID              reduce using rule 17 (assignment -> ID MINUS_ASSIGN expression .)
+    DEF             reduce using rule 17 (assignment -> ID MINUS_ASSIGN expression .)
+    IF              reduce using rule 17 (assignment -> ID MINUS_ASSIGN expression .)
+    $end            reduce using rule 17 (assignment -> ID MINUS_ASSIGN expression .)
+    DENT            reduce using rule 17 (assignment -> ID MINUS_ASSIGN expression .)
 
-    parameter_list                 shift and go to state 31
-    parameter                      shift and go to state 32
 
 state 30
 
-    (23) parameter -> ID .
-    (25) parameter -> ID . ASSIGN expression
+    (22) assignment -> ID MULT_ASSIGN expression .
 
-    RPAREN          reduce using rule 23 (parameter -> ID .)
-    COMMA           reduce using rule 23 (parameter -> ID .)
-    ASSIGN          shift and go to state 33
+    ID              reduce using rule 22 (assignment -> ID MULT_ASSIGN expression .)
+    DEF             reduce using rule 22 (assignment -> ID MULT_ASSIGN expression .)
+    IF              reduce using rule 22 (assignment -> ID MULT_ASSIGN expression .)
+    $end            reduce using rule 22 (assignment -> ID MULT_ASSIGN expression .)
+    DENT            reduce using rule 22 (assignment -> ID MULT_ASSIGN expression .)
 
 
 state 31
 
-    (5) function_definition -> DEF ID LPAREN parameter_list . RPAREN COLON INDENT function_body DENT
-    (21) parameter_list -> parameter_list . COMMA parameter
+    (26) assignment -> ID DIV_ASSIGN expression .
 
-    RPAREN          shift and go to state 34
-    COMMA           shift and go to state 35
+    ID              reduce using rule 26 (assignment -> ID DIV_ASSIGN expression .)
+    DEF             reduce using rule 26 (assignment -> ID DIV_ASSIGN expression .)
+    IF              reduce using rule 26 (assignment -> ID DIV_ASSIGN expression .)
+    $end            reduce using rule 26 (assignment -> ID DIV_ASSIGN expression .)
+    DENT            reduce using rule 26 (assignment -> ID DIV_ASSIGN expression .)
 
 
 state 32
 
-    (19) parameter_list -> parameter .
+    (30) assignment -> ID MOD_ASSIGN expression .
 
-    RPAREN          reduce using rule 19 (parameter_list -> parameter .)
-    COMMA           reduce using rule 19 (parameter_list -> parameter .)
+    ID              reduce using rule 30 (assignment -> ID MOD_ASSIGN expression .)
+    DEF             reduce using rule 30 (assignment -> ID MOD_ASSIGN expression .)
+    IF              reduce using rule 30 (assignment -> ID MOD_ASSIGN expression .)
+    $end            reduce using rule 30 (assignment -> ID MOD_ASSIGN expression .)
+    DENT            reduce using rule 30 (assignment -> ID MOD_ASSIGN expression .)
 
 
 state 33
 
-    (25) parameter -> ID ASSIGN . expression
-    (4) expression -> . STRING
-    (9) expression -> . FLOAT
-    (13) expression -> . INT
-    (16) expression -> . ID
+    (33) assignment -> ID ASSIGN expression .
 
-    STRING          shift and go to state 19
-    FLOAT           shift and go to state 20
-    INT             shift and go to state 21
-    ID              shift and go to state 17
+    ID              reduce using rule 33 (assignment -> ID ASSIGN expression .)
+    DEF             reduce using rule 33 (assignment -> ID ASSIGN expression .)
+    IF              reduce using rule 33 (assignment -> ID ASSIGN expression .)
+    $end            reduce using rule 33 (assignment -> ID ASSIGN expression .)
+    DENT            reduce using rule 33 (assignment -> ID ASSIGN expression .)
 
-    expression                     shift and go to state 36
 
 state 34
 
-    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN . COLON INDENT function_body DENT
+    (5) function_definition -> DEF ID LPAREN . parameter_list RPAREN COLON INDENT function_body DENT
+    (21) parameter_list -> .
+    (25) parameter_list -> . parameter
+    (29) parameter_list -> . parameter_list COMMA parameter
+    (32) parameter -> . ID
+    (36) parameter -> . ID ASSIGN expression
 
-    COLON           shift and go to state 37
+    RPAREN          reduce using rule 21 (parameter_list -> .)
+    COMMA           reduce using rule 21 (parameter_list -> .)
+    ID              shift and go to state 43
 
+    parameter_list                 shift and go to state 44
+    parameter                      shift and go to state 45
 
 state 35
 
-    (21) parameter_list -> parameter_list COMMA . parameter
-    (23) parameter -> . ID
-    (25) parameter -> . ID ASSIGN expression
+    (6) conditional -> IF comparation COLON . INDENT restricted_statement DENT elif_list else_
 
-    ID              shift and go to state 30
+    INDENT          shift and go to state 46
 
-    parameter                      shift and go to state 38
 
 state 36
 
-    (25) parameter -> ID ASSIGN expression .
+    (23) comparation -> comparation logic_operator . comparation
+    (19) comparation -> . expression compare_operator expression
+    (23) comparation -> . comparation logic_operator comparation
+    (27) comparation -> . LPAREN comparation RPAREN
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    RPAREN          reduce using rule 25 (parameter -> ID ASSIGN expression .)
-    COMMA           reduce using rule 25 (parameter -> ID ASSIGN expression .)
+    LPAREN          shift and go to state 21
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
+    comparation                    shift and go to state 47
+    expression                     shift and go to state 20
 
 state 37
 
-    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON . INDENT function_body DENT
+    (31) logic_operator -> AND .
 
-    INDENT          shift and go to state 39
+    LPAREN          reduce using rule 31 (logic_operator -> AND .)
+    STRING          reduce using rule 31 (logic_operator -> AND .)
+    FLOAT           reduce using rule 31 (logic_operator -> AND .)
+    INT             reduce using rule 31 (logic_operator -> AND .)
+    ID              reduce using rule 31 (logic_operator -> AND .)
 
 
 state 38
 
-    (21) parameter_list -> parameter_list COMMA parameter .
+    (34) logic_operator -> OR .
 
-    RPAREN          reduce using rule 21 (parameter_list -> parameter_list COMMA parameter .)
-    COMMA           reduce using rule 21 (parameter_list -> parameter_list COMMA parameter .)
+    LPAREN          reduce using rule 34 (logic_operator -> OR .)
+    STRING          reduce using rule 34 (logic_operator -> OR .)
+    FLOAT           reduce using rule 34 (logic_operator -> OR .)
+    INT             reduce using rule 34 (logic_operator -> OR .)
+    ID              reduce using rule 34 (logic_operator -> OR .)
 
 
 state 39
 
-    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT . function_body DENT
-    (11) function_body -> . function_body function_statement
-    (14) function_body -> . function_statement
-    (10) function_statement -> . assignment
-    (3) assignment -> . ID POW_ASSIGN expression
-    (8) assignment -> . ID INT_DIV_ASSIGN expression
-    (12) assignment -> . ID PLUS_ASSIGN expression
-    (15) assignment -> . ID MINUS_ASSIGN expression
-    (18) assignment -> . ID MULT_ASSIGN expression
-    (20) assignment -> . ID DIV_ASSIGN expression
-    (22) assignment -> . ID MOD_ASSIGN expression
-    (24) assignment -> . ID ASSIGN expression
+    (19) comparation -> expression compare_operator . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
 
-    ID              shift and go to state 5
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
 
-    function_body                  shift and go to state 40
-    function_statement             shift and go to state 41
-    assignment                     shift and go to state 42
+    expression                     shift and go to state 48
 
 state 40
 
-    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body . DENT
-    (11) function_body -> function_body . function_statement
-    (10) function_statement -> . assignment
-    (3) assignment -> . ID POW_ASSIGN expression
-    (8) assignment -> . ID INT_DIV_ASSIGN expression
-    (12) assignment -> . ID PLUS_ASSIGN expression
-    (15) assignment -> . ID MINUS_ASSIGN expression
-    (18) assignment -> . ID MULT_ASSIGN expression
-    (20) assignment -> . ID DIV_ASSIGN expression
-    (22) assignment -> . ID MOD_ASSIGN expression
-    (24) assignment -> . ID ASSIGN expression
+    (35) compare_operator -> EQUAL .
 
-    DENT            shift and go to state 43
-    ID              shift and go to state 5
+    STRING          reduce using rule 35 (compare_operator -> EQUAL .)
+    FLOAT           reduce using rule 35 (compare_operator -> EQUAL .)
+    INT             reduce using rule 35 (compare_operator -> EQUAL .)
+    ID              reduce using rule 35 (compare_operator -> EQUAL .)
 
-    function_statement             shift and go to state 44
-    assignment                     shift and go to state 42
 
 state 41
 
-    (14) function_body -> function_statement .
+    (37) compare_operator -> NON_EQUAL .
 
-    DENT            reduce using rule 14 (function_body -> function_statement .)
-    ID              reduce using rule 14 (function_body -> function_statement .)
+    STRING          reduce using rule 37 (compare_operator -> NON_EQUAL .)
+    FLOAT           reduce using rule 37 (compare_operator -> NON_EQUAL .)
+    INT             reduce using rule 37 (compare_operator -> NON_EQUAL .)
+    ID              reduce using rule 37 (compare_operator -> NON_EQUAL .)
 
 
 state 42
 
-    (10) function_statement -> assignment .
+    (27) comparation -> LPAREN comparation . RPAREN
+    (23) comparation -> comparation . logic_operator comparation
+    (31) logic_operator -> . AND
+    (34) logic_operator -> . OR
 
-    DENT            reduce using rule 10 (function_statement -> assignment .)
-    ID              reduce using rule 10 (function_statement -> assignment .)
+    RPAREN          shift and go to state 49
+    AND             shift and go to state 37
+    OR              shift and go to state 38
 
+    logic_operator                 shift and go to state 36
 
 state 43
+
+    (32) parameter -> ID .
+    (36) parameter -> ID . ASSIGN expression
+
+    RPAREN          reduce using rule 32 (parameter -> ID .)
+    COMMA           reduce using rule 32 (parameter -> ID .)
+    ASSIGN          shift and go to state 50
+
+
+state 44
+
+    (5) function_definition -> DEF ID LPAREN parameter_list . RPAREN COLON INDENT function_body DENT
+    (29) parameter_list -> parameter_list . COMMA parameter
+
+    RPAREN          shift and go to state 51
+    COMMA           shift and go to state 52
+
+
+state 45
+
+    (25) parameter_list -> parameter .
+
+    RPAREN          reduce using rule 25 (parameter_list -> parameter .)
+    COMMA           reduce using rule 25 (parameter_list -> parameter .)
+
+
+state 46
+
+    (6) conditional -> IF comparation COLON INDENT . restricted_statement DENT elif_list else_
+    (15) restricted_statement -> . assignment
+    (20) restricted_statement -> . conditional
+    (24) restricted_statement -> . restricted_statement assignment
+    (28) restricted_statement -> . restricted_statement conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    restricted_statement           shift and go to state 53
+    assignment                     shift and go to state 54
+    conditional                    shift and go to state 55
+
+state 47
+
+    (23) comparation -> comparation logic_operator comparation .
+    (23) comparation -> comparation . logic_operator comparation
+    (31) logic_operator -> . AND
+    (34) logic_operator -> . OR
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    COLON           reduce using rule 23 (comparation -> comparation logic_operator comparation .)
+    RPAREN          reduce using rule 23 (comparation -> comparation logic_operator comparation .)
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+  ! AND             [ reduce using rule 23 (comparation -> comparation logic_operator comparation .) ]
+  ! OR              [ reduce using rule 23 (comparation -> comparation logic_operator comparation .) ]
+
+    logic_operator                 shift and go to state 36
+
+state 48
+
+    (19) comparation -> expression compare_operator expression .
+
+    COLON           reduce using rule 19 (comparation -> expression compare_operator expression .)
+    AND             reduce using rule 19 (comparation -> expression compare_operator expression .)
+    OR              reduce using rule 19 (comparation -> expression compare_operator expression .)
+    RPAREN          reduce using rule 19 (comparation -> expression compare_operator expression .)
+
+
+state 49
+
+    (27) comparation -> LPAREN comparation RPAREN .
+
+    COLON           reduce using rule 27 (comparation -> LPAREN comparation RPAREN .)
+    AND             reduce using rule 27 (comparation -> LPAREN comparation RPAREN .)
+    OR              reduce using rule 27 (comparation -> LPAREN comparation RPAREN .)
+    RPAREN          reduce using rule 27 (comparation -> LPAREN comparation RPAREN .)
+
+
+state 50
+
+    (36) parameter -> ID ASSIGN . expression
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    expression                     shift and go to state 56
+
+state 51
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN . COLON INDENT function_body DENT
+
+    COLON           shift and go to state 57
+
+
+state 52
+
+    (29) parameter_list -> parameter_list COMMA . parameter
+    (32) parameter -> . ID
+    (36) parameter -> . ID ASSIGN expression
+
+    ID              shift and go to state 43
+
+    parameter                      shift and go to state 58
+
+state 53
+
+    (6) conditional -> IF comparation COLON INDENT restricted_statement . DENT elif_list else_
+    (24) restricted_statement -> restricted_statement . assignment
+    (28) restricted_statement -> restricted_statement . conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    DENT            shift and go to state 59
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    assignment                     shift and go to state 60
+    conditional                    shift and go to state 61
+
+state 54
+
+    (15) restricted_statement -> assignment .
+
+    DENT            reduce using rule 15 (restricted_statement -> assignment .)
+    ID              reduce using rule 15 (restricted_statement -> assignment .)
+    IF              reduce using rule 15 (restricted_statement -> assignment .)
+
+
+state 55
+
+    (20) restricted_statement -> conditional .
+
+    DENT            reduce using rule 20 (restricted_statement -> conditional .)
+    ID              reduce using rule 20 (restricted_statement -> conditional .)
+    IF              reduce using rule 20 (restricted_statement -> conditional .)
+
+
+state 56
+
+    (36) parameter -> ID ASSIGN expression .
+
+    RPAREN          reduce using rule 36 (parameter -> ID ASSIGN expression .)
+    COMMA           reduce using rule 36 (parameter -> ID ASSIGN expression .)
+
+
+state 57
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON . INDENT function_body DENT
+
+    INDENT          shift and go to state 62
+
+
+state 58
+
+    (29) parameter_list -> parameter_list COMMA parameter .
+
+    RPAREN          reduce using rule 29 (parameter_list -> parameter_list COMMA parameter .)
+    COMMA           reduce using rule 29 (parameter_list -> parameter_list COMMA parameter .)
+
+
+state 59
+
+    (6) conditional -> IF comparation COLON INDENT restricted_statement DENT . elif_list else_
+    (38) elif_list -> . elif_list ELIF comparation COLON INDENT restricted_statement DENT
+    (39) elif_list -> .
+
+    ELIF            reduce using rule 39 (elif_list -> .)
+    ELSE            reduce using rule 39 (elif_list -> .)
+    ID              reduce using rule 39 (elif_list -> .)
+    DEF             reduce using rule 39 (elif_list -> .)
+    IF              reduce using rule 39 (elif_list -> .)
+    $end            reduce using rule 39 (elif_list -> .)
+    DENT            reduce using rule 39 (elif_list -> .)
+
+    elif_list                      shift and go to state 63
+
+state 60
+
+    (24) restricted_statement -> restricted_statement assignment .
+
+    DENT            reduce using rule 24 (restricted_statement -> restricted_statement assignment .)
+    ID              reduce using rule 24 (restricted_statement -> restricted_statement assignment .)
+    IF              reduce using rule 24 (restricted_statement -> restricted_statement assignment .)
+
+
+state 61
+
+    (28) restricted_statement -> restricted_statement conditional .
+
+    DENT            reduce using rule 28 (restricted_statement -> restricted_statement conditional .)
+    ID              reduce using rule 28 (restricted_statement -> restricted_statement conditional .)
+    IF              reduce using rule 28 (restricted_statement -> restricted_statement conditional .)
+
+
+state 62
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT . function_body DENT
+    (12) function_body -> . function_body restricted_statement
+    (16) function_body -> . restricted_statement
+    (15) restricted_statement -> . assignment
+    (20) restricted_statement -> . conditional
+    (24) restricted_statement -> . restricted_statement assignment
+    (28) restricted_statement -> . restricted_statement conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    function_body                  shift and go to state 64
+    restricted_statement           shift and go to state 65
+    assignment                     shift and go to state 54
+    conditional                    shift and go to state 55
+
+state 63
+
+    (6) conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list . else_
+    (38) elif_list -> elif_list . ELIF comparation COLON INDENT restricted_statement DENT
+    (40) else_ -> . ELSE COLON INDENT restricted_statement DENT
+    (41) else_ -> .
+
+    ELIF            shift and go to state 67
+    ELSE            shift and go to state 68
+    ID              reduce using rule 41 (else_ -> .)
+    DEF             reduce using rule 41 (else_ -> .)
+    IF              reduce using rule 41 (else_ -> .)
+    $end            reduce using rule 41 (else_ -> .)
+    DENT            reduce using rule 41 (else_ -> .)
+
+    else_                          shift and go to state 66
+
+state 64
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body . DENT
+    (12) function_body -> function_body . restricted_statement
+    (15) restricted_statement -> . assignment
+    (20) restricted_statement -> . conditional
+    (24) restricted_statement -> . restricted_statement assignment
+    (28) restricted_statement -> . restricted_statement conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    DENT            shift and go to state 69
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    restricted_statement           shift and go to state 70
+    assignment                     shift and go to state 54
+    conditional                    shift and go to state 55
+
+state 65
+
+    (16) function_body -> restricted_statement .
+    (24) restricted_statement -> restricted_statement . assignment
+    (28) restricted_statement -> restricted_statement . conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+    DENT            reduce using rule 16 (function_body -> restricted_statement .)
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+  ! ID              [ reduce using rule 16 (function_body -> restricted_statement .) ]
+  ! IF              [ reduce using rule 16 (function_body -> restricted_statement .) ]
+
+    assignment                     shift and go to state 60
+    conditional                    shift and go to state 61
+
+state 66
+
+    (6) conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .
+
+    ID              reduce using rule 6 (conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .)
+    DEF             reduce using rule 6 (conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .)
+    IF              reduce using rule 6 (conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .)
+    $end            reduce using rule 6 (conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .)
+    DENT            reduce using rule 6 (conditional -> IF comparation COLON INDENT restricted_statement DENT elif_list else_ .)
+
+
+state 67
+
+    (38) elif_list -> elif_list ELIF . comparation COLON INDENT restricted_statement DENT
+    (19) comparation -> . expression compare_operator expression
+    (23) comparation -> . comparation logic_operator comparation
+    (27) comparation -> . LPAREN comparation RPAREN
+    (4) expression -> . STRING
+    (10) expression -> . FLOAT
+    (14) expression -> . INT
+    (18) expression -> . ID
+
+    LPAREN          shift and go to state 21
+    STRING          shift and go to state 22
+    FLOAT           shift and go to state 23
+    INT             shift and go to state 24
+    ID              shift and go to state 25
+
+    comparation                    shift and go to state 71
+    expression                     shift and go to state 20
+
+state 68
+
+    (40) else_ -> ELSE . COLON INDENT restricted_statement DENT
+
+    COLON           shift and go to state 72
+
+
+state 69
 
     (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .
 
     ID              reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
     DEF             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    IF              reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
     $end            reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
 
 
-state 44
+state 70
 
-    (11) function_body -> function_body function_statement .
+    (12) function_body -> function_body restricted_statement .
+    (24) restricted_statement -> restricted_statement . assignment
+    (28) restricted_statement -> restricted_statement . conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
 
-    DENT            reduce using rule 11 (function_body -> function_body function_statement .)
-    ID              reduce using rule 11 (function_body -> function_body function_statement .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+    DENT            reduce using rule 12 (function_body -> function_body restricted_statement .)
+    ID              shift and go to state 6
+    IF              shift and go to state 8
 
+  ! ID              [ reduce using rule 12 (function_body -> function_body restricted_statement .) ]
+  ! IF              [ reduce using rule 12 (function_body -> function_body restricted_statement .) ]
+
+    assignment                     shift and go to state 60
+    conditional                    shift and go to state 61
+
+state 71
+
+    (38) elif_list -> elif_list ELIF comparation . COLON INDENT restricted_statement DENT
+    (23) comparation -> comparation . logic_operator comparation
+    (31) logic_operator -> . AND
+    (34) logic_operator -> . OR
+
+    COLON           shift and go to state 73
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+    logic_operator                 shift and go to state 36
+
+state 72
+
+    (40) else_ -> ELSE COLON . INDENT restricted_statement DENT
+
+    INDENT          shift and go to state 74
+
+
+state 73
+
+    (38) elif_list -> elif_list ELIF comparation COLON . INDENT restricted_statement DENT
+
+    INDENT          shift and go to state 75
+
+
+state 74
+
+    (40) else_ -> ELSE COLON INDENT . restricted_statement DENT
+    (15) restricted_statement -> . assignment
+    (20) restricted_statement -> . conditional
+    (24) restricted_statement -> . restricted_statement assignment
+    (28) restricted_statement -> . restricted_statement conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    restricted_statement           shift and go to state 76
+    assignment                     shift and go to state 54
+    conditional                    shift and go to state 55
+
+state 75
+
+    (38) elif_list -> elif_list ELIF comparation COLON INDENT . restricted_statement DENT
+    (15) restricted_statement -> . assignment
+    (20) restricted_statement -> . conditional
+    (24) restricted_statement -> . restricted_statement assignment
+    (28) restricted_statement -> . restricted_statement conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    restricted_statement           shift and go to state 77
+    assignment                     shift and go to state 54
+    conditional                    shift and go to state 55
+
+state 76
+
+    (40) else_ -> ELSE COLON INDENT restricted_statement . DENT
+    (24) restricted_statement -> restricted_statement . assignment
+    (28) restricted_statement -> restricted_statement . conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    DENT            shift and go to state 78
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    assignment                     shift and go to state 60
+    conditional                    shift and go to state 61
+
+state 77
+
+    (38) elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement . DENT
+    (24) restricted_statement -> restricted_statement . assignment
+    (28) restricted_statement -> restricted_statement . conditional
+    (3) assignment -> . ID POW_ASSIGN expression
+    (9) assignment -> . ID INT_DIV_ASSIGN expression
+    (13) assignment -> . ID PLUS_ASSIGN expression
+    (17) assignment -> . ID MINUS_ASSIGN expression
+    (22) assignment -> . ID MULT_ASSIGN expression
+    (26) assignment -> . ID DIV_ASSIGN expression
+    (30) assignment -> . ID MOD_ASSIGN expression
+    (33) assignment -> . ID ASSIGN expression
+    (6) conditional -> . IF comparation COLON INDENT restricted_statement DENT elif_list else_
+
+    DENT            shift and go to state 79
+    ID              shift and go to state 6
+    IF              shift and go to state 8
+
+    assignment                     shift and go to state 60
+    conditional                    shift and go to state 61
+
+state 78
+
+    (40) else_ -> ELSE COLON INDENT restricted_statement DENT .
+
+    ID              reduce using rule 40 (else_ -> ELSE COLON INDENT restricted_statement DENT .)
+    DEF             reduce using rule 40 (else_ -> ELSE COLON INDENT restricted_statement DENT .)
+    IF              reduce using rule 40 (else_ -> ELSE COLON INDENT restricted_statement DENT .)
+    $end            reduce using rule 40 (else_ -> ELSE COLON INDENT restricted_statement DENT .)
+    DENT            reduce using rule 40 (else_ -> ELSE COLON INDENT restricted_statement DENT .)
+
+
+state 79
+
+    (38) elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .
+
+    ELIF            reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    ELSE            reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    ID              reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    DEF             reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    IF              reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    $end            reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+    DENT            reduce using rule 38 (elif_list -> elif_list ELIF comparation COLON INDENT restricted_statement DENT .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 47 resolved as shift
+WARNING: shift/reduce conflict for OR in state 47 resolved as shift
+WARNING: shift/reduce conflict for ID in state 65 resolved as shift
+WARNING: shift/reduce conflict for IF in state 65 resolved as shift
+WARNING: shift/reduce conflict for ID in state 70 resolved as shift
+WARNING: shift/reduce conflict for IF in state 70 resolved as shift
