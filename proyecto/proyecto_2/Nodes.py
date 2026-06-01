@@ -1,6 +1,16 @@
 class Node:
     pass
 
+class ProgramNode(Node):
+    def __init__(self, statements):
+        self.statements = statements
+
+    def __repr__(self):
+        return f"ProgramNode(\n{self.statements}\n)" 
+    
+    def __iter__(self):
+        return iter(self.statements)
+
 class BinaryNode(Node):
     def __init__(self, left, right):
         self.left = left
