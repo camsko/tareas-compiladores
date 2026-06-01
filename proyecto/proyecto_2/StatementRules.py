@@ -25,7 +25,11 @@ class StatementRules:
         'global_statement : for_statement'
         p[0] = p[1]
     
+    def p_global_statement_expression(self, p):
+        'global_statement : expression'
+        p[0] = p[1]
     
+   
 ##################### RESTRICTED #####################
     def p_restricted_statement_assignment_single(self, p):
         'restricted_statement : assignment'
@@ -41,6 +45,10 @@ class StatementRules:
         
     def p_restricted_statement_for_single(self, p):
         'restricted_statement : for_statement'
+        p[0] = [p[1]]
+        
+    def p_restricted_statement_expression_single(self, p):
+        'restricted_statement : expression'
         p[0] = [p[1]]
     
     def p_restricted_statement_assignment(self, p):
@@ -58,3 +66,9 @@ class StatementRules:
     def p_restricted_statement_for(self, p):
         'restricted_statement : restricted_statement for_statement'
         p[0] = p[1] + [p[2]]
+        
+    def p_restricted_statement_expression(self, p):
+        'restricted_statement : restricted_statement expression'
+        p[0] = p[1] + [p[2]]
+        
+ 

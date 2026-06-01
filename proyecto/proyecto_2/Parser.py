@@ -7,14 +7,15 @@ from AssignmentRules import AssignmentRules
 from ExpressionRules import ExpressionRules
 from FunctionRules import FunctionRules
 from FlowControlRules import  FlowControlRules
-
+from StringOperationRules import StringOperationRules
 class Parser(
     ProgramRules,
     StatementRules,
     AssignmentRules,
     ExpressionRules,
     FunctionRules,
-    FlowControlRules
+    FlowControlRules,
+    StringOperationRules
 ):
 
     SYNC_TOKENS = {
