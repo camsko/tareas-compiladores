@@ -3,6 +3,10 @@ class StatementRules:
 ##################### GLOBAL #####################
     def p_global_statement_assignment(self, p):
         'global_statement : assignment'
+        p[0] = p[1]    
+    
+    def p_global_statement_function_call(self, p):
+        'global_statement : function_call'
         p[0] = p[1]
 
     def p_global_statement_function(self, p):
