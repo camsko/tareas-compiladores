@@ -7,7 +7,7 @@ lex = Lexer()
 parser = Parser()
 
 fileManager = FileManager()
-files = fileManager.loadTestFiles("test5")
+files = fileManager.loadTestFiles("class_test")
 
 # For each file loaded by the FileManager, tokenize all of its lines and return the tokenized input 
 for file in files:
