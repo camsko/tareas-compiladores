@@ -27,7 +27,6 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> program global_statement','program',2,'p_program_multiple','ProgramRules.py',3),
   ('assignment -> ID POW_ASSIGN expression','assignment',3,'p_pow_assign_expression','AssignmentRules.py',5),
   ('class -> CLASS ID COLON INDENT class_body DENT','class',6,'p_class_definition','ClassRules.py',5),
   ('expression -> STRING','expression',1,'p_string_expression','ExpressionRules.py',5),
