@@ -22,7 +22,7 @@ class Parser(
     }
 
     tokens = Lexer.tokens
-
+    start = 'program'
     def __init__(self):
         self.parser = yacc.yacc(module=self)
 
