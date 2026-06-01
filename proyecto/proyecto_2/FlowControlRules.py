@@ -22,6 +22,10 @@ class FlowControlRules:
     def p_comparation_multiple(self, p):
         'comparison : comparison logic_operator comparison'
         p[0] = p[2](p[1], p[3])
+    
+    def p_comparation_function_call(self, p):
+        'comparison : function_call'
+        p[0] = p[1]
         
     def p_comparation_group(self, p):
         'comparison : LPAREN comparison RPAREN'
