@@ -221,3 +221,9 @@ class OrNode(BinaryNode): pass
 class RangeBinaryNode(BinaryNode): pass
 class PlusNode(BinaryNode): pass
 class MultNode(BinaryNode): pass
+class NotNode(BinaryNode): pass
+class PowNode(BinaryNode): pass
+class IntDivNode(BinaryNode): pass
+class MinusNode(BinaryNode): pass
+class DivNode(BinaryNode): pass
+class ModNode(BinaryNode): pass

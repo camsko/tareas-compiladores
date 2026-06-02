@@ -11,6 +11,8 @@ from FunctionRules import FunctionRules
 from FunctionCallRules import FunctionCallRules
 from FlowControlRules import  FlowControlRules
 from StringOperationRules import StringOperationRules
+from OperationRules import OperationRules
+
 class Parser(
     ProgramRules,
     ReturnRules,
@@ -21,7 +23,8 @@ class Parser(
     FunctionRules,
     FlowControlRules,
     StringOperationRules,
-    FunctionCallRules
+    FunctionCallRules,
+    OperationRules
 ):
 
     SYNC_TOKENS = {
