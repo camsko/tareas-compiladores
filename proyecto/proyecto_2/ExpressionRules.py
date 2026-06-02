@@ -1,6 +1,11 @@
 from Nodes import *
 
 class ExpressionRules:
+
+    def p_operation_expression(self, p):
+        'expression : operation'
+        p[0] = p[1]
+        
     def p_string_expression(self, p):
         'expression : STRING'
         p[0] = StringNode(p[1])
@@ -56,10 +61,11 @@ class ExpressionRules:
         'expression : function_call'
         p[0] = p[1]
     
-    def p_plus_expression(self, p):
+    '''def p_plus_expression(self, p):
         'expression : expression PLUS expression'
         p[0] = PlusNode(p[1], p[3])
 
     def p_mult_expression(self, p):
         'expression : expression MULT expression'
         p[0] = MultNode(p[1], p[3])
+'''
