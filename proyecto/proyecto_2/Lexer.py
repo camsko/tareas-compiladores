@@ -18,7 +18,8 @@ class Lexer:
 
     tokens = (
         'IF', 'ELSE', 'ELIF',
-        'WHILE', 'FOR', 
+        'WHILE', 'FOR',
+        'TRY', 'EXCEPT', 'AS',
         'BREAK', 'CONTINUE', 'PASS',
         'DEF', 'RETURN', 'CLASS',
         'TRUE', 'FALSE',
@@ -67,6 +68,7 @@ class Lexer:
     reserved = {
         'if': 'IF',  'else': 'ELSE', 'elif': 'ELIF',
         'while': 'WHILE', 'for': 'FOR',
+        'try': 'TRY', 'except': 'EXCEPT', 'as': 'AS',
         'break': 'BREAK', 'continue': 'CONTINUE', 'pass': 'PASS',
         'def': 'DEF', 'return': 'RETURN', 'class': 'CLASS',
         'True': 'TRUE', 'False': 'FALSE',

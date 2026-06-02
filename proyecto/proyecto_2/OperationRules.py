@@ -125,6 +125,13 @@ class OperationRules:
         'primary_operation : function_call'
         p[0] = p[1]
 
+    def p_primary_bool_true(self, p):
+        'primary_operation : TRUE'
+        p[0] = BoolNode(True)
+    def p_primary_bool_false(self, p):
+        'primary_operation : FALSE'
+        p[0] = BoolNode(False)
+
     def p_primary_operation_group(self, p):
         'primary_operation : LPAREN expression RPAREN' 
         p[0] = p[2]
