@@ -142,6 +142,28 @@ class RangeNode(Node):
     def __repr__(self):
         return f"RangeNode({self.value})"
     
+class IndexNode(Node):
+    def __init__(self, value, index):
+        self.value = value
+        self.index = index
+
+    def __repr__(self):
+        return f"IndexNode({self.value}, {self.index})"
+    
+class MethodCallNode(Node):
+    def __init__(self, obj, method, args):
+        self.obj = obj
+        self.method = method
+        self.args = args
+
+    def __repr__(self):
+        return (
+            f"MethodCallNode("
+            f"obj={self.obj}, "
+            f"method={self.method}, "
+            f"args={self.args})"
+        )
+    
 class ClassNode(Node):
     def __init__(self, name, body):
         self.name = name
@@ -197,3 +219,5 @@ class GreaterEqualNode(BinaryNode): pass
 class AndNode(BinaryNode): pass
 class OrNode(BinaryNode): pass
 class RangeBinaryNode(BinaryNode): pass
+class PlusNode(BinaryNode): pass
+class MultNode(BinaryNode): pass

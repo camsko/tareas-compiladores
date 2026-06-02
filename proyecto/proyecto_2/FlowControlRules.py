@@ -12,14 +12,16 @@ class FlowControlRules:
                 p[7],
                 p[8]
             )
+    
+    
            
 ### Conditions
  
-    def p_comparation_single(self, p):
+    def p_comparison_single(self, p):
         'comparison : expression compare_operator expression'
         p[0] = p[2](p[1], p[3])
         
-    def p_comparation_multiple(self, p):
+    def p_comparison_multiple(self, p):
         'comparison : comparison logic_operator comparison'
         p[0] = p[2](p[1], p[3])
     
@@ -27,9 +29,13 @@ class FlowControlRules:
         'comparison : function_call'
         p[0] = p[1]
         
-    def p_comparation_group(self, p):
+    def p_comparison_group(self, p):
         'comparison : LPAREN comparison RPAREN'
         p[0] = p[2]
+      
+    def p_comparison_single_expression(self, p):
+        'comparison : expression'
+        p[0] = p[2]  
       
     def p_and_operator(self, p):
         'logic_operator : AND'
