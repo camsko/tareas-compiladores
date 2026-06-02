@@ -22,7 +22,7 @@ class Lexer:
         'BREAK', 'CONTINUE', 'PASS',
         'DEF', 'RETURN', 'CLASS',
         'TRUE', 'FALSE',
-        'AND', 'OR', 'NOT',
+        'AND', 'OR', 'NOT', 'UNION',
         'ID', 'IN', 'RANGE',
         
         #Numeric literals
@@ -151,6 +151,7 @@ class Lexer:
     t_DOT    = r'\.'
     t_COLON    = r':'
     t_COMMA    = r','
+    t_UNION   = r'\|'
     
     # Handles indentation changes and adds INDENT/DENT tokens when needed.
     def t_indent(self, t):

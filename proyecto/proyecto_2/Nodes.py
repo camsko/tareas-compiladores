@@ -29,6 +29,14 @@ class IdentifierNode(Node):
 
     def __repr__(self):
         return f"IdentifierNode({self.name})"
+
+class MemberAccessNode(Node):
+    def __init__(self, base, members):
+        self.base = base
+        self.members = members
+
+    def __repr__(self):
+        return f"MemberAccessNode(base={self.base}, members={self.members})"
     
 class StringNode(Node):
     def __init__(self, value):
@@ -133,6 +141,44 @@ class RangeNode(Node):
 
     def __repr__(self):
         return f"RangeNode({self.value})"
+    
+class ClassNode(Node):
+    def __init__(self, name, body):
+        self.name = name
+        self.body = body
+
+    def __repr__(self):
+        return f"ClassNode(name={self.name}, body={self.body})"
+    
+class ChildClassNode(Node):
+    def __init__(self, name, parent, body):
+        self.name = name
+        self.parent = parent
+        self.body = body
+
+    def __repr__(self):
+        return f"ChildClassNode(name={self.name}, parent={self.parent}, body={self.body})"
+    
+class ClassBodyNode(Node):
+    def __init__(self, statements):
+        self.statements = statements
+
+    def __repr__(self):
+        return f"ClassBodyNode(statements={self.statements})"
+
+class ReturnNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"ReturnNode({self.value})"
+    
+class ParameterHintNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"ParameterHintNode({self.value})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass

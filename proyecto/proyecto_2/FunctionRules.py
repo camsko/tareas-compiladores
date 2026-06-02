@@ -27,13 +27,29 @@ class FunctionRules:
     def p_parameter_list_multiple(self, p):
         'parameter_list : parameter_list COMMA parameter'
         p[0] = p[1] + [p[3]]
-        
+    
     def p_parameter(self, p):
         'parameter : ID'
         p[0] = ParameterNode(
             IdentifierNode(p[1]),
             None
         )
+        
+    def p_parameter_union(self, p):
+        'parameter : ID COLON ID parameter_union'
+        p[0] = ParameterNode(
+            IdentifierNode(p[1]),
+            ParameterHintNode([p[3]] + p[4])
+        )    
+        
+    def p_parameter_union_multiple(self, p):
+        'parameter_union :  parameter_union UNION ID'
+        p[0] = p[1] + [p[3]]
+    
+    def p_parameter_union_single(self, p):
+        'parameter_union :  UNION ID'
+        p[0] = [p[2]]
+        
 
     def p_parameter_default(self, p):
         'parameter : ID ASSIGN expression'
@@ -42,6 +58,4 @@ class FunctionRules:
             p[3]
         )
         
-    def p_function_call(self, p):
-        'function_call : ID LPAREN parameter_list RPAREN'
-        p[0] = FunctionCallNode(p[1], p[3])
+
