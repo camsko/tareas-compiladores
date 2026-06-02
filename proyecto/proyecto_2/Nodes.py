@@ -202,13 +202,26 @@ class ParameterHintNode(Node):
     def __repr__(self):
         return f"ParameterHintNode({self.value})"
 
-class ComparisonNode(Node):
-    def __init__(self, first, comparisons=[]):
-        self.first = first
-        self.chained_comparisons = comparisons
+class ListNode(Node):
+    def __init__(self, elements):
+        self.elements = elements
 
     def __repr__(self):
-        return f"ComparisonNode(first={self.first}, chained_comparisons={self.chained_comparisons})"
+        return f"ListNode({self.elements})"
+    
+class TupleNode(Node):
+    def __init__(self, elements):
+        self.elements = elements
+
+    def __repr__(self):
+        return f"TupleNode({self.elements})"
+    
+class DictNode(Node):
+    def __init__(self, elements):
+        self.elements = elements
+
+    def __repr__(self):
+        return f"DictNode({self.elements})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass
