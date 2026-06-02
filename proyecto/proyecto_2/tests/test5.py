@@ -42,7 +42,22 @@ for i in range(10):
 for i in range(0, var):
     var = i
     
-for i in range(0, 10):
+for i in [1, 2, 3]:
     var = i
+    
+for i in (10, 20, 30):
+    var = i
+
+for i in {"a": 1, "b": 2}:
+    var = i
+    
+for i in var:
+    var = i
+
+var = [1, 2, 3]
+
+var = (10, 20, 30)
+
+var = {"a": 1, "b": 2}
 
 5 = 5
