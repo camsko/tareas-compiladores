@@ -29,6 +29,12 @@ class AssignmentRules:
         'assignment : ID MOD_ASSIGN expression'
         p[0] = ModAssignNode(IdentifierNode(p[1]), p[3])
     
+    def p_assignment_member_access(self, p):
+        'assignment : ID member_access ASSIGN expression'
+        p[0] = AssignNode(MemberAccessNode(IdentifierNode(p[1]), p[2]), p[4])
+
     def p_assignment(self, p):
         'assignment : ID ASSIGN expression'
-        p[0] = AssignNode(IdentifierNode(p[1]), p[3])
+        p[0] = AssignNode(IdentifierNode(p[1]), p[3])    
+        
+ 
