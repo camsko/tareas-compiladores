@@ -31,11 +31,11 @@ class StatementRules:
         'global_statement : child_class'
         p[0] = p[1]
     
-
     def p_global_statement_expression(self, p):
         'global_statement : expression'
         p[0] = p[1]
-
+    
+   
 ##################### RESTRICTED #####################
     def p_restricted_statement_assignment_single(self, p):
         'restricted_statement : assignment'
