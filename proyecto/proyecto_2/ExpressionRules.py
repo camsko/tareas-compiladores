@@ -61,11 +61,3 @@ class ExpressionRules:
         'expression : function_call'
         p[0] = p[1]
     
-    '''def p_plus_expression(self, p):
-        'expression : expression PLUS expression'
-        p[0] = PlusNode(p[1], p[3])
-
-    def p_mult_expression(self, p):
-        'expression : expression MULT expression'
-        p[0] = MultNode(p[1], p[3])
-'''
