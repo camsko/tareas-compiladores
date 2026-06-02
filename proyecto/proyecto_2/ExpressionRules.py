@@ -4,7 +4,7 @@ class ExpressionRules:
 
     def p_operation_expression(self, p):
         'expression : operation'
-
+        p[0] = p[1]
 
     def p_identifier_member_access_expression(self, p):
         'expression : ID member_access'
