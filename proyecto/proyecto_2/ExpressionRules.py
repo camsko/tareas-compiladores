@@ -12,6 +12,14 @@ class ExpressionRules:
     def p_int_expression(self, p):
         'num_expression : INT'
         p[0] = IntNode(p[1])
+    
+    def p_bool_true_expression(self, p):
+        'expression : TRUE'
+        p[0] = BoolNode(True)
+
+    def p_bool_false_expression(self, p):
+        'expression : FALSE'
+        p[0] = BoolNode(False)
 
     def p_num_expression(self, p):
         'expression : num_expression'

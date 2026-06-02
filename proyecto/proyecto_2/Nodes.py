@@ -59,6 +59,13 @@ class IntNode(Node):
     def __repr__(self):
         return f"IntNode({self.value})"
 
+class BoolNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"BoolNode({self.value})"
+
 class FunctionNode(Node):
     def __init__(self, name, parameters, body):
         self.name = name
@@ -118,6 +125,23 @@ class ElseNode(Node):
     def __repr__(self):
         return f"ElseNode(bodys={self.body})"
     
+class TryNode(Node):
+    def __init__(self, body, except_list):
+        self.body = body
+        self.except_list = except_list
+
+    def __repr__(self):
+        return f"TryNode(body={self.body}, except_list={self.except_list})"
+
+class ExceptNode(Node):
+    def __init__(self, exception, name, body):
+        self.exception = exception
+        self.name = name
+        self.body = body
+
+    def __repr__(self):
+        return f"ExceptNode(exception={self.exception}, name={self.name}, body={self.body})"
+
 class WhileNode(Node):
     def __init__(self, conditions, body):
         self.conditions = conditions

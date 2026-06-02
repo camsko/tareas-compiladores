@@ -49,7 +49,7 @@ _lr_productions = [
   ('global_statement -> function_definition','global_statement',1,'p_global_statement_function','StatementRules.py',13),
   ('function_body -> restricted_statement','function_body',1,'p_function_body_single','FunctionRules.py',16),
   ('assignment -> ID MINUS_ASSIGN expression','assignment',3,'p_minus_assign_expression','AssignmentRules.py',17),
-  ('expression -> num_expression','expression',1,'p_num_expression','ExpressionRules.py',17),
+  ('expression -> TRUE','expression',1,'p_bool_true_expression','ExpressionRules.py',17),
   ('global_statement -> conditional','global_statement',1,'p_global_statement_conditional','StatementRules.py',17),
   ('argument_list -> argument_list COMMA expression','argument_list',3,'p_argument_list_multiple','StringOperationRules.py',17),
   ('class_body -> class_body function_definition','class_body',2,'p_class_body_multiple','ClassRules.py',20),

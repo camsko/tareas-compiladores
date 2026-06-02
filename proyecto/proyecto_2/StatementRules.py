@@ -24,6 +24,10 @@ class StatementRules:
     def p_global_statement_for(self, p):
         'global_statement : for_statement'
         p[0] = p[1]
+
+    def p_global_statement_try(self, p):
+        'global_statement : try_statement'
+        p[0] = p[1]
     def p_global_statement_class(self, p):
         'global_statement : class'
         p[0] = p[1]
@@ -53,6 +57,10 @@ class StatementRules:
         'restricted_statement : for_statement'
         p[0] = [p[1]]
 
+    def p_restricted_statement_try_single(self, p):
+        'restricted_statement : try_statement'
+        p[0] = [p[1]]
+
     def p_restricted_statement_return_single(self, p):
         'restricted_statement : return_statement'
         p[0] = [p[1]]
@@ -79,6 +87,10 @@ class StatementRules:
         
     def p_restricted_statement_for(self, p):
         'restricted_statement : restricted_statement for_statement'
+        p[0] = p[1] + [p[2]]
+
+    def p_restricted_statement_try(self, p):
+        'restricted_statement : restricted_statement try_statement'
         p[0] = p[1] + [p[2]]
 
     def p_restricted_statement_return(self, p):

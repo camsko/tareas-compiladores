@@ -7,7 +7,6 @@ Unused terminals:
     CONTINUE
     DIV
     ERROR
-    FALSE
     FROM
     IMPORT
     INT_DIV
@@ -1167,7 +1166,7 @@ state 30
     num_expression                 shift and go to state 21
     function_call                  shift and go to state 45
 
-state 31
+    ID              shift and go to state 58
 
     (74) expression -> expression MULT . expression
     (3) expression -> . STRING
@@ -1808,6 +1807,7 @@ state 53
     COLON           shift and go to state 96
     LPAREN          shift and go to state 97
 
+    function_call                  shift and go to state 92
 
 state 54
 
@@ -2327,7 +2327,7 @@ state 73
     num_expression                 shift and go to state 21
     function_call                  shift and go to state 45
 
-state 74
+    INDENT          shift and go to state 101
 
     (50) assignment -> ID ASSIGN expression .
     (7) expression -> expression . LBRACKET expression RBRACKET
@@ -2581,6 +2581,7 @@ state 84
     FLOAT           reduce using rule 57 (logic_operator -> OR .)
     INT             reduce using rule 57 (logic_operator -> OR .)
 
+    logic_operator                 shift and go to state 74
 
 state 85
 
@@ -2639,6 +2640,7 @@ state 87
     FLOAT           reduce using rule 65 (compare_operator -> NON_EQUAL .)
     INT             reduce using rule 65 (compare_operator -> NON_EQUAL .)
 
+    iterable_expression            shift and go to state 106
 
 state 88
 
@@ -2784,7 +2786,6 @@ state 95
     num_expression                 shift and go to state 21
     function_call                  shift and go to state 45
 
-state 96
 
     (2) class -> CLASS ID COLON . INDENT class_body DENT
 
@@ -3340,7 +3341,18 @@ state 114
     function_call                  shift and go to state 140
     num_expression                 shift and go to state 21
 
-state 115
+    DENT            reduce using rule 76 (restricted_statement -> return_statement .)
+    ID              reduce using rule 76 (restricted_statement -> return_statement .)
+    IF              reduce using rule 76 (restricted_statement -> return_statement .)
+    WHILE           reduce using rule 76 (restricted_statement -> return_statement .)
+    FOR             reduce using rule 76 (restricted_statement -> return_statement .)
+    TRY             reduce using rule 76 (restricted_statement -> return_statement .)
+    RETURN          reduce using rule 76 (restricted_statement -> return_statement .)
+    STRING          reduce using rule 76 (restricted_statement -> return_statement .)
+    TRUE            reduce using rule 76 (restricted_statement -> return_statement .)
+    FALSE           reduce using rule 76 (restricted_statement -> return_statement .)
+    FLOAT           reduce using rule 76 (restricted_statement -> return_statement .)
+    INT             reduce using rule 76 (restricted_statement -> return_statement .)
 
     (36) comparison -> comparison logic_operator comparison .
     (36) comparison -> comparison . logic_operator comparison
@@ -3359,7 +3371,30 @@ state 115
 
     logic_operator                 shift and go to state 82
 
-state 116
+state 115
+
+    (79) restricted_statement -> expression .
+    (7) expression -> expression . LBRACKET expression RBRACKET
+    (15) expression -> expression . DOT ID LPAREN argument_list RPAREN
+    (77) expression -> expression . PLUS expression
+    (80) expression -> expression . MULT expression
+
+    DENT            reduce using rule 79 (restricted_statement -> expression .)
+    ID              reduce using rule 79 (restricted_statement -> expression .)
+    IF              reduce using rule 79 (restricted_statement -> expression .)
+    WHILE           reduce using rule 79 (restricted_statement -> expression .)
+    FOR             reduce using rule 79 (restricted_statement -> expression .)
+    TRY             reduce using rule 79 (restricted_statement -> expression .)
+    RETURN          reduce using rule 79 (restricted_statement -> expression .)
+    STRING          reduce using rule 79 (restricted_statement -> expression .)
+    TRUE            reduce using rule 79 (restricted_statement -> expression .)
+    FALSE           reduce using rule 79 (restricted_statement -> expression .)
+    FLOAT           reduce using rule 79 (restricted_statement -> expression .)
+    INT             reduce using rule 79 (restricted_statement -> expression .)
+    LBRACKET        shift and go to state 29
+    DOT             shift and go to state 30
+    PLUS            shift and go to state 31
+    MULT            shift and go to state 32
 
     (30) comparison -> expression compare_operator expression .
     (7) expression -> expression . LBRACKET expression RBRACKET
@@ -3376,6 +3411,59 @@ state 116
     PLUS            shift and go to state 30
     MULT            shift and go to state 31
 
+    (81) restricted_statement -> function_call .
+    (49) expression -> function_call . member_access
+    (74) expression -> function_call .
+    (56) member_access -> . member_access DOT ID
+    (59) member_access -> . DOT ID
+    (63) member_access -> . member_access DOT function_call
+    (67) member_access -> . DOT function_call
+
+  ! reduce/reduce conflict for DENT resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for ID resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for IF resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for WHILE resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for FOR resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for TRY resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for RETURN resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for STRING resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for TRUE resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for FALSE resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 74 (expression -> function_call .)
+  ! reduce/reduce conflict for INT resolved using rule 74 (expression -> function_call .)
+  ! shift/reduce conflict for DOT resolved as shift
+    LBRACKET        reduce using rule 74 (expression -> function_call .)
+    PLUS            reduce using rule 74 (expression -> function_call .)
+    MULT            reduce using rule 74 (expression -> function_call .)
+    DENT            reduce using rule 74 (expression -> function_call .)
+    ID              reduce using rule 74 (expression -> function_call .)
+    IF              reduce using rule 74 (expression -> function_call .)
+    WHILE           reduce using rule 74 (expression -> function_call .)
+    FOR             reduce using rule 74 (expression -> function_call .)
+    TRY             reduce using rule 74 (expression -> function_call .)
+    RETURN          reduce using rule 74 (expression -> function_call .)
+    STRING          reduce using rule 74 (expression -> function_call .)
+    TRUE            reduce using rule 74 (expression -> function_call .)
+    FALSE           reduce using rule 74 (expression -> function_call .)
+    FLOAT           reduce using rule 74 (expression -> function_call .)
+    INT             reduce using rule 74 (expression -> function_call .)
+    DOT             shift and go to state 28
+
+  ! DENT            [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! ID              [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! IF              [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! WHILE           [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! FOR             [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! TRY             [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! RETURN          [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! STRING          [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! TRUE            [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! FALSE           [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! FLOAT           [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! INT             [ reduce using rule 81 (restricted_statement -> function_call .) ]
+  ! DOT             [ reduce using rule 74 (expression -> function_call .) ]
+
+    member_access                  shift and go to state 27
 
 state 117
 
@@ -3386,6 +3474,36 @@ state 117
     OR              reduce using rule 47 (comparison -> LPAREN comparison RPAREN .)
     RPAREN          reduce using rule 47 (comparison -> LPAREN comparison RPAREN .)
 
+  ! shift/reduce conflict for DOT resolved as shift
+    POW_ASSIGN      shift and go to state 33
+    INT_DIV_ASSIGN  shift and go to state 34
+    PLUS_ASSIGN     shift and go to state 35
+    MINUS_ASSIGN    shift and go to state 36
+    MULT_ASSIGN     shift and go to state 37
+    DIV_ASSIGN      shift and go to state 38
+    MOD_ASSIGN      shift and go to state 39
+    ASSIGN          shift and go to state 41
+    LBRACKET        reduce using rule 71 (expression -> ID .)
+    PLUS            reduce using rule 71 (expression -> ID .)
+    MULT            reduce using rule 71 (expression -> ID .)
+    DENT            reduce using rule 71 (expression -> ID .)
+    ID              reduce using rule 71 (expression -> ID .)
+    IF              reduce using rule 71 (expression -> ID .)
+    WHILE           reduce using rule 71 (expression -> ID .)
+    FOR             reduce using rule 71 (expression -> ID .)
+    TRY             reduce using rule 71 (expression -> ID .)
+    RETURN          reduce using rule 71 (expression -> ID .)
+    STRING          reduce using rule 71 (expression -> ID .)
+    TRUE            reduce using rule 71 (expression -> ID .)
+    FALSE           reduce using rule 71 (expression -> ID .)
+    FLOAT           reduce using rule 71 (expression -> ID .)
+    INT             reduce using rule 71 (expression -> ID .)
+    LPAREN          shift and go to state 42
+    DOT             shift and go to state 28
+
+  ! DOT             [ reduce using rule 71 (expression -> ID .) ]
+
+    member_access                  shift and go to state 40
 
 state 118
 
@@ -3543,6 +3661,7 @@ state 126
     PLUS            shift and go to state 30
     MULT            shift and go to state 31
 
+    parameter                      shift and go to state 148
 
 state 127
 
@@ -3553,7 +3672,7 @@ state 127
     COMMA           shift and go to state 109
 
 
-state 128
+state 177
 
     (25) argument_list -> argument_list COMMA expression .
     (7) expression -> expression . LBRACKET expression RBRACKET
@@ -3569,14 +3688,14 @@ state 128
     MULT            shift and go to state 31
 
 
-state 129
+state 178
 
     (53) parameter -> ID COLON . ID parameter_union
 
     ID              shift and go to state 150
 
 
-state 130
+state 179
 
     (67) parameter -> ID ASSIGN . expression
     (3) expression -> . STRING
@@ -3608,14 +3727,14 @@ state 130
     num_expression                 shift and go to state 21
     function_call                  shift and go to state 45
 
-state 131
+state 180
 
     (5) function_definition -> DEF ID LPAREN parameter_list RPAREN . COLON INDENT function_body DENT
 
     COLON           shift and go to state 152
 
 
-state 132
+    RPAREN          reduce using rule 105 (range_expression -> INT COMMA ID .)
 
     (40) parameter_list -> parameter_list COMMA . parameter
     (45) parameter -> . ID
@@ -3626,7 +3745,7 @@ state 132
 
     parameter                      shift and go to state 153
 
-state 133
+state 181
 
     (10) conditional -> IF comparison COLON INDENT restricted_statement . DENT elif_list else_
     (79) restricted_statement -> restricted_statement . assignment
@@ -3688,7 +3807,7 @@ state 133
     function_call                  shift and go to state 161
     num_expression                 shift and go to state 21
 
-state 134
+    COLON           shift and go to state 190
 
     (55) restricted_statement -> assignment .
 
@@ -3706,7 +3825,7 @@ state 134
     INT             reduce using rule 55 (restricted_statement -> assignment .)
 
 
-state 135
+state 182
 
     (58) restricted_statement -> conditional .
 
@@ -3724,7 +3843,51 @@ state 135
     INT             reduce using rule 58 (restricted_statement -> conditional .)
 
 
-state 136
+state 183
+
+    (99) except_target -> expression AS . ID
+
+    ID              shift and go to state 192
+
+
+state 184
+
+    (16) child_class -> CLASS ID LPAREN ID RPAREN COLON INDENT class_body . DENT
+    (26) class_body -> class_body . function_definition
+    (5) function_definition -> . DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT
+
+    DENT            shift and go to state 193
+    DEF             shift and go to state 14
+
+    function_definition            shift and go to state 158
+
+state 185
+
+    (60) parameter_union -> parameter_union UNION ID .
+
+    UNION           reduce using rule 60 (parameter_union -> parameter_union UNION ID .)
+    RPAREN          reduce using rule 60 (parameter_union -> parameter_union UNION ID .)
+    COMMA           reduce using rule 60 (parameter_union -> parameter_union UNION ID .)
+
+
+state 186
+
+    (5) function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .
+
+    ID              reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    DEF             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    IF              reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    WHILE           reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    FOR             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    TRY             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    CLASS           reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    STRING          reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    TRUE            reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    FALSE           reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    FLOAT           reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    INT             reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    $end            reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
+    DENT            reduce using rule 5 (function_definition -> DEF ID LPAREN parameter_list RPAREN COLON INDENT function_body DENT .)
 
     (62) restricted_statement -> while_statement .
 
