@@ -35,7 +35,7 @@ class FlowControlRules:
       
     def p_comparison_single_expression(self, p):
         'comparison : expression'
-        p[0] = p[2]  
+        p[0] = p[1]  
       
     def p_and_operator(self, p):
         'logic_operator : AND'
