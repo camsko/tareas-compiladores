@@ -126,5 +126,5 @@ class OperationRules:
         p[0] = p[1]
 
     def p_primary_operation_group(self, p):
-        'primary_operation : LPAREN operation RPAREN' 
+        'primary_operation : LPAREN expression RPAREN' 
         p[0] = p[2]

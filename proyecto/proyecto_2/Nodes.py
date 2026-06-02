@@ -222,6 +222,27 @@ class DictNode(Node):
 
     def __repr__(self):
         return f"DictNode({self.elements})"
+
+class BreakNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"BreakNode({self.value})"
+
+class ContinueNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"ContinueNode({self.value})"
+    
+class PassNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f"PassNode({self.value})"
         
 class PowAssignNode(BinaryNode): pass
 class IntDivAssignNode(BinaryNode): pass

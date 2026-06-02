@@ -10,13 +10,26 @@ for i in range(10):
         print(i)
     elif i % 3 == 0 or i < 3:
         print(i * 2)
+        break
+        continue
+        pass
     else:
         print(i ** 2)
+function.myarg(arg1, arg2)
+def function(arg1, arg2):
+    return arg1 + arg2
+class MyClass:
+    def __init__(self, x: int| str):
+        self.x = x
 
-flag1 = result1 and result2 or result3
-flag2 = not result1 and not result2
-flag3 = (result1 or result2) and (result3 or result4)
-flag4 = not (result1 and result2) or (result3 and not result4)
+    def method1(self, y):
+        return self.x + y
+
+    def method2(self, z):
+        return self.x * z
+
+function.method(arg1, arg2, arg1 + arg2, not arg1 and arg2)
+
 
 check1 = x + 5 > y - 3 > 4 and z * 2 <= 100 or not x == y
 check2 = (x ** 2 + y ** 2 >= z ** 2) and not (x * y == z * 2)

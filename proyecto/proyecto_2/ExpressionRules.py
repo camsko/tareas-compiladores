@@ -6,22 +6,6 @@ class ExpressionRules:
         'expression : operation'
         p[0] = p[1]
         
-    def p_string_expression(self, p):
-        'expression : STRING'
-        p[0] = StringNode(p[1])
-
-    def p_float_expression(self, p):
-        'num_expression : FLOAT'
-        p[0] = FloatNode(p[1])
-    
-    def p_int_expression(self, p):
-        'num_expression : INT'
-        p[0] = IntNode(p[1])
-
-    def p_num_expression(self, p):
-        'expression : num_expression'
-        p[0] = p[1]
-
     def p_identifier_member_access_expression(self, p):
         'expression : ID member_access'
         p[0] = MemberAccessNode(
@@ -51,23 +35,13 @@ class ExpressionRules:
         'member_access : DOT function_call'
         p[0] = [p[2]]
 
-    def p_identifier_expression(self, p):
-        'expression : ID'
-        p[0] = IdentifierNode(p[1])
-
+    
     #TODO CHECK IF THIS IS NEEDED, lo agregue para que se puedan usar funciones luego de asignaciones. 
     #Sin embargo, también permite que se usen funciones como argumentos
     def p_function_call_expression(self, p):
         'expression : function_call'
         p[0] = p[1]
     
-    def p_plus_expression(self, p):
-        'expression : expression PLUS expression'
-        p[0] = PlusNode(p[1], p[3])
-
-    def p_mult_expression(self, p):
-        'expression : expression MULT expression'
-        p[0] = MultNode(p[1], p[3])
         
     ##################### Lists #####################
     def p_list_expression(self, p):
@@ -96,12 +70,9 @@ class ExpressionRules:
         p[0] = p[1] + [p[3]]
 
     def p_tuple_items_single(self, p):
-        'tuple_items : expression'
+        'tuple_items : expression COMMA expression'
         p[0] = [p[1]]
 
-    def p_tuple_items_empty(self, p):
-        'tuple_items : '
-        p[0] = []
         
     ##################### Dictionaries #####################
     def p_dict_expression(self, p):
@@ -123,3 +94,17 @@ class ExpressionRules:
     def p_dict_pair(self, p):
         'dict_pair : expression COLON expression'
         p[0] = (p[1], p[3])
+
+
+    ##################### Flow Control #####################
+    def p_break_expression(self, p):
+        'expression : BREAK'
+        p[0] = BreakNode(p[1])
+        
+    def p_continue_expression(self, p):
+        'expression : CONTINUE'
+        p[0] = ContinueNode(p[1])
+
+    def p_pass_expression(self, p):
+        'expression : PASS'
+        p[0] = PassNode(p[1])
