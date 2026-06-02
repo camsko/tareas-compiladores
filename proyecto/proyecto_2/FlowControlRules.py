@@ -126,7 +126,11 @@ class FlowControlRules:
     def p_iterable_range_expression(self, p):
         'iterable_expression : RANGE LPAREN range_expression RPAREN'
         p[0] = p[3]
-    
+        
+    def p_iterable_expression(self, p):
+        'iterable_expression : expression'
+        p[0] = p[1]
+
     def p_range_identifier_expression(self, p):
         'range_expression : ID'
         p[0] = RangeNode(IdentifierNode(p[1]))
