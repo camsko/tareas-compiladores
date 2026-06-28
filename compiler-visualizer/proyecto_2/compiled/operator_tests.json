@@ -1,0 +1,1653 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "a",
+          "children": []
+        },
+        {
+          "type": "MinusNode",
+          "value": null,
+          "children": [
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "PowNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IntNode",
+                      "value": 2,
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 3,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "MultNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IntNode",
+                      "value": 10,
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 5,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ModNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IntDivNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IntNode",
+                      "value": 4,
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 2,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 3,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "b",
+          "children": []
+        },
+        {
+          "type": "DivNode",
+          "value": null,
+          "children": [
+            {
+              "type": "MultNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "PlusNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "a",
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 2,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "MinusNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "a",
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 1,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "ModNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "a",
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 3,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "c",
+          "children": []
+        },
+        {
+          "type": "IntDivNode",
+          "value": null,
+          "children": [
+            {
+              "type": "PowNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "MultNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "PlusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 3,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "MinusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IntNode",
+                          "value": 4,
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 1,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 2,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "ModNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IntNode",
+                      "value": 7,
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 3,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "a",
+          "children": []
+        },
+        {
+          "type": "IntNode",
+          "value": 3,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "PlusNode",
+      "value": null,
+      "children": [
+        {
+          "type": "PlusNode",
+          "value": null,
+          "children": [
+            {
+              "type": "StringNode",
+              "value": "\"hello\"",
+              "children": []
+            },
+            {
+              "type": "IntNode",
+              "value": 4,
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "StringNode",
+          "value": "\"world\"",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "ForNode",
+      "value": "i",
+      "children": [
+        {
+          "type": "RangeNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IntNode",
+              "value": 10,
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "IfNode",
+          "value": null,
+          "children": [
+            {
+              "type": "AndNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "EqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "ModNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "i",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "GreaterThanNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "i",
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 5,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "FunctionCallNode",
+              "value": "print",
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "i",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "ElifNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "OrNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "EqualNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "ModNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "i",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 3,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 0,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "LowerThanNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "i",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 3,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "FunctionCallNode",
+                  "value": "print",
+                  "children": [
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "i",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BreakNode",
+                  "value": "break",
+                  "children": []
+                },
+                {
+                  "type": "ContinueNode",
+                  "value": "continue",
+                  "children": []
+                },
+                {
+                  "type": "PassNode",
+                  "value": "pass",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "ElseNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "FunctionCallNode",
+                  "value": "print",
+                  "children": [
+                    {
+                      "type": "PowNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "i",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "function",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "myarg",
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "arg1",
+              "children": []
+            },
+            {
+              "type": "IdentifierNode",
+              "value": "arg2",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FunctionNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "function",
+          "children": []
+        },
+        {
+          "type": "ParameterNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "arg1",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "ParameterNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "arg2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "ReturnNode",
+          "value": null,
+          "children": [
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "arg1",
+                  "children": []
+                },
+                {
+                  "type": "IdentifierNode",
+                  "value": "arg2",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ClassNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "MyClass",
+          "children": []
+        },
+        {
+          "type": "ClassBodyNode",
+          "value": null,
+          "children": [
+            {
+              "type": "FunctionNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "__init__",
+                  "children": []
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "self",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "x",
+                      "children": []
+                    },
+                    {
+                      "type": "ParameterHintNode",
+                      "value": [
+                        "int",
+                        "str"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "AssignNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MemberAccessNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "self",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IdentifierNode",
+                      "value": "x",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "FunctionNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "method1",
+                  "children": []
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "self",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "y",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ReturnNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MemberAccessNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "self",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "FunctionNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "method2",
+                  "children": []
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "self",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ParameterNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "z",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ReturnNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MemberAccessNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "self",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "function",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "method",
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "arg1",
+              "children": []
+            },
+            {
+              "type": "IdentifierNode",
+              "value": "arg2",
+              "children": []
+            },
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "arg1",
+                  "children": []
+                },
+                {
+                  "type": "IdentifierNode",
+                  "value": "arg2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "AndNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "NotNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "arg1",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "IdentifierNode",
+                  "value": "arg2",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "check1",
+          "children": []
+        },
+        {
+          "type": "OrNode",
+          "value": null,
+          "children": [
+            {
+              "type": "AndNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "AndNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "GreaterThanNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "PlusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 5,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "MinusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 3,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "GreaterThanNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "MinusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 3,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 4,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "LowerEqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 100,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "NotNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "EqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "x",
+                      "children": []
+                    },
+                    {
+                      "type": "IdentifierNode",
+                      "value": "y",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "check2",
+          "children": []
+        },
+        {
+          "type": "AndNode",
+          "value": null,
+          "children": [
+            {
+              "type": "GreaterEqualNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "PlusNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "PowNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "PowNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "PowNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "z",
+                      "children": []
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 2,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "NotNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "EqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 2,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "check3",
+          "children": []
+        },
+        {
+          "type": "OrNode",
+          "value": null,
+          "children": [
+            {
+              "type": "NotNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "AndNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "GreaterThanNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "PlusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "LowerThanNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "MinusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "AndNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "EqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "ModNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "NonEqualNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IntDivNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IntNode",
+                      "value": 1,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "deep1",
+          "children": []
+        },
+        {
+          "type": "IntDivNode",
+          "value": null,
+          "children": [
+            {
+              "type": "PowNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "PlusNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "x",
+                      "children": []
+                    },
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        },
+                        {
+                          "type": "MinusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "z",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 2,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 2,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "ModNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "z",
+                      "children": []
+                    },
+                    {
+                      "type": "PlusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 1,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "deep2",
+          "children": []
+        },
+        {
+          "type": "DivNode",
+          "value": null,
+          "children": [
+            {
+              "type": "MinusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "MultNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "PlusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IdentifierNode",
+                      "value": "z",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "MultNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MinusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "IdentifierNode",
+                      "value": "z",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "PlusNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "MinusNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "MultNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "y",
+                          "children": []
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "deep3",
+          "children": []
+        },
+        {
+          "type": "NotNode",
+          "value": null,
+          "children": [
+            {
+              "type": "AndNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "OrNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "GreaterEqualNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "PlusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "IdentifierNode",
+                          "value": "z",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "LowerEqualNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "MultNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "PowNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "z",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 2,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "OrNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "NonEqualNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IntDivNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "z",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "ModNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            },
+                            {
+                              "type": "IdentifierNode",
+                              "value": "x",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "EqualNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "x",
+                          "children": []
+                        },
+                        {
+                          "type": "MinusNode",
+                          "value": null,
+                          "children": [
+                            {
+                              "type": "IdentifierNode",
+                              "value": "y",
+                              "children": []
+                            },
+                            {
+                              "type": "IntNode",
+                              "value": 10,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

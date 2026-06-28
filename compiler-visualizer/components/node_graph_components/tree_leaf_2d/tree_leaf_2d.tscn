@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://biwqkle3mukq2"]
+
+[ext_resource type="Script" uid="uid://74uwyetpk4tm" path="res://components/node_graph_components/tree_leaf_2d/tree_leaf_2d.gd" id="1_rutjp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18fo8"]
+size = Vector2(150, 60)
+
+[node name="TreeLeaf2D" type="RigidBody2D" unique_id=1566030138]
+gravity_scale = 0.0
+input_pickable = true
+script = ExtResource("1_rutjp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=362730800]
+shape = SubResource("RectangleShape2D_18fo8")
+
+[node name="Label" type="Label" parent="." unique_id=1383690346]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test"

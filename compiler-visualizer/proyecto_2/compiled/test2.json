@@ -1,0 +1,241 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "FunctionNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "factorial",
+          "children": []
+        },
+        {
+          "type": "ParameterNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "n",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "IfNode",
+          "value": null,
+          "children": [
+            {
+              "type": "EqualNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "n",
+                  "children": []
+                },
+                {
+                  "type": "IntNode",
+                  "value": 0,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "ReturnNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ReturnNode",
+          "value": null,
+          "children": [
+            {
+              "type": "MultNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "n",
+                  "children": []
+                },
+                {
+                  "type": "FunctionCallNode",
+                  "value": "factorial",
+                  "children": [
+                    {
+                      "type": "MinusNode",
+                      "value": null,
+                      "children": [
+                        {
+                          "type": "IdentifierNode",
+                          "value": "n",
+                          "children": []
+                        },
+                        {
+                          "type": "IntNode",
+                          "value": 1,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FunctionCallNode",
+      "value": "print",
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"# No se que \\\" estoy haciendo\"",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "FunctionCallNode",
+      "value": "print",
+      "children": [
+        {
+          "type": "FunctionCallNode",
+          "value": "factorial",
+          "children": [
+            {
+              "type": "IntNode",
+              "value": 4,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var1",
+          "children": []
+        },
+        {
+          "type": "FloatNode",
+          "value": 1.0,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var2",
+          "children": []
+        },
+        {
+          "type": "FloatNode",
+          "value": 0.5,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var3",
+          "children": []
+        },
+        {
+          "type": "FloatNode",
+          "value": 1.2,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "IfNode",
+      "value": null,
+      "children": [
+        {
+          "type": "GreaterThanNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IntNode",
+              "value": 1,
+              "children": []
+            },
+            {
+              "type": "IntNode",
+              "value": 2,
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "AssignNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "lista",
+              "children": []
+            },
+            {
+              "type": "ListNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "StringNode",
+                  "value": "\"a\"",
+                  "children": []
+                },
+                {
+                  "type": "IntNode",
+                  "value": 1,
+                  "children": []
+                },
+                {
+                  "type": "IntNode",
+                  "value": 2,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FunctionCallNode",
+      "value": "print",
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"hello: \"",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

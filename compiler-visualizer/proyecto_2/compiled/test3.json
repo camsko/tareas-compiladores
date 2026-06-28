@@ -1,0 +1,151 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "IfNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "a",
+          "children": []
+        },
+        {
+          "type": "IfNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "b",
+              "children": []
+            },
+            {
+              "type": "IfNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "BoolNode",
+                  "value": false,
+                  "children": []
+                },
+                {
+                  "type": "IfNode",
+                  "value": null,
+                  "children": [
+                    {
+                      "type": "IdentifierNode",
+                      "value": "d",
+                      "children": []
+                    },
+                    {
+                      "type": "PassNode",
+                      "value": "pass",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "IfNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "e",
+              "children": []
+            },
+            {
+              "type": "PassNode",
+              "value": "pass",
+              "children": []
+            },
+            {
+              "type": "FunctionCallNode",
+              "value": "print",
+              "children": []
+            },
+            {
+              "type": "PassNode",
+              "value": "pass",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "PassNode",
+          "value": "pass",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "print",
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "a",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FunctionCallNode",
+      "value": "print",
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"help\"",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "IfNode",
+      "value": null,
+      "children": [
+        {
+          "type": "BoolNode",
+          "value": false,
+          "children": []
+        },
+        {
+          "type": "IfNode",
+          "value": null,
+          "children": [
+            {
+              "type": "BoolNode",
+              "value": true,
+              "children": []
+            },
+            {
+              "type": "PassNode",
+              "value": "pass",
+              "children": []
+            },
+            {
+              "type": "AssignNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "a",
+                  "children": []
+                },
+                {
+                  "type": "IdentifierNode",
+                  "value": "b",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

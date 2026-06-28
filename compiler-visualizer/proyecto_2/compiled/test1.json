@@ -1,0 +1,39 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "IfNode",
+      "value": null,
+      "children": [
+        {
+          "type": "BoolNode",
+          "value": true,
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "print",
+          "children": [
+            {
+              "type": "BoolNode",
+              "value": false,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FunctionCallNode",
+      "value": "print",
+      "children": [
+        {
+          "type": "IntNode",
+          "value": 3,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

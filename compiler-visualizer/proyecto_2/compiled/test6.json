@@ -1,0 +1,232 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var",
+          "children": []
+        },
+        {
+          "type": "IntNode",
+          "value": 5,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "hello",
+          "children": []
+        },
+        {
+          "type": "IntNode",
+          "value": 2,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var",
+          "children": []
+        },
+        {
+          "type": "PlusNode",
+          "value": null,
+          "children": [
+            {
+              "type": "StringNode",
+              "value": "\"Hola\"",
+              "children": []
+            },
+            {
+              "type": "StringNode",
+              "value": "\" Mundo\"",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MultNode",
+      "value": null,
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"Hola\"",
+          "children": []
+        },
+        {
+          "type": "IntNode",
+          "value": 3,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "AssignNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "var",
+          "children": []
+        },
+        {
+          "type": "IndexNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "texto",
+              "children": []
+            },
+            {
+              "type": "IntNode",
+              "value": 0,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "IndexNode",
+      "value": null,
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"Hola\"",
+          "children": []
+        },
+        {
+          "type": "IntNode",
+          "value": 2,
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "texto",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "lower",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "MethodCallNode",
+      "value": "upper",
+      "children": [
+        {
+          "type": "StringNode",
+          "value": "\"hola\"",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "texto",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "find",
+          "children": [
+            {
+              "type": "StringNode",
+              "value": "\"a\"",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "texto",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "replace",
+          "children": [
+            {
+              "type": "StringNode",
+              "value": "\"a\"",
+              "children": []
+            },
+            {
+              "type": "StringNode",
+              "value": "\"b\"",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "MemberAccessNode",
+      "value": null,
+      "children": [
+        {
+          "type": "IdentifierNode",
+          "value": "texto",
+          "children": []
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "replace",
+          "children": [
+            {
+              "type": "StringNode",
+              "value": "\"a\"",
+              "children": []
+            },
+            {
+              "type": "StringNode",
+              "value": "\"b\"",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "FunctionCallNode",
+          "value": "upper",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

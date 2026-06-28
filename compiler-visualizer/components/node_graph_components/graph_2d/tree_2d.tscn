@@ -1,0 +1,293 @@
+[gd_scene load_steps=60 format=3 uid="uid://cw6u6kq7awo3q"]
+
+[ext_resource type="Script" uid="uid://1jmbou00w1bc" path="res://components/node_graph_components/graph_2d/tree_2d.gd" id="1_d72ex"]
+[ext_resource type="Script" path="res://components/node_graph_components/node_type_color.gd" id="2_ntc"]
+
+[sub_resource type="Resource" id="ntc_0"]
+script = ExtResource("2_ntc")
+type = "AndNode"
+color = Color(0.641969, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_1"]
+script = ExtResource("2_ntc")
+type = "AssignNode"
+color = Color(0.654878, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_2"]
+script = ExtResource("2_ntc")
+type = "BinaryNode"
+color = Color(0.960000, 0.595200, 0.761326, 1)
+
+[sub_resource type="Resource" id="ntc_3"]
+script = ExtResource("2_ntc")
+type = "BoolNode"
+color = Color(0.595200, 0.867773, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_4"]
+script = ExtResource("2_ntc")
+type = "BreakNode"
+color = Color(0.960000, 0.945780, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_5"]
+script = ExtResource("2_ntc")
+type = "ChildClassNode"
+color = Color(0.839333, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_6"]
+script = ExtResource("2_ntc")
+type = "ClassBodyNode"
+color = Color(0.595200, 0.960000, 0.732886, 1)
+
+[sub_resource type="Resource" id="ntc_7"]
+script = ExtResource("2_ntc")
+type = "ClassNode"
+color = Color(0.960000, 0.626438, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_8"]
+script = ExtResource("2_ntc")
+type = "ContinueNode"
+color = Color(0.595200, 0.670409, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_9"]
+script = ExtResource("2_ntc")
+type = "DictNode"
+color = Color(0.776856, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_10"]
+script = ExtResource("2_ntc")
+type = "DivAssignNode"
+color = Color(0.960000, 0.595200, 0.883303, 1)
+
+[sub_resource type="Resource" id="ntc_11"]
+script = ExtResource("2_ntc")
+type = "DivNode"
+color = Color(0.595200, 0.960000, 0.930250, 1)
+
+[sub_resource type="Resource" id="ntc_12"]
+script = ExtResource("2_ntc")
+type = "ElifNode"
+color = Color(0.960000, 0.823802, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_13"]
+script = ExtResource("2_ntc")
+type = "ElseNode"
+color = Color(0.717355, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_14"]
+script = ExtResource("2_ntc")
+type = "EqualNode"
+color = Color(0.595200, 0.960000, 0.610908, 1)
+
+[sub_resource type="Resource" id="ntc_15"]
+script = ExtResource("2_ntc")
+type = "ExceptNode"
+color = Color(0.960000, 0.595200, 0.685939, 1)
+
+[sub_resource type="Resource" id="ntc_16"]
+script = ExtResource("2_ntc")
+type = "FloatNode"
+color = Color(0.595200, 0.792386, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_17"]
+script = ExtResource("2_ntc")
+type = "ForNode"
+color = Color(0.898834, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_18"]
+script = ExtResource("2_ntc")
+type = "FunctionCallNode"
+color = Color(0.914719, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_19"]
+script = ExtResource("2_ntc")
+type = "FunctionNode"
+color = Color(0.595200, 0.960000, 0.808272, 1)
+
+[sub_resource type="Resource" id="ntc_20"]
+script = ExtResource("2_ntc")
+type = "GreaterEqualNode"
+color = Color(0.960000, 0.701825, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_21"]
+script = ExtResource("2_ntc")
+type = "GreaterThanNode"
+color = Color(0.595377, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_22"]
+script = ExtResource("2_ntc")
+type = "IdentifierNode"
+color = Color(0.701470, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_23"]
+script = ExtResource("2_ntc")
+type = "IfNode"
+color = Color(0.960000, 0.595200, 0.807917, 1)
+
+[sub_resource type="Resource" id="ntc_24"]
+script = ExtResource("2_ntc")
+type = "IndexNode"
+color = Color(0.595200, 0.914364, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_25"]
+script = ExtResource("2_ntc")
+type = "IntDivAssignNode"
+color = Color(0.960000, 0.899189, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_26"]
+script = ExtResource("2_ntc")
+type = "IntDivNode"
+color = Color(0.792741, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_27"]
+script = ExtResource("2_ntc")
+type = "IntNode"
+color = Color(0.595200, 0.960000, 0.686294, 1)
+
+[sub_resource type="Resource" id="ntc_28"]
+script = ExtResource("2_ntc")
+type = "ListNode"
+color = Color(0.960000, 0.595200, 0.610553, 1)
+
+[sub_resource type="Resource" id="ntc_29"]
+script = ExtResource("2_ntc")
+type = "LowerEqualNode"
+color = Color(0.595200, 0.717000, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_30"]
+script = ExtResource("2_ntc")
+type = "LowerThanNode"
+color = Color(0.823447, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_31"]
+script = ExtResource("2_ntc")
+type = "MemberAccessNode"
+color = Color(0.960000, 0.595200, 0.929895, 1)
+
+[sub_resource type="Resource" id="ntc_32"]
+script = ExtResource("2_ntc")
+type = "MethodCallNode"
+color = Color(0.595200, 0.960000, 0.883658, 1)
+
+[sub_resource type="Resource" id="ntc_33"]
+script = ExtResource("2_ntc")
+type = "MinusAssignNode"
+color = Color(0.960000, 0.777211, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_34"]
+script = ExtResource("2_ntc")
+type = "MinusNode"
+color = Color(0.670764, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_35"]
+script = ExtResource("2_ntc")
+type = "ModAssignNode"
+color = Color(0.626083, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_36"]
+script = ExtResource("2_ntc")
+type = "ModNode"
+color = Color(0.960000, 0.595200, 0.732531, 1)
+
+[sub_resource type="Resource" id="ntc_37"]
+script = ExtResource("2_ntc")
+type = "MultAssignNode"
+color = Color(0.595200, 0.838978, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_38"]
+script = ExtResource("2_ntc")
+type = "MultNode"
+color = Color(0.945425, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_39"]
+script = ExtResource("2_ntc")
+type = "NonEqualNode"
+color = Color(0.868128, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_40"]
+script = ExtResource("2_ntc")
+type = "NotNode"
+color = Color(0.595200, 0.960000, 0.761681, 1)
+
+[sub_resource type="Resource" id="ntc_41"]
+script = ExtResource("2_ntc")
+type = "OrNode"
+color = Color(0.960000, 0.655233, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_42"]
+script = ExtResource("2_ntc")
+type = "ParameterHintNode"
+color = Color(0.595200, 0.641614, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_43"]
+script = ExtResource("2_ntc")
+type = "ParameterNode"
+color = Color(0.748061, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_44"]
+script = ExtResource("2_ntc")
+type = "PassNode"
+color = Color(0.960000, 0.595200, 0.854508, 1)
+
+[sub_resource type="Resource" id="ntc_45"]
+script = ExtResource("2_ntc")
+type = "PlusAssignNode"
+color = Color(0.595200, 0.960000, 0.959045, 1)
+
+[sub_resource type="Resource" id="ntc_46"]
+script = ExtResource("2_ntc")
+type = "PlusNode"
+color = Color(0.960000, 0.852597, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_47"]
+script = ExtResource("2_ntc")
+type = "PowAssignNode"
+color = Color(0.746150, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_48"]
+script = ExtResource("2_ntc")
+type = "PowNode"
+color = Color(0.595200, 0.960000, 0.639703, 1)
+
+[sub_resource type="Resource" id="ntc_49"]
+script = ExtResource("2_ntc")
+type = "ProgramNode"
+color = Color(0.960000, 0.595200, 0.657144, 1)
+
+[sub_resource type="Resource" id="ntc_50"]
+script = ExtResource("2_ntc")
+type = "RangeBinaryNode"
+color = Color(0.595200, 0.763591, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_51"]
+script = ExtResource("2_ntc")
+type = "RangeNode"
+color = Color(0.870039, 0.960000, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_52"]
+script = ExtResource("2_ntc")
+type = "ReturnNode"
+color = Color(0.943514, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_53"]
+script = ExtResource("2_ntc")
+type = "StringNode"
+color = Color(0.595200, 0.960000, 0.837067, 1)
+
+[sub_resource type="Resource" id="ntc_54"]
+script = ExtResource("2_ntc")
+type = "TryNode"
+color = Color(0.960000, 0.730620, 0.595200, 1)
+
+[sub_resource type="Resource" id="ntc_55"]
+script = ExtResource("2_ntc")
+type = "TupleNode"
+color = Color(0.624172, 0.595200, 0.960000, 1)
+
+[sub_resource type="Resource" id="ntc_56"]
+script = ExtResource("2_ntc")
+type = "WhileNode"
+color = Color(0.672675, 0.960000, 0.595200, 1)
+
+[node name="Tree2D" type="Node2D" unique_id=2030689732]
+script = ExtResource("1_d72ex")
+node_type_colors = Array[NodeTypeColor]([SubResource("ntc_0"), SubResource("ntc_1"), SubResource("ntc_2"), SubResource("ntc_3"), SubResource("ntc_4"), SubResource("ntc_5"), SubResource("ntc_6"), SubResource("ntc_7"), SubResource("ntc_8"), SubResource("ntc_9"), SubResource("ntc_10"), SubResource("ntc_11"), SubResource("ntc_12"), SubResource("ntc_13"), SubResource("ntc_14"), SubResource("ntc_15"), SubResource("ntc_16"), SubResource("ntc_17"), SubResource("ntc_18"), SubResource("ntc_19"), SubResource("ntc_20"), SubResource("ntc_21"), SubResource("ntc_22"), SubResource("ntc_23"), SubResource("ntc_24"), SubResource("ntc_25"), SubResource("ntc_26"), SubResource("ntc_27"), SubResource("ntc_28"), SubResource("ntc_29"), SubResource("ntc_30"), SubResource("ntc_31"), SubResource("ntc_32"), SubResource("ntc_33"), SubResource("ntc_34"), SubResource("ntc_35"), SubResource("ntc_36"), SubResource("ntc_37"), SubResource("ntc_38"), SubResource("ntc_39"), SubResource("ntc_40"), SubResource("ntc_41"), SubResource("ntc_42"), SubResource("ntc_43"), SubResource("ntc_44"), SubResource("ntc_45"), SubResource("ntc_46"), SubResource("ntc_47"), SubResource("ntc_48"), SubResource("ntc_49"), SubResource("ntc_50"), SubResource("ntc_51"), SubResource("ntc_52"), SubResource("ntc_53"), SubResource("ntc_54"), SubResource("ntc_55"), SubResource("ntc_56")])

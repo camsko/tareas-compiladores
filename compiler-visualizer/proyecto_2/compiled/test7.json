@@ -1,0 +1,60 @@
+{
+  "type": "ProgramNode",
+  "value": null,
+  "children": [
+    {
+      "type": "TryNode",
+      "value": null,
+      "children": [
+        {
+          "type": "AssignNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "x",
+              "children": []
+            },
+            {
+              "type": "BoolNode",
+              "value": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "ExceptNode",
+          "value": null,
+          "children": [
+            {
+              "type": "IdentifierNode",
+              "value": "ValueError",
+              "children": []
+            },
+            {
+              "type": "IdentifierNode",
+              "value": "e",
+              "children": []
+            },
+            {
+              "type": "AssignNode",
+              "value": null,
+              "children": [
+                {
+                  "type": "IdentifierNode",
+                  "value": "x",
+                  "children": []
+                },
+                {
+                  "type": "BoolNode",
+                  "value": false,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

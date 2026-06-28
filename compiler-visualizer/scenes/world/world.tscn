@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2kyvhepcrpsf"]
+
+[ext_resource type="Script" uid="uid://c8qftfthenprt" path="res://scenes/world/world.gd" id="1_sl2e5"]
+[ext_resource type="PackedScene" uid="uid://cw6u6kq7awo3q" path="res://components/node_graph_components/graph_2d/tree_2d.tscn" id="2_sl2e5"]
+[ext_resource type="Script" uid="uid://cssy1kxs76ned" path="res://scenes/world/camera_2d.gd" id="3_sl2e5"]
+
+[node name="World" type="Node2D" unique_id=2040684328]
+script = ExtResource("1_sl2e5")
+background_color = Color(0.22073364, 0.2503169, 0.2996154, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1331799797]
+script = ExtResource("3_sl2e5")
+
+[node name="Tree2D" parent="." unique_id=2030689732 instance=ExtResource("2_sl2e5")]
