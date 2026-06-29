@@ -1,0 +1,6 @@
+x = 4
+y = 3
+z = 2
+
+if (x == 4 and (z <= 3 or y <= 5)):
+    print(False)
