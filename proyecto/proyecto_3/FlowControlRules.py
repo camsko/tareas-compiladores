@@ -131,18 +131,14 @@ class FlowControlRules:
         'iterable_expression : expression'
         p[0] = p[1]
 
-    def p_range_identifier_expression(self, p):
-        'range_expression : ID'
-        p[0] = RangeNode(IdentifierNode(p[1]))
-        
-    def p_range_num_expression(self, p):
-        'range_expression : INT'
-        p[0] = RangeNode(IntNode(p[1]))
-    
-    def p_range_num_identifier_expression(self, p):
-        'range_expression : INT COMMA ID'
-        p[0] = RangeBinaryNode(IntNode(p[1]), IdentifierNode(p[3]))
-    
-    def p_range_num_num_expression(self, p):
-        'range_expression : INT COMMA INT'
-        p[0] = RangeBinaryNode(IntNode(p[1]), IntNode(p[3]))
+    def p_range_expression_1(self, p):
+        'range_expression : expression'
+        p[0] = RangeNode(p[1])
+
+    def p_range_expression_2(self, p):
+        'range_expression : expression COMMA expression'
+        p[0] = RangeNode(p[1], p[3])
+
+    def p_range_expression_3(self, p):
+        'range_expression : expression COMMA expression COMMA expression'
+        p[0] = RangeNode(p[1], p[3], p[5])

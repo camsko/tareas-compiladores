@@ -13,3 +13,6 @@ while (x > 4):
     
 for i in z:
     print(i)
+    
+for i in range(2,10):
+    print(i)

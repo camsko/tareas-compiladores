@@ -84,14 +84,76 @@ class CodeGenerator(NodeVisitor):
     self.emit("}\n")
     
   def visit_ForNode(self, n: ForNode):
-    self.emit("for (PyObject ")
-    self.emit(n.i_var)
-    self.emit(" : ")
-    self.visit(n.gen_func)
-    self.emit(") {\n")
+    if isinstance(n.gen_func, RangeNode):
+
+        self.emit("for (PyObject ")
+        self.emit(n.i_var)
+        self.emit(" = ")
+
+        # range(stop)
+        if n.gen_func.stop is None:
+
+            self.emit("0; ")
+            self.emit(n.i_var)
+            self.emit(" < ")
+            self.visit(n.gen_func.start)
+            self.emit("; ++")
+            self.emit(n.i_var)
+
+        # range(start, stop)
+        elif n.gen_func.step is None:
+
+            self.visit(n.gen_func.start)
+
+            self.emit("; ")
+            self.emit(n.i_var)
+            self.emit(" < ")
+            self.visit(n.gen_func.stop)
+
+            self.emit("; ")
+            self.emit(n.i_var)
+            self.emit("++")
+
+        # range(start, stop, step)
+        else:
+
+            self.visit(n.gen_func.start)
+
+            self.emit("; ")
+            self.emit(n.i_var)
+            self.emit(" < ")
+            self.visit(n.gen_func.stop)
+
+            self.emit("; ")
+            self.emit(n.i_var)
+            self.emit(" += ")
+            self.visit(n.gen_func.step)
+
+        self.emit(") {\n")
+
+    else:
+
+        self.emit("for (PyObject ")
+        self.emit(n.i_var)
+        self.emit(" : ")
+        self.visit(n.gen_func)
+        self.emit(") {\n")
+
     self.visit_Scope(n.scope, skip={n.i_var})
     self.emit_statements(n.body)
+
     self.emit("}\n")
+    
+  def visit_RangeNode(self, n: RangeNode):
+    self.emit("range(")
+    self.visit(n.start)
+    if n.stop is not None:
+        self.emit(", ")
+        self.visit(n.stop)
+    if n.step is not None:
+        self.emit(", ")
+        self.visit(n.step)
+    self.emit(")")
     
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.left)

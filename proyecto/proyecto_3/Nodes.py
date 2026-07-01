@@ -173,11 +173,19 @@ class ForNode(Node):
         return f"ForNode(iterable variable={self.i_var}, generator function={self.gen_func}, body={self.body})"
     
 class RangeNode(Node):
-    def __init__(self, value):
-        self.value = value
+    scope: SymbolTable = None
+    def __init__(self, start, stop=None, step=None):
+        self.start = start
+        self.stop = stop
+        self.step = step
 
     def __repr__(self):
-        return f"RangeNode({self.value})"
+        return (
+            f"RangeNode("
+            f"start={self.start}, "
+            f"stop={self.stop}, "
+            f"step={self.step})"
+        )
     
 class IndexNode(Node):
     def __init__(self, value, index):

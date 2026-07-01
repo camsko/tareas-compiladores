@@ -62,6 +62,15 @@ class SemanticAnalyzer(NodeVisitor):
         self.visit(statement)
     self.scope_stack.pop()
     
+  def visit_RangeNode(self, n: RangeNode):
+    self.visit(n.start)
+
+    if n.stop is not None:
+        self.visit(n.stop)
+
+    if n.step is not None:
+        self.visit(n.step)
+    
   def visit_AndNode(self, n: AndNode):
     self.visit(n.left)
     self.visit(n.right)
