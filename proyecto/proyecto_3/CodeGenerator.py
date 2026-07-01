@@ -163,11 +163,6 @@ class CodeGenerator(NodeVisitor):
   def visit_IdentifierNode(self, n: IdentifierNode):
     self.emit(n.name)
   
-  def visit_IntNode(self, n: IntNode):
-    self.emit("PyObject(")
-    self.emit(str(n.value))
-    self.emit(")")
-
   def visit_AndNode(self, n: AndNode):
     self.visit_operand(n.left)
     self.emit(" && ")
@@ -176,6 +171,11 @@ class CodeGenerator(NodeVisitor):
   def visit_EqualNode(self, n: EqualNode):
     self.visit_operand(n.left)
     self.emit(" == ")
+    self.visit_operand(n.right)
+  
+  def visit_NonEqualNode(self, n: NonEqualNode):
+    self.visit_operand(n.left)
+    self.emit(" != ")
     self.visit_operand(n.right)
 
   def visit_OrNode(self, n: OrNode):
@@ -186,6 +186,11 @@ class CodeGenerator(NodeVisitor):
   def visit_LowerEqualNode(self, n: LowerEqualNode):
     self.visit_operand(n.left)
     self.emit(" <= ")
+    self.visit_operand(n.right)
+  
+  def visit_GreaterEqualNode(self, n: GreaterEqualNode):
+    self.visit_operand(n.left)
+    self.emit(" >= ")
     self.visit_operand(n.right)
     
   def visit_GreaterThanNode(self, n: GreaterThanNode):
@@ -198,6 +203,35 @@ class CodeGenerator(NodeVisitor):
       self.emit(" < ")
       self.visit_operand(n.right)
   
+  def visit_PlusNode(self, n: PlusNode):
+      self.visit_operand(n.left)
+      self.emit(" + ")
+      self.visit_operand(n.right)
+      
+  def visit_MinusNode(self, n: MinusNode):
+      self.visit_operand(n.left)
+      self.emit(" - ")
+      self.visit_operand(n.right)
+  
+  def visit_MultNode(self, n: MultNode):
+      self.visit_operand(n.left)
+      self.emit(" * ")
+      self.visit_operand(n.right)
+    
+  def visit_DivNode(self, n: DivNode):
+      self.visit_operand(n.left)
+      self.emit(" / ")
+      self.visit_operand(n.right)
+  
+  def visit_ModNode(self, n: ModNode):
+      self.visit_operand(n.left)
+      self.emit(" % ")
+      self.visit_operand(n.right)
+      
+  def visit_NotNode(self, n: NotNode):
+    self.emit("!")
+    self.visit_operand(n.operand)
+  
   def visit_FunctionCallNode(self, n: FunctionCallNode):
     self.emit(n.name)
     self.emit("(")
@@ -206,6 +240,21 @@ class CodeGenerator(NodeVisitor):
             self.emit(", ")
         self.visit(arg)
     self.emit(")")
+  
+  def visit_IntNode(self, n: IntNode):
+    self.emit("PyObject(")
+    self.emit(str(n.value))
+    self.emit(")")
+  
+  def visit_FloatNode(self, n: FloatNode):
+    self.emit("PyObject(")
+    self.emit(str(n.value))
+    self.emit(")")
+    
+  def visit_StringNode(self, n: StringNode):
+    self.emit('PyObject("')
+    self.emit(n.value)
+    self.emit('")')
   
   def visit_BoolNode(self, n: BoolNode):
     self.emit("PyObject(")

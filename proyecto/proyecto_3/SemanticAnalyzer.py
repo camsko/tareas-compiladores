@@ -10,6 +10,8 @@ class SemanticAnalyzer(NodeVisitor):
       self.visit(node)
     self.scope_stack.pop()
 
+  # ControlFlow 
+
   def visit_IfNode(self, n: IfNode):
     self.visit(n.conditions)
     if n.scope is None:
@@ -71,6 +73,8 @@ class SemanticAnalyzer(NodeVisitor):
     if n.step is not None:
         self.visit(n.step)
     
+  # Expressions
+    
   def visit_AndNode(self, n: AndNode):
     self.visit(n.left)
     self.visit(n.right)
@@ -83,30 +87,53 @@ class SemanticAnalyzer(NodeVisitor):
     self.visit(n.left)
     self.visit(n.right)
   
+  def visit_NonEqualNode(self, n: NonEqualNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
   def visit_LowerEqualNode(self, n: LowerEqualNode):
     self.visit(n.left)
     self.visit(n.right)
   
-  def visit_GreaterThanNode(self, n: GreaterThanNode):
+  def visit_GreaterEqualNode(self, n: GreaterEqualNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
+  def visit_LowerThanNode(self, n: LowerThanNode):
     self.visit(n.left)
     self.visit(n.right)
 
-  def visit_LowerThanNode(self, n: LowerThanNode):
-      self.visit(n.left)
-      self.visit(n.right)
+  def visit_GreaterThanNode(self, n: GreaterThanNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
+  def visit_PlusNode(self, n: PlusNode):
+    self.visit(n.left)
+    self.visit(n.right)
+    
+  def visit_MinusNode(self, n: MinusNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
+  def visit_MultNode(self, n: MultNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
+  def visit_DivNode(self, n: DivNode):
+    self.visit(n.left)
+    self.visit(n.right)
+  
+  def visit_ModNode(self, n: ModNode):
+    self.visit(n.left)
+    self.visit(n.right)
+    
+  def visit_NotNode(self, n: NotNode):
+    self.visit(n.operand)
 
   def visit_IdentifierNode(self, n: IdentifierNode):
     s: Symbol = self.scope_stack.find_symbol(n.name)
     if s is None:
       print("Error. Variable " + n.name + " was not declared.")
-    
-  def visit_IntNode(self, n: IntNode):
-    pass
-
-  def visit_FunctionCallNode(self, n: FunctionCallNode):
-    s: Symbol = self.scope_stack.find_symbol(n.name)
-    if s is None:
-      print("Error. Function " + n.name + " was not declared.")
     
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.right)
@@ -115,3 +142,8 @@ class SemanticAnalyzer(NodeVisitor):
         self.scope_stack.current().add(s)
     else:
         self.visit(n.left)
+  
+  def visit_FunctionCallNode(self, n: FunctionCallNode):
+    s: Symbol = self.scope_stack.find_symbol(n.name)
+    if s is None:
+      print("Error. Function " + n.name + " was not declared.")
