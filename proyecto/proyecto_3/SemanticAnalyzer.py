@@ -13,14 +13,33 @@ class SemanticAnalyzer(NodeVisitor):
   def visit_IfNode(self, n: IfNode):
     self.visit(n.conditions)
     if n.scope is None:
-      n.scope = SymbolTable("If Scope")
+        n.scope = SymbolTable("If Scope")
     self.scope_stack.push(n.scope)
     for b_node in n.body:
-      self.visit(b_node)
+        self.visit(b_node)
     self.scope_stack.pop()
-    for elif_node in n.elif_list:
-      self.visit(elif_node)
-    self.visit(n.else_)
+    if n.elif_list is not None:
+        for elif_node in n.elif_list:
+            self.visit(elif_node)
+    if n.else_ is not None:
+        self.visit(n.else_)
+    
+  def visit_ElifNode(self, n: ElifNode):
+    self.visit(n.conditions)
+    if n.scope is None:
+        n.scope = SymbolTable("Elif Scope")
+    self.scope_stack.push(n.scope)
+    for b_node in n.body:
+        self.visit(b_node)
+    self.scope_stack.pop()
+
+  def visit_ElseNode(self, n: ElseNode):
+    if n.scope is None:
+        n.scope = SymbolTable("Else Scope")
+    self.scope_stack.push(n.scope)
+    for b_node in n.body:
+        self.visit(b_node)
+    self.scope_stack.pop()
 
   def visit_AndNode(self, n: AndNode):
     self.visit(n.left)

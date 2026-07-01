@@ -55,6 +55,20 @@ class CodeGenerator(NodeVisitor):
     for elif_node in n.elif_list:
       self.visit(elif_node)
     self.visit(n.else_)
+    
+  def visit_ElifNode(self, n: ElifNode):
+    self.emit("else if (")
+    self.visit(n.conditions)
+    self.emit(") {\n")
+    self.visit_Scope(n.scope)
+    self.emit_statements(n.body)
+    self.emit("}\n")
+      
+  def visit_ElseNode(self, n: ElseNode):
+    self.emit("else {\n")
+    self.visit_Scope(n.scope)
+    self.emit_statements(n.body)
+    self.emit("}\n")
 
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.left)
