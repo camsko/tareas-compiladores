@@ -6,6 +6,8 @@ b = a - 2
 c = b / 1
 d = c * 3
 e = True
+f = "Hola"
+g = 3.14
 
 if (x == 4 and (z <= 3 or y <= 5)):
     print(False)

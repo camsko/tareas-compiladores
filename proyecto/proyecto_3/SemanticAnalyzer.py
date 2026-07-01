@@ -135,9 +135,6 @@ class SemanticAnalyzer(NodeVisitor):
     if s is None:
       print("Error. Variable " + n.name + " was not declared.")
     
-  def visit_IntNode(self, n: IntNode):
-    pass
-
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.right)
     if type(n.left) is IdentifierNode:
