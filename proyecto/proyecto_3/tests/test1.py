@@ -8,3 +8,6 @@ elif(x == 5):
     print(False)
 else:
     print(True)
+    
+while (x > 4):
+    print(True)

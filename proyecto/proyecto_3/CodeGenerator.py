@@ -70,6 +70,14 @@ class CodeGenerator(NodeVisitor):
     self.emit_statements(n.body)
     self.emit("}\n")
 
+  def visit_WhileNode(self, n: WhileNode):
+    self.emit("while (")
+    self.visit(n.conditions)
+    self.emit(") {\n")
+    self.visit_Scope(n.scope)
+    self.emit_statements(n.body)
+
+    self.emit("}\n")
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.left)
     self.emit(" = ")
@@ -102,6 +110,16 @@ class CodeGenerator(NodeVisitor):
     self.visit_operand(n.left)
     self.emit(" <= ")
     self.visit_operand(n.right)
+    
+  def visit_GreaterThanNode(self, n: GreaterThanNode):
+    self.visit_operand(n.left)
+    self.emit(" > ")
+    self.visit_operand(n.right)
+
+  def visit_LowerThanNode(self, n: LowerThanNode):
+      self.visit_operand(n.left)
+      self.emit(" < ")
+      self.visit_operand(n.right)
   
   def visit_FunctionCallNode(self, n: FunctionCallNode):
     self.emit(n.name)

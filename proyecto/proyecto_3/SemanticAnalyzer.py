@@ -41,6 +41,16 @@ class SemanticAnalyzer(NodeVisitor):
         self.visit(b_node)
     self.scope_stack.pop()
 
+
+  def visit_WhileNode(self, n: WhileNode):
+    self.visit(n.conditions)
+    if n.scope is None:
+        n.scope = SymbolTable("While Scope")
+    self.scope_stack.push(n.scope)
+    for b_node in n.body:
+        self.visit(b_node)
+    self.scope_stack.pop()
+    
   def visit_AndNode(self, n: AndNode):
     self.visit(n.left)
     self.visit(n.right)
@@ -56,6 +66,14 @@ class SemanticAnalyzer(NodeVisitor):
   def visit_LowerEqualNode(self, n: LowerEqualNode):
     self.visit(n.left)
     self.visit(n.right)
+  
+  def visit_GreaterThanNode(self, n: GreaterThanNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_LowerThanNode(self, n: LowerThanNode):
+      self.visit(n.left)
+      self.visit(n.right)
 
   def visit_IdentifierNode(self, n: IdentifierNode):
     s: Symbol = self.scope_stack.find_symbol(n.name)

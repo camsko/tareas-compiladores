@@ -154,6 +154,7 @@ class ExceptNode(Node):
         return f"ExceptNode(exception={self.exception}, name={self.name}, body={self.body})"
 
 class WhileNode(Node):
+    scope: SymbolTable = None
     def __init__(self, conditions, body):
         self.conditions = conditions
         self.body = body
