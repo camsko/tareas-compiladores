@@ -2,7 +2,7 @@ from SymbolTableStack import SymbolTable
 
 class Node:
     node_type: str = "Not Set"
-    children: list[Node] = []
+    children: list["Node"] = []
     scope: SymbolTable = None
 
 class ProgramNode(Node):
@@ -120,6 +120,7 @@ class IfNode(Node):
         return f"IfNode(conditions={self.conditions}, body={self.body}, elif_list={self.elif_list}, else={self.else_})"
     
 class ElifNode(Node):
+    scope: SymbolTable = None
     def __init__(self, conditions, body):
         self.conditions = conditions
         self.body = body
@@ -128,6 +129,7 @@ class ElifNode(Node):
         return f"ElifNode(conditions={self.conditions}, body={self.body})"
     
 class ElseNode(Node):
+    scope: SymbolTable = None
     def __init__(self, body):
         self.body = body
 
@@ -152,6 +154,7 @@ class ExceptNode(Node):
         return f"ExceptNode(exception={self.exception}, name={self.name}, body={self.body})"
 
 class WhileNode(Node):
+    scope: SymbolTable = None
     def __init__(self, conditions, body):
         self.conditions = conditions
         self.body = body
@@ -160,6 +163,7 @@ class WhileNode(Node):
         return f"WhileNode(conditions={self.conditions}, body={self.body})"
     
 class ForNode(Node):
+    scope: SymbolTable = None
     def __init__(self, i_var, gen_func, body):
         self.i_var = i_var
         self.gen_func = gen_func
@@ -169,11 +173,19 @@ class ForNode(Node):
         return f"ForNode(iterable variable={self.i_var}, generator function={self.gen_func}, body={self.body})"
     
 class RangeNode(Node):
-    def __init__(self, value):
-        self.value = value
+    scope: SymbolTable = None
+    def __init__(self, start, stop=None, step=None):
+        self.start = start
+        self.stop = stop
+        self.step = step
 
     def __repr__(self):
-        return f"RangeNode({self.value})"
+        return (
+            f"RangeNode("
+            f"start={self.start}, "
+            f"stop={self.stop}, "
+            f"step={self.step})"
+        )
     
 class IndexNode(Node):
     def __init__(self, value, index):
