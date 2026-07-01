@@ -16,6 +16,13 @@ class ProgramNode(Node):
     
     def __iter__(self):
         return iter(self.statements)
+    
+class UnaryNode(Node):
+    def __init__(self, operand):
+        self.operand = operand
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.operand})"
 
 class BinaryNode(Node):
     def __init__(self, left, right):
@@ -308,9 +315,9 @@ class OrNode(BinaryNode): pass
 class RangeBinaryNode(BinaryNode): pass
 class PlusNode(BinaryNode): pass
 class MultNode(BinaryNode): pass
-class NotNode(BinaryNode): pass
 class PowNode(BinaryNode): pass
 class IntDivNode(BinaryNode): pass
 class MinusNode(BinaryNode): pass
 class DivNode(BinaryNode): pass
 class ModNode(BinaryNode): pass
+class NotNode(UnaryNode): pass

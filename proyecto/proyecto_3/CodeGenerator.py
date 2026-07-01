@@ -177,6 +177,11 @@ class CodeGenerator(NodeVisitor):
     self.visit_operand(n.left)
     self.emit(" == ")
     self.visit_operand(n.right)
+  
+  def visit_NonEqualNode(self, n: NonEqualNode):
+    self.visit_operand(n.left)
+    self.emit(" != ")
+    self.visit_operand(n.right)
 
   def visit_OrNode(self, n: OrNode):
     self.visit_operand(n.left)
@@ -186,6 +191,11 @@ class CodeGenerator(NodeVisitor):
   def visit_LowerEqualNode(self, n: LowerEqualNode):
     self.visit_operand(n.left)
     self.emit(" <= ")
+    self.visit_operand(n.right)
+  
+  def visit_GreaterEqualNode(self, n: GreaterEqualNode):
+    self.visit_operand(n.left)
+    self.emit(" >= ")
     self.visit_operand(n.right)
     
   def visit_GreaterThanNode(self, n: GreaterThanNode):
@@ -197,6 +207,35 @@ class CodeGenerator(NodeVisitor):
       self.visit_operand(n.left)
       self.emit(" < ")
       self.visit_operand(n.right)
+  
+  def visit_PlusNode(self, n: PlusNode):
+      self.visit_operand(n.left)
+      self.emit(" + ")
+      self.visit_operand(n.right)
+      
+  def visit_MinusNode(self, n: MinusNode):
+      self.visit_operand(n.left)
+      self.emit(" - ")
+      self.visit_operand(n.right)
+  
+  def visit_MultNode(self, n: MultNode):
+      self.visit_operand(n.left)
+      self.emit(" * ")
+      self.visit_operand(n.right)
+    
+  def visit_DivNode(self, n: DivNode):
+      self.visit_operand(n.left)
+      self.emit(" / ")
+      self.visit_operand(n.right)
+  
+  def visit_ModNode(self, n: ModNode):
+      self.visit_operand(n.left)
+      self.emit(" % ")
+      self.visit_operand(n.right)
+      
+  def visit_NotNode(self, n: NotNode):
+    self.emit("!")
+    self.visit_operand(n.operand)
   
   def visit_FunctionCallNode(self, n: FunctionCallNode):
     self.emit(n.name)

@@ -20,7 +20,7 @@ class OperationRules:
 
     def p_not_operation(self, p):
         'not_operation : NOT not_operation'
-        p[0] = NotNode(p[2], None)
+        p[0] = NotNode(p[2])
 
     def p_not_default_operation(self, p):
         'not_operation : comparison_operation'
