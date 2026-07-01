@@ -50,6 +50,17 @@ class SemanticAnalyzer(NodeVisitor):
     for b_node in n.body:
         self.visit(b_node)
     self.scope_stack.pop()
+  
+  def visit_ForNode(self, n: ForNode):
+    self.visit(n.gen_func)
+    if n.scope is None:
+        n.scope = SymbolTable("For Scope")
+    self.scope_stack.push(n.scope)
+    s = Symbol(n.i_var, "var", "PyObject")
+    self.scope_stack.current().add(s)
+    for statement in n.body:
+        self.visit(statement)
+    self.scope_stack.pop()
     
   def visit_AndNode(self, n: AndNode):
     self.visit(n.left)

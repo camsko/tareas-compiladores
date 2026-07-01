@@ -163,6 +163,7 @@ class WhileNode(Node):
         return f"WhileNode(conditions={self.conditions}, body={self.body})"
     
 class ForNode(Node):
+    scope: SymbolTable = None
     def __init__(self, i_var, gen_func, body):
         self.i_var = i_var
         self.gen_func = gen_func

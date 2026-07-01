@@ -15,10 +15,15 @@ class CodeGenerator(NodeVisitor):
       self.emit(" ")
       self.emit(s.name)
 
-  def visit_Scope(self, t: SymbolTable):
+  def visit_Scope(self, t: SymbolTable, skip=None):
+    if skip is None:
+        skip = set()
     for key, value in t.symbols.items():
-      self.visit_Symbol(value)
-      self.emit(";\n")
+        print(type(value), value)
+        if key in skip:
+            continue
+        self.visit_Symbol(value)
+        self.emit(";\n")
 
   def visit_operand(self, child):
     if isinstance(child, BinaryNode):
@@ -76,8 +81,18 @@ class CodeGenerator(NodeVisitor):
     self.emit(") {\n")
     self.visit_Scope(n.scope)
     self.emit_statements(n.body)
-
     self.emit("}\n")
+    
+  def visit_ForNode(self, n: ForNode):
+    self.emit("for (PyObject ")
+    self.emit(n.i_var)
+    self.emit(" : ")
+    self.visit(n.gen_func)
+    self.emit(") {\n")
+    self.visit_Scope(n.scope, skip={n.i_var})
+    self.emit_statements(n.body)
+    self.emit("}\n")
+    
   def visit_AssignNode(self, n: AssignNode):
     self.visit(n.left)
     self.emit(" = ")
