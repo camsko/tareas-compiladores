@@ -55,14 +55,14 @@ class SemanticAnalyzer(NodeVisitor):
   
   def visit_ForNode(self, n: ForNode):
     self.visit(n.gen_func)
-    if n.scope is None:
-        n.scope = SymbolTable("For Scope")
-    self.scope_stack.push(n.scope)
+#    if n.scope is None:
+#        n.scope = SymbolTable("For Scope")
+#   self.scope_stack.push(n.scope)
     s = Symbol(n.i_var, "var", "PyObject")
     self.scope_stack.current().add(s)
     for statement in n.body:
         self.visit(statement)
-    self.scope_stack.pop()
+#    self.scope_stack.pop()
     
   def visit_RangeNode(self, n: RangeNode):
     self.visit(n.start)
@@ -147,3 +147,21 @@ class SemanticAnalyzer(NodeVisitor):
     s: Symbol = self.scope_stack.find_symbol(n.name)
     if s is None:
       print("Error. Function " + n.name + " was not declared.")
+
+  def visit_FunctionNode(self, n: FunctionNode):
+    self.scope_stack.current().add(
+        Symbol(n.name.name, "function", "PyObject")
+    )
+    if n.scope is None:
+      n.scope = SymbolTable("Function Scope")
+    self.scope_stack.push(n.scope)
+    for param in n.parameters:
+      self.scope_stack.current().add(
+        Symbol(param.name.name, "var", "PyObject")
+      )
+    body = n.body[0] if len(n.body) == 1 and isinstance(n.body[0], list) else n.body
+    for node in body:
+        self.visit(node)
+    self.scope_stack.pop()
+
+  

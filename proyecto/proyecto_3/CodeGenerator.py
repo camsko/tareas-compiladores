@@ -23,6 +23,7 @@ class CodeGenerator(NodeVisitor):
         if key in skip:
             continue
         self.visit_Symbol(value)
+        print("Emitting symbol: " + str(value))
         self.emit(";\n")
 
   def visit_operand(self, child):
@@ -44,11 +45,41 @@ class CodeGenerator(NodeVisitor):
         self.emit(";\n")
 
   def visit_ProgramNode(self, n: ProgramNode):
-
-    self.visit_Scope(n.scope)
-
-    self.emit_statements(n.statements)
+    functions = [s for s in n.statements if type(s) is FunctionNode]
+    others = [s for s in n.statements if type(s) is not FunctionNode]
+ 
+    for func in functions:
+      self.visit(func)
+ 
+    self.emit("int main() {\n")
+    self.visit_Scope(n.scope, skip={f.name.name for f in functions})
+    self.emit_statements(others)
+    self.emit("return 0;\n")
+    self.emit("}\n")
     print(self.code)
+
+  def visit_FunctionNode(self, n: FunctionNode):
+    self.emit("PyObject ")
+    self.visit(n.name)
+    self.emit("(")
+    for i, param in enumerate(n.parameters):
+      if i > 0:
+        self.emit(", ")
+      self.visit(param)
+    self.emit(") {\n")
+    self.visit_Scope(n.scope, skip={p.name.name for p in n.parameters})
+    body = n.body[0] if len(n.body) == 1 and isinstance(n.body[0], list) else n.body
+    self.emit_statements(body)
+    self.emit("}\n")
+ 
+  def visit_ParameterNode(self, n: ParameterNode):
+    self.emit("PyObject ")
+    self.visit(n.name)
+ 
+  def visit_ReturnNode(self, n: ReturnNode):
+    self.emit("return ")
+    self.visit(n.value)
+
 
   def visit_IfNode(self, n: IfNode):
     self.emit("if (")
@@ -139,7 +170,7 @@ class CodeGenerator(NodeVisitor):
         self.visit(n.gen_func)
         self.emit(") {\n")
 
-    self.visit_Scope(n.scope, skip={n.i_var})
+    #self.visit_Scope(n.scope, skip={n.i_var})
     self.emit_statements(n.body)
 
     self.emit("}\n")

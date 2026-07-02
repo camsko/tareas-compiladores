@@ -1,10 +1,19 @@
 #include <iostream>
-    #include "cpp_code/PyObject.hpp"
+#include "cpp_code/PyObject.hpp"
 
-    using namespace std;
+using namespace std;
 
-    int main() {
-    PyObject x;
+PyObject my_function(PyObject aa, PyObject bb, PyObject cc) {
+PyObject var;
+std::cout << aa << std::endl;
+std::cout << bb << std::endl;
+std::cout << cc << std::endl;
+var = PyObject(10);
+var = var + PyObject(100);
+std::cout << var << std::endl;
+}
+int main() {
+PyObject x;
 PyObject y;
 PyObject z;
 PyObject a;
@@ -27,6 +36,8 @@ g = PyObject(3.14);
 if ((x == PyObject(4)) && ((z <= PyObject(3)) || (y <= PyObject(5)))) {
 std::cout << PyObject(false) << std::endl;
 }
+std::cout<< ("Hello, World!") << std::endl;
+
 else if (x == PyObject(5)) {
 std::cout << PyObject(false) << std::endl;
 }
@@ -51,7 +62,6 @@ std::cout << PyObject(false) << std::endl;
 else {
 std::cout << PyObject(true) << std::endl;
 }
-
-    return 0;
-    }
-    
+my_function(PyObject(1), PyObject(2), PyObject(3));
+return 0;
+}
