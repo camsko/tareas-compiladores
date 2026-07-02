@@ -297,3 +297,100 @@ class CodeGenerator(NodeVisitor):
     self.emit("PyObject(")
     self.emit(str(n.value).lower())
     self.emit(")")
+
+  def visit_ListNode(self, n: ListNode):
+    self.emit("PyObject(std::vector<PyObject>{")
+    for i, element in enumerate(n.elements):
+      if i > 0:
+        self.emit(", ")
+      self.visit(element)
+    self.emit("}, LIST)")
+
+  def visit_TupleNode(self, n: TupleNode):
+    self.emit("PyObject(std::vector<PyObject>{")
+    for i, element in enumerate(n.elements):
+      if i > 0:
+        self.emit(", ")
+      self.visit(element)
+    self.emit("}, TUPLE)")
+
+  def visit_DictNode(self, n: DictNode):
+    self.emit("PyObject(std::make_shared<std::unordered_map<PyObject, PyObject>>(")
+    self.emit("std::unordered_map<PyObject, PyObject>{")
+    for i, pair in enumerate(n.elements):
+      if i > 0:
+        self.emit(", ")
+      self.emit("{")
+      self.visit(pair[0])
+      self.emit(", ")
+      self.visit(pair[1])
+      self.emit("}")
+    self.emit("}))")
+
+  def visit_IndexNode(self, n: IndexNode):
+    self.visit(n.value)
+    self.emit("[")
+    self.visit(n.index)
+    self.emit("]")
+
+  def visit_PowNode(self, n: PowNode):
+    self.visit_operand(n.left)
+    self.emit(".power(")
+    self.visit(n.right)
+    self.emit(")")
+
+  def visit_IntDivNode(self, n: IntDivNode):
+    self.visit_operand(n.left)
+    self.emit(".floorDiv(")
+    self.visit(n.right)
+    self.emit(")")
+
+  def visit_PlusAssignNode(self, n: PlusAssignNode):
+    self.visit(n.left)
+    self.emit(" += ")
+    self.visit(n.right)
+
+  def visit_MinusAssignNode(self, n: MinusAssignNode):
+    self.visit(n.left)
+    self.emit(" -= ")
+    self.visit(n.right)
+
+  def visit_MultAssignNode(self, n: MultAssignNode):
+    self.visit(n.left)
+    self.emit(" *= ")
+    self.visit(n.right)
+
+  def visit_DivAssignNode(self, n: DivAssignNode):
+    self.visit(n.left)
+    self.emit(" /= ")
+    self.visit(n.right)
+
+  def visit_ModAssignNode(self, n: ModAssignNode):
+    self.visit(n.left)
+    self.emit(" %= ")
+    self.visit(n.right)
+
+  def visit_IntDivAssignNode(self, n: IntDivAssignNode):
+    self.visit(n.left)
+    self.emit(" = ")
+    self.visit(n.left)
+    self.emit(".floorDiv(")
+    self.visit(n.right)
+    self.emit(")")
+
+  def visit_PowAssignNode(self, n: PowAssignNode):
+    self.visit(n.left)
+    self.emit(" = ")
+    self.visit(n.left)
+    self.emit(".power(")
+    self.visit(n.right)
+    self.emit(")")
+
+  def visit_BreakNode(self, n: BreakNode):
+    self.emit("break")
+
+  def visit_ContinueNode(self, n: ContinueNode):
+    self.emit("continue")
+
+  def visit_PassNode(self, n: PassNode):
+    pass

@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstdint>
 #include <memory>
+#include <ostream>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
@@ -120,6 +121,10 @@ struct PyObject {
         result.insert(result.end(), pyList->begin(), pyList->end());
       }
       multiplied = PyObject(result, type);
+    } else if (type == INT && other.type == STRING) {
+      multiplied = other * *this;
+    } else if (type == INT && (other.type == LIST || other.type == TUPLE)) {
+      multiplied = other * *this;
     }
     return multiplied;
   }
@@ -150,6 +155,26 @@ struct PyObject {
       negated = PyObject(-asInt());
     }
     return negated;
+  }
+
+  PyObject power(const PyObject &other) const {
+    PyObject result;
+    if (type == FLOAT || other.type == FLOAT) {
+      result = PyObject(std::pow(asFloat(), other.asFloat()));
+    } else if (isNumeric() && other.isNumeric()) {
+      result = PyObject((int)std::pow(asInt(), other.asInt()));
+    }
+    return result;
+  }
+
+  PyObject floorDiv(const PyObject &other) const {
+    PyObject result;
+    if (type == FLOAT || other.type == FLOAT) {
+      result = PyObject(std::floor(asFloat() / other.asFloat()));
+    } else if (isNumeric() && other.isNumeric()) {
+      result = PyObject((int)std::floor((double)asInt() / other.asInt()));
+    }
+    return result;
   }
 
   bool operator==(const PyObject &other) const {
@@ -213,6 +238,26 @@ struct PyObject {
 
   PyObject& operator+=(const PyObject &other) {
     *this = *this + other;
+    return *this;
+  }
+
+  PyObject& operator-=(const PyObject &other) {
+    *this = *this - other;
+    return *this;
+  }
+
+  PyObject& operator*=(const PyObject &other) {
+    *this = *this * other;
+    return *this;
+  }
+
+  PyObject& operator/=(const PyObject &other) {
+    *this = *this / other;
+    return *this;
+  }
+
+  PyObject& operator%=(const PyObject &other) {
+    *this = *this % other;
     return *this;
   }
 
@@ -309,11 +354,9 @@ namespace std {
 inline size_t hash<PyObject>::operator()(const PyObject &obj) const {
   switch (obj.type) {
   case INT:
-    return hash<int>{}(obj.pyInt);
   case FLOAT:
-    return hash<double>{}(obj.pyFloat);
   case BOOL:
-    return hash<bool>{}(obj.pyBool);
+    return hash<double>{}(obj.asFloat());
   case STRING:
     return hash<string>{}(obj.pyString);
   case NONE:

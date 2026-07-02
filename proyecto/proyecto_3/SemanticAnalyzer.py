@@ -147,6 +147,8 @@ class SemanticAnalyzer(NodeVisitor):
     s: Symbol = self.scope_stack.find_symbol(n.name)
     if s is None:
       print("Error. Function " + n.name + " was not declared.")
+    for arg in n.parameters:
+      self.visit(arg)
 
   def visit_FunctionNode(self, n: FunctionNode):
     self.scope_stack.current().add(
@@ -163,5 +165,79 @@ class SemanticAnalyzer(NodeVisitor):
     for node in body:
         self.visit(node)
     self.scope_stack.pop()
+
+  def visit_ListNode(self, n: ListNode):
+    for element in n.elements:
+      self.visit(element)
+
+  def visit_TupleNode(self, n: TupleNode):
+    for element in n.elements:
+      self.visit(element)
+
+  def visit_DictNode(self, n: DictNode):
+    for pair in n.elements:
+      self.visit(pair[0])
+      self.visit(pair[1])
+
+  def visit_IndexNode(self, n: IndexNode):
+    self.visit(n.value)
+    self.visit(n.index)
+
+  def visit_ReturnNode(self, n: ReturnNode):
+    self.visit(n.value)
+
+  def visit_PowNode(self, n: PowNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_IntDivNode(self, n: IntDivNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_PlusAssignNode(self, n: PlusAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_MinusAssignNode(self, n: MinusAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_MultAssignNode(self, n: MultAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_DivAssignNode(self, n: DivAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_ModAssignNode(self, n: ModAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_IntDivAssignNode(self, n: IntDivAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_PowAssignNode(self, n: PowAssignNode):
+    self.visit(n.left)
+    self.visit(n.right)
+
+  def visit_FloatNode(self, n: FloatNode):
+    pass
+
+  def visit_StringNode(self, n: StringNode):
+    pass
+
+  def visit_BoolNode(self, n: BoolNode):
+    pass
+
+  def visit_BreakNode(self, n: BreakNode):
+    pass
+
+  def visit_ContinueNode(self, n: ContinueNode):
+    pass
+
+  def visit_PassNode(self, n: PassNode):
+    pass
 
   
