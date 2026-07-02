@@ -192,6 +192,32 @@ struct PyObject {
     return result;
   }
 
+  PyObject& operator++() {
+    if (type == INT) {
+      ++pyInt;
+    } else if (type == FLOAT) {
+      ++pyFloat;
+    } else if (type == BOOL) {
+      pyBool = true;
+    } else {
+      throw std::runtime_error("unsupported operand type for ++");
+    }
+    return *this;
+  }
+
+  PyObject operator++(int) {
+    PyObject temp = *this;
+    ++(*this);
+    return temp;
+  }
+
+  PyObject& operator+=(const PyObject &other) {
+    *this = *this + other;
+    return *this;
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const PyObject &obj);
+
   std::vector<PyObject>::iterator begin() { return pyList->begin(); }
 
   std::vector<PyObject>::iterator end() { return pyList->end(); }
@@ -217,6 +243,68 @@ struct PyObject {
   }
 };
 
+inline std::ostream &operator<<(std::ostream &os, const PyObject &obj) {
+  switch (obj.type) {
+  case INT:
+    os << obj.pyInt;
+    break;
+
+  case FLOAT:
+    os << obj.pyFloat;
+    break;
+
+  case BOOL:
+    os << (obj.pyBool ? "True" : "False");
+    break;
+
+  case STRING:
+    os << obj.pyString;
+    break;
+
+  case NONE:
+    os << "None";
+    break;
+
+  case LIST: {
+    os << "[";
+    for (size_t i = 0; i < obj.pyList->size(); ++i) {
+      if (i > 0)
+        os << ", ";
+      os << (*obj.pyList)[i];
+    }
+    os << "]";
+    break;
+  }
+
+  case TUPLE: {
+    os << "(";
+    for (size_t i = 0; i < obj.pyList->size(); ++i) {
+      if (i > 0)
+        os << ", ";
+      os << (*obj.pyList)[i];
+    }
+    if (obj.pyList->size() == 1)
+      os << ",";
+    os << ")";
+    break;
+  }
+
+  case DICT: {
+    os << "{";
+    bool first = true;
+    for (const auto &entry : *obj.pyDict) {
+      if (!first)
+        os << ", ";
+      os << entry.first << ": " << entry.second;
+      first = false;
+    }
+    os << "}";
+    break;
+  }
+  }
+
+  return os;
+}
 namespace std {
 inline size_t hash<PyObject>::operator()(const PyObject &obj) const {
   switch (obj.type) {

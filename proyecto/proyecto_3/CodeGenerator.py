@@ -233,6 +233,12 @@ class CodeGenerator(NodeVisitor):
     self.visit_operand(n.operand)
   
   def visit_FunctionCallNode(self, n: FunctionCallNode):
+    if n.name == "print":
+        self.emit("std::cout << ")
+        if len(n.parameters) > 0:
+            self.visit(n.parameters[0])
+        self.emit(" << std::endl")
+        return
     self.emit(n.name)
     self.emit("(")
     for i, arg in enumerate(n.parameters):
@@ -252,9 +258,9 @@ class CodeGenerator(NodeVisitor):
     self.emit(")")
     
   def visit_StringNode(self, n: StringNode):
-    self.emit('PyObject("')
+    self.emit('PyObject(')
     self.emit(n.value)
-    self.emit('")')
+    self.emit(')')
   
   def visit_BoolNode(self, n: BoolNode):
     self.emit("PyObject(")
