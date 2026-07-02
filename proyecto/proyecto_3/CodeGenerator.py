@@ -170,7 +170,7 @@ class CodeGenerator(NodeVisitor):
         self.visit(n.gen_func)
         self.emit(") {\n")
 
-    self.visit_Scope(n.scope, skip={n.i_var})
+    #self.visit_Scope(n.scope, skip={n.i_var})
     self.emit_statements(n.body)
 
     self.emit("}\n")

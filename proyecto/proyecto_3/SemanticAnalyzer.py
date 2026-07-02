@@ -55,15 +55,14 @@ class SemanticAnalyzer(NodeVisitor):
   
   def visit_ForNode(self, n: ForNode):
     self.visit(n.gen_func)
-    if n.scope is None:
-        n.scope = SymbolTable("For Scope")
-    self.scope_stack.push(n.scope)
+#    if n.scope is None:
+#        n.scope = SymbolTable("For Scope")
+#   self.scope_stack.push(n.scope)
     s = Symbol(n.i_var, "var", "PyObject")
     self.scope_stack.current().add(s)
     for statement in n.body:
         self.visit(statement)
-    self.scope_stack.pop()
-    print("For loop variable " + n.i_var + " has been added to the symbol table.")
+#    self.scope_stack.pop()
     
   def visit_RangeNode(self, n: RangeNode):
     self.visit(n.start)

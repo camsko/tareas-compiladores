@@ -1,46 +1,18 @@
-x = 4
-y = 3
-z = 2
-a = x + 1
-b = a - 2
-c = b / 1
-d = c * 3
-e = True
-f = "Hola"
-g = 3.14
+n = 10
 
-if (x == 4 and (z <= 3 or y <= 5)):
-    print(False)
-elif(x == 5):
-    print(False)
+if n <= 0:
+    print("Invalid input")
+elif n == 1:
+    print(0)
 else:
-    print(True)
-    
-while (x > 4):
-    print(True)
-    
-for i in z:
-    print(i)
-    
-for i in range(2,10):
-    print(i)
+    a = 0
+    b = 1
 
-if (((a >= d) or b <= 2) and ((c != b) or (d < 10))):
-    print(True)
-    
-elif (not e):
-    print(False)
+    print(a)
+    print(b)
 
-else:
-    print(True)
-
-
-def my_function(aa, bb, cc):
-    print(aa)
-    print(bb)
-    print(cc) 
-    var = 10
-    var = var + 100
-    print(var)  
-
-my_function(1, 2, 3)
+    for i in range(2, n):
+        c = a + b
+        print(c)
+        a = b
+        b = c
