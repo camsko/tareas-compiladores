@@ -33,3 +33,14 @@ elif (not e):
 
 else:
     print(True)
+
+
+def my_function(aa, bb, cc):
+    print(aa)
+    print(bb)
+    print(cc) 
+    var = 10
+    var = var + 100
+    print(var)  
+
+my_function(1, 2, 3)

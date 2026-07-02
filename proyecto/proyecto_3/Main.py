@@ -30,15 +30,11 @@ for file in files:
     code_gen.visit(ast)
 
     cpp_code = """#include <iostream>
-    #include "cpp_code/PyObject.hpp"
+#include "cpp_code/PyObject.hpp"
 
-    using namespace std;
+using namespace std;
 
-    int main() {
-    """ + code_gen.code + """
-    return 0;
-    }
-    """
+""" + code_gen.code
 
     with open("output.cpp", "w", encoding="utf-8") as f:
         f.write(cpp_code)
